@@ -35,6 +35,14 @@
       "failed": 0,
       "skipped": 50,
       "seconds": 7.67
+    },
+    "session_state_private_suite": {
+      "passed": 156,
+      "skipped": 0
+    },
+    "session_state_public_suite": {
+      "passed": 101,
+      "skipped": 55
     }
   },
   "requirements": [
@@ -220,9 +228,10 @@
       "status": "PASS_LOCAL",
       "evidence": [
         "careaccess/planner.py",
-        "reports/release-verification.json"
+        "reports/release-verification.json",
+        "reports/acceptance/capacity-consent-verification.json"
       ],
-      "notes": "Capacities 0, 5 and 24 verified; stable tie ordering, no invalid capacity/probabilities; no automatic messages or appointment actions."
+      "notes": "Capacities 0, 5 and 24 verified; stable tie ordering, no invalid capacity/probabilities; no automatic messages or appointment actions. Follow-on locally preserves capacity across navigation and clamps it when a replacement batch shrinks."
     },
     {
       "id": "A04",
@@ -242,7 +251,8 @@
       "status": "PASS_LOCAL",
       "evidence": [
         "reports/release-verification.json",
-        "reports/acceptance/extended_acceptance.json"
+        "reports/acceptance/extended_acceptance.json",
+        "reports/acceptance/capacity-consent-verification.json"
       ],
       "notes": "Original snapshot lost edits on navigation/capacity changes. Candidate preserves review status by appointment reference across both, and zero capacity then restore; edited status exports correctly."
     },
@@ -275,9 +285,10 @@
       "status": "PASS_LOCAL",
       "evidence": [
         "careaccess/session.py",
-        "reports/release-verification.json"
+        "reports/release-verification.json",
+        "reports/acceptance/capacity-consent-verification.json"
       ],
-      "notes": "Original Clear left uploaded schedule visible and authorization withdrawal retained scores. Candidate clears upload/results/reviews, resets confirmation, and rotates uploader key. New scoring clears prior reviews before validation."
+      "notes": "Original Clear left uploaded schedule visible and authorization withdrawal retained scores. Candidate clears upload/results/reviews, resets confirmation, and rotates uploader key. New scoring clears prior reviews before validation. Follow-on locally preserves explicit consent across navigation, clears on explicit revoke/Clear, and rejects legacy results without consent on both Batch and Planner routes."
     },
     {
       "id": "V01",
@@ -285,7 +296,8 @@
       "requirement": "Automated tests including invalid files, missing columns, unknown categories and empty inputs",
       "status": "PASS_LOCAL",
       "evidence": [
-        "reports/release-verification.json"
+        "reports/release-verification.json",
+        "reports/acceptance/capacity-consent-verification.json"
       ],
       "notes": "Original52/52 rerun passed. Final integrated private-fixture suite145/145 passed in18.90s. Public/no-fixture suite95passed/50explicit source-dependent skips in7.67s. Header-only input produces zero records without crashing or fabrication."
     },
@@ -296,7 +308,8 @@
       "status": "PASS_LOCAL",
       "evidence": [
         "reports/acceptance/extended_acceptance.json",
-        "tests/test_acceptance_contract.py"
+        "tests/test_acceptance_contract.py",
+        "reports/acceptance/capacity-consent-verification.json"
       ],
       "notes": "Injected loader failure gives explicit unavailable-model message, no unhandled exception or scores. Corrupted copied artifact rejected by checksum; restored after isolated test."
     },
@@ -317,9 +330,10 @@
       "requirement": "Actual browser checks on the final deployed build",
       "status": "PENDING_FINAL_HOSTED_CHECK",
       "evidence": [
-        "docs/release-status.md"
+        "docs/release-status.md",
+        "reports/acceptance/hosted-repair-verification.json"
       ],
-      "notes": "This local audit did not repeat hosted browser work. Historical hosted logistic, pages and reboot evidence is documented; final-build parity, fixes and browser download delivery require hosted browser verification."
+      "notes": "Hosted6c896925 repair CSV parity and committed review persistence passed for documented paths; follow-on capacity/consent live recheck remains pending at publication preparation."
     },
     {
       "id": "V05",
@@ -380,5 +394,5 @@
       "notes": "UI labels total capacity across every uploaded date and deterministic reference ties. Research daily top-K uses seeded random ties and is explicitly not direct validation of the interactive selection policy. Actual-source multi-day constant-baseline test passes."
     }
   ],
-  "publication_reconciliation": "2026-10-13. Paths adapted to published source and aggregate evidence; supplemental research and deployment documents reconciled. Earlier candidate counts remain historical evidence. Final staged-tree verification is separate."
+  "publication_reconciliation": "2026-10-13 session-state follow-on. Earlier source/hosted evidence retained with explicit scope; new capacity/consent regression verified locally. Final follow-on CI and focused live recheck remain separate at preparation."
 }

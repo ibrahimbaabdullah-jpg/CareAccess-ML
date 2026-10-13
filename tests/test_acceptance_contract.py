@@ -244,3 +244,95 @@ def test_multiday_batch_capacity_is_total_and_ties_are_deterministic(actual_inpu
 def test_daily_research_policy_is_distinguished_from_interactive_planner():
     at = page(app(), 'Model Evaluation')
     assert any('different selection policies' in item.value for item in at.caption)
+
+
+def test_planner_capacity_and_review_survive_home_navigation(actual_inputs):
+    at, _ = batch(actual_inputs)
+    page(at, 'Outreach Planner')
+    at.number_input[0].set_value(5)
+    run(at)
+    edit_first_review(at)
+    page(at, 'Home / Dashboard')
+    page(at, 'Outreach Planner')
+    downloads = run(at)
+    assert at.number_input[0].value == 5
+    assert at.metric[0].value == '5'
+    parsed = pd.read_csv(io.BytesIO(downloads['Download outreach review list']))
+    assert len(parsed) == 5
+    assert parsed.review_status.iloc[0] == 'Ready for supportive outreach'
+
+
+def test_empty_batch_authorization_widget_survives_navigation_until_revoked():
+    at = page(app(), 'Batch Prediction')
+    assert not at.checkbox(key='batch_confirm').value
+    at.checkbox(key='batch_confirm').check().run()
+    page(at, 'Home / Dashboard')
+    page(at, 'Batch Prediction')
+    assert at.checkbox(key='batch_confirm').value is True
+    at.checkbox(key='batch_confirm').uncheck().run()
+    page(at, 'Home / Dashboard')
+    page(at, 'Batch Prediction')
+    assert at.checkbox(key='batch_confirm').value is False
+
+
+@pytest.mark.parametrize('destination', ['Batch Prediction', 'Outreach Planner'])
+def test_legacy_unconsented_results_not_exposed_on_either_route(actual_inputs, destination):
+    at = app()
+    legacy = actual_inputs.copy()
+    legacy['miss_probability'] = predict(actual_inputs)
+    at.session_state['batch_scores'] = legacy
+    # An old session without durable consent cannot infer it from retained data.
+    page(at, destination)
+    downloads = run(at)
+    assert 'batch_scores' not in at.session_state
+    assert not at.dataframe and not at.metric
+    assert 'Download scored schedule' not in downloads
+    assert 'Download outreach review list' not in downloads
+
+
+def test_authorization_survives_navigation_and_explicit_revoke_still_clears(actual_inputs):
+    at, _ = batch(actual_inputs)
+    page(at, 'Outreach Planner')
+    at.number_input[0].set_value(5).run()
+    page(at, 'Home / Dashboard')
+    page(at, 'Batch Prediction')
+    downloads = run(at)
+    assert at.checkbox(key='batch_confirm').value is True
+    assert at.session_state['batch_authorized'] is True
+    assert 'Download scored schedule' in downloads
+    at.checkbox(key='batch_confirm').uncheck()
+    downloads = run(at)
+    assert not at.checkbox(key='batch_confirm').value
+    assert 'batch_scores' not in at.session_state
+    assert 'batch_capacity' not in at.session_state
+    assert 'Download scored schedule' not in downloads
+    page(at, 'Outreach Planner')
+    assert not at.number_input and not at.metric
+
+
+def test_clear_resets_capacity_before_new_schedule_and_shrink_is_safe(actual_inputs):
+    at, _ = batch(actual_inputs)
+    page(at, 'Outreach Planner')
+    at.number_input[0].set_value(5).run()
+    page(at, 'Batch Prediction')
+    next(item for item in at.button if item.label == 'Clear schedule and results').click()
+    run(at)
+    assert not at.checkbox(key='batch_confirm').value
+    assert 'batch_capacity' not in at.session_state
+    assert 'batch_capacity_input' not in at.session_state
+    # A new authorized real-source schedule gets a fresh, bounded default.
+    at.checkbox(key='batch_confirm').check()
+    run(at, actual_inputs.to_csv(index=False).encode())
+    next(item for item in at.button if item.label == 'Validate and score appointments').click()
+    run(at, actual_inputs.to_csv(index=False).encode())
+    page(at, 'Outreach Planner')
+    assert at.number_input[0].value == min(20, len(actual_inputs))
+    # Replace the batch with fewer real rows, without clearing the session.
+    page(at, 'Batch Prediction')
+    payload = actual_inputs.iloc[:3].to_csv(index=False).encode()
+    run(at, payload)
+    next(item for item in at.button if item.label == 'Validate and score appointments').click()
+    run(at, payload)
+    page(at, 'Outreach Planner')
+    assert at.number_input[0].value == 3
+    assert at.metric[0].value == '3'

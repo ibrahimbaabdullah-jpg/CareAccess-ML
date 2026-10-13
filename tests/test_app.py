@@ -84,6 +84,7 @@ def test_real_scored_schedule_planner_zero_and_limited_capacity(real_inputs):
     scores["model"] = bundle["default_model"]
     at = app()
     at.session_state["batch_scores"] = scores
+    at.session_state["batch_authorized"] = True
     select_page(at, "Outreach Planner")
     at.number_input[0].set_value(0).run()
     assert not at.exception

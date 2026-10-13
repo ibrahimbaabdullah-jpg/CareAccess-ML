@@ -1,58 +1,56 @@
 # Release acceptance status
 
-Updated 2026-10-13. [Public application](https://careaccess-ml.streamlit.app/) · [Source repository](https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML)
+Evidence updated 2026-10-13. [Public application](https://careaccess-ml.streamlit.app/) · [Source repository](https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML)
 
-## Decision and status
+## Current decision
 
-This revision repairs application acceptance and security gaps and publishes a bounded negative model-improvement investigation. **It does not establish useful predictive prioritization, clinical fitness, or complete hosted acceptance. No replacement model is promoted.**
+The security/acceptance repair was merged through [PR #2](https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/pull/2) at `6c8969251af8e94c33c0ca1fafd336b9f698bfb2`; its exact main tree and CI were verified. The live service subsequently showed the new repair-specific captions and export columns, and provider logs recorded a code pull at 14:28:04 UTC. **The provider does not expose the exact running SHA**, so deployment identity is supported by those observations rather than a runtime commit attestation.
 
-The new repair source has been checked locally. Publication, exact-commit CI, deployment and final hosted-browser acceptance are distinct gates; do not infer that the public application has this revision merely from this document. The baseline public main at the start of this review was `8d8ea4fe17b4a6b338d567fb8514729c2667a1a1`. Older hosted results below apply to that baseline, not automatically to these fixes.
+This follow-on revision fixes two navigation issues observed during live checking: chosen outreach capacity reset to 20, and the consent checkbox appeared unchecked after leaving and returning to the batch page while results remained. Capacity and explicitly granted consent now use separate session state that survives widget cleanup; explicit revoke/Clear still removes the uploaded schedule, results and reviews. Legacy/inconsistent batch results without recorded consent are cleared before either Batch or Planner can expose them. Capacity is clamped when a replacement schedule shrinks.
 
-## Repairs and local verification
+At this document's preparation, the follow-on change is locally verified and awaits its own protected PR/CI/merge and focused live recheck. Consult that PR's final verification record for subsequent execution results. No future hosted result is preclaimed here.
 
-- CSV structure, UTF-8, byte/row/column/cell limits are enforced before pandas allocation; semantic checks require the documented timestamp format.
-- Clearing a schedule or withdrawing upload authorization clears batch upload/results/reviews and rotates the uploader. This is active-session clearing, not provider-log/backup deletion or clearing unrelated single-entry input.
-- Planner review statuses persist through navigation and capacity changes; quality warnings remain in displayed and exported results.
-- Bundled artifacts require an exact allowed model mapping, complete digest coverage, safe path containment and code-owned serialized-type allowlists before loading.
-- PyArrow is pinned to the provider-reported compatible 24.0.0; packaging tooling was upgraded and local compatibility retested.
-- All five model/preprocessor binary files and original evaluation evidence are unchanged. The manifest changes only the validation-code checksum and revision description; original training/data/evaluation/network hashes are preserved.
+**The predictive-benefit requirement remains unmet.** No replacement model is promoted. Working software, successful exports and security controls do not establish useful clinical prioritization or fewer missed appointments.
 
-See [final local release verification](../reports/release-verification.json), [acceptance matrix](acceptance-matrix.md), and [aggregate extended checks](../reports/acceptance/extended_acceptance.json). The extended test inspected exact UTF-8-BOM bytes supplied to download buttons for all four single/batch models and planner capacities. This establishes server-side payload parity locally, **not browser delivery or saved-file integrity on the live service**. Positive checks use 24 private actual-source adult appointments; no row values or individual predictions are published. Source-dependent tests explicitly skip in public CI when that private fixture is absent.
+## Exact local verification
 
-## Predictive-value evidence
+- Final follow-on suite: **156 passed, zero skipped** with 24 private actual-source adult inputs.
+- Public mode: **101 passed, 55 explicitly skipped** because the private source fixture is not distributed.
+- Independent review verified the same five changed source/test files and six additional navigation sequences: capacity 0/5/24, review/export and consent persistence across pages, Clear/revoke, and shrinking/empty/replaced schedules.
+- Four-model single/batch/reload inference, displayed results and exact server-side download payloads pass. Dependency consistency, compilation and artifact/configuration integrity pass.
+- All trained-model/preprocessor bytes, model manifest, original training/evaluation code and historical evaluation outputs are unchanged by this session-state follow-on.
 
-The bounded 21-configuration investigation failed its promotion gate. The selected boosted candidate captured 1,247 missed visits in development, versus 1,192 for the temporally refit original logistic architecture and 1,183 for a simple specialty/age rule. Its improvement over the simple rule and logistic comparator was not established. In the once-only 2020 historical check it captured 96, versus 105 and 106, respectively. That already-used calibration year is not a new independent test.
+See [capacity/consent verification](../reports/acceptance/capacity-consent-verification.json), [independent navigation checks](../reports/acceptance/navigation-verification.json), and [acceptance matrix](acceptance-matrix.md). The earlier 145-test repair and its historical reports remain evidence for that earlier source snapshot; the new 156-test results supersede intermediate 154-test patch results.
 
-Independent checking of the frozen 2021–2022 results found logistic daily-K20 capture of 697 missed visits, versus 700.879 expected from matched random allocation. All tested model/capacity gain intervals included zero. Daily research capacity and random tie handling differ from the application's total-batch capacity and reference-order ties; the research metrics do not directly validate the batch planner policy. See [investigation](predictive-value-investigation.md) and [independent review and next-evidence protocol](validation-protocol.md).
+## GitHub and repository controls
 
-## Security and history scope
+The previous repair's [PR CI](https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/actions/runs/38412748891) and [merged-main CI](https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/actions/runs/38413601479) passed, each with 95 tests and 50 explicit source-dependent skips. Those counts do not pretend to be CI results for this follow-on revision.
 
-All five baseline commits reachable from advertised remote refs and 60 unique blobs were scanned, including 490 archive entries. No tested credential patterns or raw appointment CSVs were found; the only CSV was the empty template. This is scoped evidence, not proof that no secret or memorized information exists. Unadvertised/orphaned history, forks, backups and provider internals are not covered.
+The workflow uses verified full official Action commit pins, requests Contents: read with only GitHub's implicit Metadata: read additionally observed, and disables checkout credential persistence. Main protection was verified through owner settings and API readback: PR required, GitHub Actions `test` required on an up-to-date branch, administrator enforcement on, force pushes/deletion off, and no mandatory independent reviewer. Every follow-on change must use that normal protected path. See [published-release evidence](../reports/published-release-verification.json) and [branch-policy evidence](../reports/security/main-protection-verification.json).
 
-The patched local dependency scan reports no known advisories among resolved packages, with the exact `torch 2.14.1+cpu` build still explicitly skipped. Binary provenance, full deployed inventory, hash-locked reproducibility and platform privacy controls remain gaps. The approved CI workflow now requests only contents-read permission, disables checkout credential persistence, and pins the official checkout/setup-python Actions to verified full commit SHAs. Main-branch protection is handled separately and its final remote state is not asserted by this source revision. See [history and security audit](security-history-audit.md), [read-only baseline hosting audit](../reports/security/hosting-audit.json), and [privacy/security](privacy-security.md).
+## Hosted evidence for the preceding repair
 
-## Historical hosted checks, before this repair
+The [hosted repair snapshot](../reports/acceptance/hosted-repair-verification.json) covers the service consistent with `6c896925`:
 
-Recorded 2026-10-13, concluding 13:15:24 UTC:
+- Actual downloaded batch CSVs for Logistic Regression, Gradient Boosting and PyTorch Neural Network match saved-model inference on 24 authorized adult-source appointments, with exact row order and maximum absolute error `8.326672684688674e-17` at tolerance `1e-6`.
+- New `input_quality_warnings` export columns and the seeded-random daily-versus-total-batch policy caption are visible.
+- Planner capacity-five export, reference/rank order and committed review status passed. Probability error was `5.551115123125783e-17`; committed review edits survived navigation/capacity changes, and capacity zero behaved correctly.
+- The navigation capacity/checkbox issues above were observed and are the bounded purpose of this follow-on repair. Its live recheck remains a distinct gate.
 
-- Logistic batch inference matched offline inference for 24 authorized adult-source rows, maximum absolute error `2.7755575615628914e-17` at tolerance `1e-6`, from full-precision values visible in the hosted table.
-- Planner capacities 20, 0 and 5 and top-five ordering passed; a review edit was visible. Persistence fixes in this revision were not deployed at that time.
-- Chromium reported both batch and planner CSV downloads as **Failed - Blocked**. No downloaded-file success was established.
-- An authorized reboot produced new server logs at 13:07:49 UTC and recovered. A post-reboot logistic single prediction matched offline exactly; prior batch/planner state cleared.
-- All seven pages rendered. Hosted gradient-boosting/neural parity was not established by the logistic check.
+The earlier Chromium **Failed - Blocked** attempts were superseded by successful supported browser download-event checks; no browser security settings were changed or bypassed. These later results establish actual downloaded bytes for the tested paths. They do not convert every local test into a hosted check. No raw fixture rows or individual predictions are published.
 
-Historical [verification record](../reports/verification.json) retains these results and older test/CI counts. The implementation baseline's [CI run 38376426128](https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/actions/runs/38376426128) passed 23 tests and explicitly skipped 29 source-dependent tests; it is not CI evidence for this repair.
+Earlier all-page rendering and service-reboot recovery remain in [historical verification](../reports/verification.json). The [read-only hosting audit](../reports/security/hosting-audit.json) separately records owner-visible settings/logs and provider-access limits.
 
-## Follow-on baseline download verification
+## Security and history
 
-At 14:15 UTC, the supported browser download event workflow successfully saved actual batch CSV files for Logistic Regression, Gradient Boosting and PyTorch Neural Network. Each export contained the 24 authorized adult-source rows in the expected order; maximum absolute error versus offline saved-model inference was `8.326672684688674e-17`, below `1e-6`. No browser security setting was changed or bypassed. These later observations supersede the earlier blocked-download outcome **for those baseline batch exports**. The baseline planner export was also saved and verified: five rows, exact reference/rank order, probability error `5.551115123125783e-17`, and review-status column present. These checks do not verify the repaired deployment or every export/state-transition path. See [aggregate downloaded-byte evidence](../reports/acceptance/hosted-baseline-download-parity.json). No raw rows or individual probabilities are published.
+A fresh public mirror through the repair merge passed `git fsck --full`. All **7 reachable commits, 129 unique blobs and 490 model-archive entries** were scanned. The only CSV is the zero-row template; ten credential-pattern families found no matches. See [post-merge history inventory](../reports/security/post-merge-history-audit.json) and [security review](security-history-audit.md). This cutoff precedes the present source/documentation follow-on; its final published tree is checked separately.
 
-## Remaining final gates
+Bounded CSV parsing, strict input semantics, session clearing and complete artifact/path/type checks remain in place. The patched local dependency audit reports no known advisories among resolved entries, but the exact `torch 2.14.1+cpu` build is still skipped. Full binary provenance, hash-locked installs, complete deployed dependency inventory, provider internals/log retention/backups, unadvertised Git objects and model memorization are not certified. The input schema cannot prove anonymity. Do not upload identifiable or confidential health information.
 
-1. Verify the exact published repair commit and its CI, then verify that the deployment loaded it.
-2. Recheck live single/batch numerical parity for all four models, upload validation, clear/revoke behavior, and planner edit persistence on that deployment.
-3. Inspect actually delivered browser-download bytes for single, batch and planner exports. A local payload check cannot close the blocked browser-download gate.
-4. Reconcile deployed dependency inventory and authorized repository/platform security controls, keeping unavailable provider controls and exact CPU-wheel advisory coverage explicit.
-5. For any superiority claim, obtain a genuinely new authorized cohort and freeze decision-time features, actual capacity, policy/ties and a meaningful-effect criterion before outcomes. Outreach effectiveness requires a prospective intervention study.
+## Modeling result and remaining evidence
 
-Full release acceptance remains false while these gates are open. See [deployment and rollback instructions](deployment.md).
+The bounded 21-configuration experiment did not qualify a replacement. Primary development captures were 1,247 selected boosted / 1,192 temporally refit logistic / 1,183 simple specialty-age rule; the once-only, already-used 2020 cohort gave 96 / 105 / 106. Gain did not persist. In the frozen 2021–2022 cohort, logistic daily-K20 capture was 697 versus 700.879 expected under matched random selection; every tested model/capacity gain interval included zero. No reliable superiority or causal outreach benefit is established.
+
+Daily research selection with random tie handling differs from total-batch planning with reference-order ties. Neither metric directly validates the other policy. See [investigation](predictive-value-investigation.md) and [independent review/next-evidence protocol](validation-protocol.md). Actual-source-only resource timing replaces earlier timing probes; no invented cohort was used for model fitting, selection or evaluation.
+
+A genuinely new authorized cohort with documented decision-time features and a frozen policy/statistical plan is required for a stronger predictive claim. Demonstrating that outreach prevents missed appointments requires prospective intervention evidence. Full project acceptance therefore remains false for the requested predictive-benefit goal; software and hosted checks have their own explicitly scoped status.
