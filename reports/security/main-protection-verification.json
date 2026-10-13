@@ -1,0 +1,19 @@
+{
+  "verified_at_utc": "2026-10-13T14:34:00Z",
+  "repository": "ibrahimbaabdullah-jpg/CareAccess-ML",
+  "setting_url": "https://github.com/ibrahimbaabdullah-jpg/careaccess-ml/settings/branch_protection_rules/84747643",
+  "rule_id": 84747643,
+  "rule_pattern": "main",
+  "matching_branches": 1,
+  "require_pull_request": true,
+  "require_independent_approvals": false,
+  "required_status_check": "test",
+  "required_status_check_app": "GitHub Actions",
+  "require_up_to_date_branch": true,
+  "enforce_admins": true,
+  "allow_force_pushes": false,
+  "allow_deletions": false,
+  "verification": "GitHub displayed Branch protection rule created; opened persisted rule and verified each selected control read-only.",
+  "collaborator_check": "Settings show 0 collaborators; only owner has direct contribution access.",
+  "scope": "Applied only the main protection explicitly approved by user. Did not change credentials, visibility, other grants, or unrelated policy settings. CI permissions and checkout credentials were separately changed in approved repair release."
+}

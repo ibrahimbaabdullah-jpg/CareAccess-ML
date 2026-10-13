@@ -1,0 +1,84 @@
+{
+  "date_utc": "2026-10-13",
+  "scope": "Independent acceptance of final five-file capacity/authorization navigation patch. Local AppTest and byte-payload verification; hosted browser recheck remains separate.",
+  "private_fixture_suite": {
+    "passed": 156,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 24.21
+  },
+  "public_suite": {
+    "passed": 101,
+    "failed": 0,
+    "skipped": 55,
+    "seconds": 8.32,
+    "skip_reason": "Private actual-source fixture deliberately not distributed"
+  },
+  "release_integrity_and_four_model_parity": "passed",
+  "independent_navigation": {
+    "scope": "Independent local navigation sequences only; no browser-delivery claim",
+    "passed": 6,
+    "checks": 6,
+    "results": [
+      {
+        "check": "capacity0, consent, edited status and export survive every other page",
+        "passed": true
+      },
+      {
+        "check": "capacity5, consent, edited status and export survive every other page",
+        "passed": true
+      },
+      {
+        "check": "capacity24, consent, edited status and export survive every other page",
+        "passed": true
+      },
+      {
+        "check": "explicit clear stays cleared across navigation and resets next batch",
+        "passed": true
+      },
+      {
+        "check": "explicit revoke stays cleared across navigation and resets next batch",
+        "passed": true
+      },
+      {
+        "check": "replacement real3rows, empty header, and restored24rows remain bounded and reset reviews",
+        "passed": true
+      }
+    ],
+    "protected_models_evaluation_training_unchanged": true,
+    "positive_data": "Existing real24 adult fixture only; smaller inputs are subsets; empty input is header-only",
+    "row_level_outputs_saved": false
+  },
+  "legacy_sessions": "Without durable consent, old scores are cleared on both Batch and direct Planner routes. Consent is never inferred from scores.",
+  "changed_files": [
+    {
+      "file": "app.py",
+      "old_sha256": "02d4e4cf399b9270e43d0ea37f6c717a3b05072e13f640e59e80392e87073672",
+      "new_sha256": "4ff623afe21dcf7ca241e760e3244da6522226b7a310dabb5535a91882378f95"
+    },
+    {
+      "file": "careaccess/session.py",
+      "old_sha256": "493446081d0be3c75e0df1d16a5c603b7b09585061a49ba1c8350aecd99716be",
+      "new_sha256": "aeb8999a201b03e3edd5ee56bdf1019445d1e60851a628fc7f6cf4af5ef678e8"
+    },
+    {
+      "file": "tests/test_session.py",
+      "old_sha256": "ecb63248262c79f080ba4ac3d6c709996c8a8cb76f340f9930aa6ecdd91c5df5",
+      "new_sha256": "ffcd44cbf71d8b1c703dbb704a799827961ad952286018092fe262f590147dd0"
+    },
+    {
+      "file": "tests/test_acceptance_contract.py",
+      "old_sha256": "d87f0c934627a885d926fe625cdb864c3dcfbf4555f4eb67ccbcc2ce900c1a81",
+      "new_sha256": "01577e2b6e60981697ffe32c7b528617ee5e8b3f3ae903762ac5f13eaada982f"
+    },
+    {
+      "file": "tests/test_app.py",
+      "old_sha256": "f8948ed954262b6f5e83f96dcd352d4f0c27f72b515b93759d7b001d598bb7ae",
+      "new_sha256": "8f4b91a69af218aca8be6e8a75502bee0fdc91d376d52af4a289cb52039ee3ac"
+    }
+  ],
+  "source_changes_outside_five_file_patch": false,
+  "synthetic_patient_data_used": false,
+  "row_level_inputs_or_predictions_published": false,
+  "supersedes": "Earlier154-test/four-file patch verification; this includes direct Planner legacy-consent protection."
+}

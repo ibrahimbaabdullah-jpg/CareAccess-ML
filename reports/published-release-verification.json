@@ -1,0 +1,62 @@
+{
+  "date_utc": "2026-10-13",
+  "repository": "https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML",
+  "pull_request": "https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/pull/2",
+  "head_commit": "15db41a4582159bc8e6549cad94da30e5a3dd6dd",
+  "merge_commit": "6c8969251af8e94c33c0ca1fafd336b9f698bfb2",
+  "verified_tree": "1be927ba6f41c71c0dfb9ccdce5e80d5b021d540",
+  "published_main_tree_matches_local": true,
+  "pr_ci": {
+    "run": 38412748891,
+    "url": "https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/actions/runs/38412748891",
+    "conclusion": "success",
+    "passed": 95,
+    "explicit_source_dependent_skips": 50,
+    "seconds": 11.23
+  },
+  "main_ci": {
+    "run": 38413601479,
+    "url": "https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/actions/runs/38413601479",
+    "conclusion": "success",
+    "passed": 95,
+    "explicit_source_dependent_skips": 50,
+    "seconds": 10.23
+  },
+  "ci_controls_observed": {
+    "contents": "read",
+    "metadata": "read",
+    "checkout_persist_credentials": false,
+    "dependency_consistency": "passed",
+    "release_integrity": "passed"
+  },
+  "reachable_history": {
+    "commit_count": 7,
+    "unique_blobs": 129,
+    "unique_blob_bytes": 2128054,
+    "archive_entries": 490,
+    "secret_pattern_findings": 0,
+    "csv_files": 1,
+    "csv_data_rows": 0,
+    "fsck": "passed"
+  },
+  "main_protection_last_observed": {
+    "protected": true,
+    "connector_observed_at_utc": "2026-10-13T14:34:23Z",
+    "required_check": "test",
+    "required_check_app_id": 15368,
+    "enforcement_level": "everyone",
+    "owner_settings_readback": {
+      "rule_id": 84747643,
+      "pull_request_required": true,
+      "up_to_date_branch_required": true,
+      "enforce_administrators": true,
+      "allow_force_push": false,
+      "allow_deletion": false,
+      "required_independent_reviewers": 0
+    },
+    "scope": "Branch protected flag/required check independently read through GitHub API; remaining settings verified through owner UI."
+  },
+  "final_hosted_acceptance": "In progress separately; source-linked UI markers supplied, provider does not expose exact runtime commit so deployment identity must be described with observed evidence",
+  "model_improvement_claim": false,
+  "full_release_acceptance": false
+}

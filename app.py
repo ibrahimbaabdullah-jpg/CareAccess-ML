@@ -10,7 +10,8 @@ from careaccess.inference import load_bundle, predict, model_names
 from careaccess.validation import validate_frame
 from careaccess.planner import plan_outreach, export_csv
 from careaccess.csv_input import read_appointments_csv
-from careaccess.session import clear_batch_session, reset_batch_results, revoke_batch_authorization
+from careaccess.session import (clear_batch_session, reset_batch_results, revoke_batch_authorization,
+                                prepare_batch_authorization, prepare_planner_capacity, remember_planner_capacity)
 from careaccess.quality import input_quality_warnings
 
 ROOT = Path(__file__).resolve().parent
@@ -87,6 +88,8 @@ report = bundle["report"]
 contract = bundle["feature_contract"]
 manifest = bundle["manifest"]
 default_test_result = next((row for row in report.get("metrics", []) if row.get("model") == bundle["default_model"]), {})
+if page in {"Batch Prediction", "Outreach Planner"}:
+    prepare_batch_authorization(st.session_state)
 if default_test_result.get("roc_auc", 1.0) < 0.60:
     st.warning(f"Important result: the default model's final-test ROC-AUC is {default_test_result['roc_auc']:.3f}, close to chance (0.500). This release demonstrates working trained-model inference, but does not establish effective outreach targeting. Do not use its rankings for real patient decisions.")
 
@@ -200,7 +203,8 @@ elif page == "Outreach Planner":
     else:
         st.caption(f"Using the last successfully scored schedule: {len(scores):,} appointments.")
         st.caption("Capacity is the total number of appointments across this entire uploaded batch, including all appointment dates. Equal scores are ordered by appointment reference.")
-        capacity = st.number_input("How many appointments can your team contact?", min_value=0, max_value=len(scores), value=min(20, len(scores)), step=1)
+        prepare_planner_capacity(st.session_state, len(scores))
+        capacity = st.number_input("How many appointments can your team contact?", min_value=0, max_value=len(scores), step=1, key="batch_capacity_input", on_change=remember_planner_capacity, args=(st.session_state,))
         planned = plan_outreach(scores, int(capacity))
         st.metric("Appointments selected for review", len(planned))
         if not planned.empty:
