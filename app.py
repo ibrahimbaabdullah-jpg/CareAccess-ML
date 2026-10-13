@@ -17,9 +17,9 @@ from careaccess.research import render_research
 
 ROOT = Path(__file__).resolve().parent
 PAGES = ["Home / Dashboard", "Live Prediction", "Batch Prediction", "Outreach Planner", "Model Comparison", "Model Evaluation", "Research / Vitória", "About / Documentation"]
-HOST_INPUT_NOTICE = ("This public Streamlit demo must not receive or process sensitive personal information, including patient-level health information. "
-                     "Do not upload patient records or enter patient health details. Public availability, removing names, or checking a consent box "
-                     "does not establish that data is suitable for this host. Source-data evaluation is performed offline. "
+HOST_INPUT_NOTICE = ("For inputs submitted to this public host: exclude identifiers and sensitive personal information, including patient-level health information. "
+                     "Do not upload patient records. Public availability, removing names, or checking a consent box "
+                     "does not establish hosting suitability. Source-data evaluation stays offline. "
                      "Real-patient use requires a separately governed deployment and review.")
 LABELS = {"logistic": "Logistic Regression", "logistic_regression": "Logistic Regression", "gradient_boosting": "Gradient Boosting", "hist_gradient_boosting": "Gradient Boosting", "pytorch": "PyTorch Neural Network", "neural_network": "PyTorch Neural Network", "baseline": "Constant baseline"}
 
@@ -79,7 +79,7 @@ def metric_rows(report):
 st.sidebar.title("CareAccess ML")
 st.sidebar.caption("Appointment outreach planning")
 page = st.sidebar.radio("Explore", PAGES)
-st.sidebar.info("Public demo: permitted nonsensitive inputs only. Do not upload patient records or enter patient health details. Public availability or removing names is not hosting clearance.")
+st.sidebar.info("Research display: real trained models and aggregate findings, without underlying patient records. Submitted inputs must be permitted, nonsensitive and non-identifying. See the input-page notices before entering data.")
 st.sidebar.caption("Supportive reminders only. Never cancel appointments, restrict care, or penalize patients using a score.")
 st.title("CareAccess ML")
 st.caption("Missed-Appointment Prediction & Outreach Planner")
@@ -101,10 +101,11 @@ if default_test_result.get("roc_auc", 1.0) < 0.60:
 if page == "Home / Dashboard":
     st.header("Plan supportive outreach, one appointment at a time")
     st.write("Explore real trained models that estimate missed-appointment probability, then build a review list that fits your team's reminder-call capacity.")
-    st.info("Model training and evaluation use the documented historical Mendeley dataset. No generated appointment cohort is supplied. Prediction performance does not prove that outreach prevents missed visits.")
+    st.info("This app presents real trained models and aggregate results from publicly released appointment research datasets. The deployed models use the original Mendeley source; Vitória is a separate aggregate benchmark. Underlying patient records and generated appointment cohorts are not published here. Prediction performance does not prove that outreach prevents missed visits.")
+    st.caption("Input warnings concern data submitted to this host. They do not classify all displayed research aggregates or model outputs as sensitive.")
     st.subheader("Three simple steps")
     cols = st.columns(3)
-    for col, title, body in zip(cols, ["1 · Enter an appointment", "2 · Validate a schedule", "3 · Choose your outreach capacity"], ["Open Live Prediction to run a saved trained model.", "Use Batch Prediction to check an authorized, non-identifying CSV.", "Open Outreach Planner to create and download a ranked review list."]):
+    for col, title, body in zip(cols, ["1 · Enter an appointment", "2 · Validate a schedule", "3 · Choose your outreach capacity"], ["Open Live Prediction to run a saved trained model on permitted inputs.", "Use Batch Prediction to check a permitted nonsensitive, non-identifying CSV.", "Open Outreach Planner to create and download a ranked review list."]):
         col.markdown(f"**{title}**")
         col.write(body)
     counts = report.get("counts", {})

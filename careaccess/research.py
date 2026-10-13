@@ -107,11 +107,12 @@ def render_research():
         st.caption("Protocol: " + summary["protocol_id"])
 
     st.subheader("Source, privacy and reuse")
+    st.caption("The following source notice and downloadable summary describe this aggregate-only, main-branch Streamlit release. Separate branches or browser-demo releases have their own asset-specific notices and licenses.")
     st.write(summary["source"]["notice"])
     st.link_button("View Kaggle source and version history", summary["source"]["url"])
     st.link_button("Read source-data license · CC BY-NC-SA 4.0", summary["source"]["license_url"])
     st.caption(summary["source"]["privacy_notice"])
-    st.caption("The repository's MIT license covers its original software; it does not relicense the source data or grant rights to private source records or derived model artifacts. Only a bounded, cohort-wide aggregate summary is distributed here.")
+    st.caption("The repository's MIT license covers its original software; it does not relicense the source data or separately distributed dataset-derived assets. This Streamlit research page distributes only a bounded, cohort-wide aggregate summary, with no Vitória source records or research weights.")
     st.download_button("Download aggregate research summary", json.dumps(summary, indent=2, ensure_ascii=False, allow_nan=False).encode("utf-8"), "careaccess_vitoria_aggregate_summary.json", "application/json")
     with st.expander("ملخص بالعربية"):
         st.write("هذه تجربة بحثية تاريخية منفصلة على بيانات فيتوريا، ولا تشغّل التنبؤات الحالية في الموقع. النموذج المثبّت التقط 544 حالة عدم حضور من 1,498 موعدًا مختارًا، مقابل 460 للقاعدة البسيطة و567 للمقارن اللوجستي. اجتاز اختبار الترتيب التاريخي، لكنه لم يثبت فائدة التعقيد الإضافي. لم نغيّر النموذج بعد رؤية النتيجة. فترة الاختبار قصيرة، والاحتمالات مبالغ فيها، والتوزيع العمري يحتاج إلى مراجعة. لم تثبت فائدة سريرية أو عدالة أو جاهزية للتشغيل الفعلي، وتبقى نتيجة النموذج الأصلي قريبة من الصدفة.")

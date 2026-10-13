@@ -38,7 +38,7 @@ Primary ROC-AUC was **0.5996**, average precision **0.3272**, and recorded no-sh
 
 The frozen selection concentrated heavily in younger adult age bands, with very little allocation to older adults. This unresolved allocation issue warrants review and establishes neither fairness nor harm. Appointment month was an unseen category for **71.21%** of final appointments; the frozen unknown-category handling was retained.
 
-Only broad cohort totals are distributed. No age-band counts, subgroup outcome cells, calibration bins, complementary cells, per-date tables, identifiers, row hashes or individual scores are included in this release.
+Only broad cohort totals are distributed in this main-branch Streamlit research release. No age-band counts, subgroup outcome cells, calibration bins, complementary cells, per-date tables, identifiers, row hashes or individual source scores are included in this release.
 
 ## Frozen design and independent verification
 
@@ -54,7 +54,9 @@ Intervals use 10,000 paired-date replicates and 10,000 crossed patient/date repl
 
 ## Source, rights and privacy
 
-Retrospective analysis of **Medical Appointment No Shows, version 5**, shared on [Kaggle by Joni Hoppen (joniarroba)](https://www.kaggle.com/datasets/joniarroba/noshowappointments), with credit to **Aquarela Analytics**. Source data: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). CareAccess applied cohort filtering, feature engineering and statistical evaluation. Only aggregate findings are shown; no source records or model weights are redistributed. No endorsement by the source contributors is implied.
+Retrospective analysis of **Medical Appointment No Shows, version 5**, shared on [Kaggle by Joni Hoppen (joniarroba)](https://www.kaggle.com/datasets/joniarroba/noshowappointments), with credit to **Aquarela Analytics**. Source data: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). CareAccess applied cohort filtering, feature engineering and statistical evaluation. This main-branch Streamlit release shows only aggregate Vitória findings and redistributes no Vitória source records or research model weights. No endorsement by the source contributors is implied.
+
+The frozen aggregate summary's publication-scope statements refer to this aggregate-only Streamlit release. They do not describe a separate branch or browser-demo release, which must be read with its own asset-specific notices and licenses. The MIT software license does not relicense separately distributed dataset-derived assets.
 
 The source-data license does not replace privacy rights. Consent, institutional release authority and anonymization documentation were not verified. The independently written application code remains under its original MIT license; that license does not relicense the source data or private model artifacts. No commercial-use permission is represented.
 
