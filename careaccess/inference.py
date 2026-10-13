@@ -1,5 +1,5 @@
 """Real CPU inference from checked, bundled trained artifacts only."""
-import hashlib,json
+import hashlib,json,re
 from pathlib import Path
 import numpy as np
 import torch
@@ -8,6 +8,39 @@ from safetensors.torch import load_file
 from careaccess.network import TabularMLP
 from careaccess.validation import validate_frame,make_features
 ROOT=Path(__file__).resolve().parents[1]
+MODEL_FILES = {
+    'Constant baseline': 'baseline.skops',
+    'Logistic Regression': 'logistic.skops',
+    'Gradient Boosting': 'gradient.skops',
+    'PyTorch Neural Network': 'neural.safetensors',
+}
+# The audited deserialization allowlist is code-owned. A manifest cannot expand it.
+SKOPS_TYPES = {
+    'preprocessor.skops': ['numpy.dtype'],
+    'baseline.skops': [],
+    'logistic.skops': [],
+    'gradient.skops': ['sklearn.ensemble._hist_gradient_boosting.predictor.TreePredictor'],
+}
+
+
+def verify_artifacts(folder, manifest):
+    """Reject incomplete or redirected manifests before deserializing anything."""
+    if manifest.get('model_files') != MODEL_FILES:
+        raise ValueError('Unexpected bundled model files.')
+    required = {'preprocessor.skops', *MODEL_FILES.values()}
+    checksums = manifest.get('sha256')
+    if not isinstance(checksums, dict) or set(checksums) != required:
+        raise ValueError('Every required model artifact must have exactly one checksum.')
+    if manifest.get('skops_types') != SKOPS_TYPES:
+        raise ValueError('Unexpected model type allowlist.')
+    for name, digest in checksums.items():
+        path = folder / name
+        if Path(name).name != name or path.resolve().parent != folder.resolve():
+            raise ValueError('Invalid bundled artifact name or location.')
+        if not isinstance(digest, str) or re.fullmatch(r'[0-9a-f]{64}', digest) is None:
+            raise ValueError('Invalid model checksum.')
+        if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+            raise ValueError('Model checksum mismatch; deployment must be repaired.')
 
 
 def model_names(bundle=None):
@@ -17,15 +50,11 @@ def model_names(bundle=None):
 
 def load_bundle():
     folder=ROOT/'models';manifest=json.loads((folder/'manifest.json').read_text());models={}
-    for name,digest in manifest['sha256'].items():
-        if Path(name).name!=name:raise ValueError('Invalid bundled artifact name.')
-        if hashlib.sha256((folder/name).read_bytes()).hexdigest()!=digest:raise ValueError('Model checksum mismatch; deployment must be repaired.')
+    verify_artifacts(folder, manifest)
     def read_skops(name):
         unknown=sio.get_untrusted_types(file=folder/name)
-        # Only audited sklearn/numpy types from our own committed manifest, no user-uploaded models.
-        if unknown!=manifest['skops_types'].get(name,[]):raise ValueError('Unexpected model types.')
-        if any(not x.startswith(('sklearn.','numpy.')) for x in unknown):raise ValueError('Disallowed serialized model type.')
-        return sio.load(folder/name,trusted=unknown)
+        if unknown!=SKOPS_TYPES[name]:raise ValueError('Unexpected model types.')
+        return sio.load(folder/name,trusted=SKOPS_TYPES[name])
     pre=read_skops('preprocessor.skops')
     for label,name in manifest['model_files'].items():
         if name.endswith('.safetensors'):

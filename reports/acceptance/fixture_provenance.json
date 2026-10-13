@@ -1,0 +1,24 @@
+{
+  "source_sha256_verified": true,
+  "positive_fixture_is_exact_first_24_adult_heldout_source_rows": true,
+  "positive_fixture_rows": 24,
+  "all_fixture_ages_at_least_18": true,
+  "fixture_has_only_allowlisted_columns": true,
+  "fixture_missing_fields": {
+    "appointment_id": 0,
+    "appointment_datetime": 0,
+    "specialty": 20,
+    "age": 0
+  },
+  "counts_reproduced": {
+    "original_rows": 49593,
+    "original_columns": 26,
+    "exact_duplicate_rows_removed": 2921,
+    "invalid_datetime_or_target_removed": 0,
+    "clean_rows": 46672,
+    "missing_derived_age": 8706,
+    "missing_specialty": 5948,
+    "missed": 4678
+  },
+  "row_level_outputs_saved": false
+}

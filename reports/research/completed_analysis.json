@@ -1,0 +1,4830 @@
+{
+  "selected_unchanged": "hgb7_augmented",
+  "metric_correction": "Preserves the original primary pooled2017-2019 and2020 seeded tie values exactly; annual summaries now slice these same values instead of resetting RNG. Original research report preserved. No model selection repeated after2020 viewed. Supplemental baseline specification saved before first researcher review of metrics. Alternate tie realization retained separately as sensitivity only.",
+  "corrected_development_results": {
+    "specialty_prior": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.4865983507454652,
+          "average_precision": 0.08149163232940007,
+          "brier": 0.07903787829537873,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 100,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.09746588693957114,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": -0.011590708741139403,
+              "recall": 0.09803921568627451,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 180,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.09045226130653267,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": -0.006382312062052634,
+              "recall": 0.17647058823529413,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 300,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.07767995857068877,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": -0.011617429903591738,
+              "recall": 0.29411764705882354,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.5580111403224899,
+          "average_precision": 0.09471868413598296,
+          "brier": 0.07609089533786594,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 92,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.09945945945945946,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.01853700782104835,
+              "recall": 0.12073490813648294,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 172,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.09322493224932249,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.012625183994005121,
+              "recall": 0.22572178477690288,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 317,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08793342579750346,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.007274342475586722,
+              "recall": 0.41601049868766404,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5244889560701836,
+          "average_precision": 0.14054987740477298,
+          "brier": 0.11847097583605959,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 125,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.1282051282051282,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.004987463546433475,
+              "recall": 0.12159533073929961,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 265,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.1358974358974359,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.0027048441458742173,
+              "recall": 0.25778210116731515,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 524,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.13932464770007977,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.006820999840662768,
+              "recall": 0.5097276264591439,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5500575581503222,
+        "average_precision": 0.11615653164854456,
+        "brier": 0.0886159656577397,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 317,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.10833902939166097,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.00013393305136297733,
+            "recall": 0.11281138790035587,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 617,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.10665514261019879,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.002742801996527122,
+            "recall": 0.2195729537366548,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1141,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10162094763092269,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.0006244452028456994,
+            "recall": 0.40604982206405693,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "age_band_prior": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5285604853157394,
+          "average_precision": 0.08977529561290296,
+          "brier": 0.07889690642818956,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 118,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.11500974658869395,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.005953150907983404,
+              "recall": 0.11568627450980393,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 208,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.10452261306532663,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.0076880396967413354,
+              "recall": 0.20392156862745098,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 350,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09062661833247022,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.001329229858189722,
+              "recall": 0.3431372549019608,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.5216948112446503,
+          "average_precision": 0.08594913795806891,
+          "brier": 0.07604602149854496,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 78,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.08432432432432432,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.003401872685913215,
+              "recall": 0.10236220472440945,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 169,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.0915989159891599,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.010999167733842519,
+              "recall": 0.22178477690288714,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 310,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08599167822468794,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.005332594902771189,
+              "recall": 0.4068241469816273,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5244248766869658,
+          "average_precision": 0.14078045170740067,
+          "brier": 0.11797664501291372,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 142,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14564102564102563,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.012448433889463961,
+              "recall": 0.13813229571984437,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 270,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.13846153846153847,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.005268946709976781,
+              "recall": 0.26264591439688717,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 508,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.1350704599840468,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.002566812124629798,
+              "recall": 0.49416342412451364,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5471809236850704,
+        "average_precision": 0.10718615559996492,
+        "brier": 0.08841121926450775,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 338,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11551606288448393,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.007310966544185944,
+            "recall": 0.1202846975088968,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 647,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.1118409680207433,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.007928627407071634,
+            "recall": 0.2302491103202847,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1168,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.1040256501603135,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.0030291477322365082,
+            "recall": 0.41565836298932385,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "specialty_age_prior": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5143383566407028,
+          "average_precision": 0.0889151316345478,
+          "brier": 0.07907977144902151,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 120,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.11695906432748537,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.007902468646774826,
+              "recall": 0.11764705882352941,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 193,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.09698492462311557,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.0001503512545302806,
+              "recall": 0.1892156862745098,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 359,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09295701708959088,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.003659628615310385,
+              "recall": 0.3519607843137255,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.5084391766556837,
+          "average_precision": 0.08339956905822728,
+          "brier": 0.07640671560080844,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 78,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.08432432432432432,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.003401872685913215,
+              "recall": 0.10236220472440945,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 156,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08455284552845528,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.003953097273137912,
+              "recall": 0.2047244094488189,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 289,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08016643550624133,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": -0.0004926478156754133,
+              "recall": 0.37926509186351703,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5278729405638408,
+          "average_precision": 0.14837653847524965,
+          "brier": 0.11787804785425392,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 142,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14564102564102563,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.012448433889463961,
+              "recall": 0.13813229571984437,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 297,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.1523076923076923,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.019115100556130627,
+              "recall": 0.28891050583657585,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 535,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.14224940175485243,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.009745753895435435,
+              "recall": 0.5204280155642024,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5447656618097069,
+        "average_precision": 0.11249523592678431,
+        "brier": 0.08857533846820416,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 340,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11619958988380041,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.007994493543502417,
+            "recall": 0.12099644128113879,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 646,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11166810717372515,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.0077557665600534835,
+            "recall": 0.2298932384341637,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1183,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10536159600997506,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.004365093581898068,
+            "recall": 0.4209964412811388,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "earliest_appointment": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5211053923774929,
+          "average_precision": 0.09057868296991647,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 124,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.12085769980506822,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.011801104124357673,
+              "recall": 0.12156862745098039,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 205,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.10301507537688442,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.0061805020082991245,
+              "recall": 0.20098039215686275,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 340,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.08803728638011393,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": -0.00126010209416657,
+              "recall": 0.3333333333333333,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.4698032941606568,
+          "average_precision": 0.07930805298225628,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 89,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.09621621621621622,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.015293764577805107,
+              "recall": 0.1167979002624672,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 158,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08563685636856369,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.005037108113246313,
+              "recall": 0.2073490813648294,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 280,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.07766990291262135,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": -0.0029891804092953855,
+              "recall": 0.3674540682414698,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.4904993997078096,
+          "average_precision": 0.1292015031624575,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 128,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.13128205128205128,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.0019105404695103983,
+              "recall": 0.1245136186770428,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 244,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.12512820512820513,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.008064386623356552,
+              "recall": 0.23735408560311283,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 504,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.13400691305503856,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.0015032651956215558,
+              "recall": 0.490272373540856,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.4936907261089323,
+        "average_precision": 0.09645368574360881,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 341,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11654135338345864,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.008336257043160654,
+            "recall": 0.12135231316725979,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 607,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.10492653414001729,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.0010141935263456182,
+            "recall": 0.21601423487544483,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1124,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10010687566797292,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": -0.000889626760104069,
+            "recall": 0.4,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "original_logistic": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5268728852599641,
+          "average_precision": 0.08773591867816895,
+          "brier": 0.07857458404494906,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 117,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.11403508771929824,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.004978492038587692,
+              "recall": 0.11470588235294117,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 203,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.10201005025125628,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.005175476882670984,
+              "recall": 0.19901960784313724,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 350,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09062661833247022,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.001329229858189722,
+              "recall": 0.3431372549019608,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.5118107127524611,
+          "average_precision": 0.0945554800938952,
+          "brier": 0.07615505824735701,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 98,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.10594594594594595,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.025023494307534838,
+              "recall": 0.12860892388451445,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 186,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.1008130081300813,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.02021325987476393,
+              "recall": 0.2440944881889764,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 329,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.0912621359223301,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.010603052600413353,
+              "recall": 0.431758530183727,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5483950501207817,
+          "average_precision": 0.1578889539423685,
+          "brier": 0.11745257104639682,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 139,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14256410256410257,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.009371510812540883,
+              "recall": 0.13521400778210116,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 279,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14307692307692307,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.009884331325361397,
+              "recall": 0.2714007782101167,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 513,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.1363998936453071,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.0038962457858901013,
+              "recall": 0.4990272373540856,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5402575788170838,
+        "average_precision": 0.11280684763362367,
+        "brier": 0.08817163077563249,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 354,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.12098427887901572,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.012779182538717728,
+            "recall": 0.12597864768683273,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 668,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11547104580812446,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.011558705194452791,
+            "recall": 0.23772241992882562,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1192,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.106163163519772,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.005166661091695004,
+            "recall": 0.42419928825622777,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "onehot_logistic_basic": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5561843514973728,
+          "average_precision": 0.1081805625739593,
+          "brier": 0.07818160785597436,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 119,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.11598440545808966,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.006927809777379115,
+              "recall": 0.11666666666666667,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 202,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.10150753768844221,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.0046729643198569135,
+              "recall": 0.1980392156862745,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 356,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.092180217503884,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.002882829029603497,
+              "recall": 0.34901960784313724,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.4847285315795315,
+          "average_precision": 0.07601222308147043,
+          "brier": 0.07892631745968123,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 99,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.10702702702702703,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.02610457538861592,
+              "recall": 0.12992125984251968,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 186,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.1008130081300813,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.02021325987476393,
+              "recall": 0.2440944881889764,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 326,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.09042995839112344,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.009770875069206694,
+              "recall": 0.42782152230971127,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.531076548102932,
+          "average_precision": 0.15190460158221702,
+          "brier": 0.11850856042738332,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 151,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.15487179487179487,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.021679203120233193,
+              "recall": 0.14688715953307394,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 275,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14102564102564102,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.007833049274079346,
+              "recall": 0.26750972762645914,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 507,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.13480457325179473,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.0023009253923777376,
+              "recall": 0.49319066147859925,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5321049272891587,
+        "average_precision": 0.10030615425529615,
+        "brier": 0.08916623725014547,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 369,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.12611073137388926,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.017905635033591275,
+            "recall": 0.13131672597864769,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 663,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.1146067415730337,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.01069440095936204,
+            "recall": 0.23594306049822064,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1189,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10589597434983969,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.004899471921762693,
+            "recall": 0.42313167259786477,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "spline_logistic_basic": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5508089184003784,
+          "average_precision": 0.10870943449405229,
+          "brier": 0.07811678480909082,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 140,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.1364522417153996,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.027395646034689056,
+              "recall": 0.13725490196078433,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 219,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.1100502512562814,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.01321567788769611,
+              "recall": 0.21470588235294116,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 363,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.0939927498705334,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.0046953613962529015,
+              "recall": 0.3558823529411765,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.48101721502507316,
+          "average_precision": 0.07531126118416626,
+          "brier": 0.07976563462509612,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 90,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.0972972972972973,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.016374845658886188,
+              "recall": 0.11811023622047244,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 160,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08672086720867209,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.006121118953354714,
+              "recall": 0.2099737532808399,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 306,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08488210818307906,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.004223024861162312,
+              "recall": 0.4015748031496063,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5299892959946769,
+          "average_precision": 0.15183666262360923,
+          "brier": 0.1186029001450873,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 142,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14564102564102563,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.012448433889463961,
+              "recall": 0.13813229571984437,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 280,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14358974358974358,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.01039715183818191,
+              "recall": 0.2723735408560311,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 528,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.140388194629088,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.00788454676967101,
+              "recall": 0.5136186770428015,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5301953171501483,
+        "average_precision": 0.10000019777067574,
+        "brier": 0.08942996646262366,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 372,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.127136021872864,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.018930925532565986,
+            "recall": 0.13238434163701068,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 659,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.1139152981849611,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.01000295757128944,
+            "recall": 0.23451957295373665,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1197,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10660847880299251,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.005611976374915525,
+            "recall": 0.42597864768683275,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "hgb7_basic": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5175869150432699,
+          "average_precision": 0.08632878312471287,
+          "brier": 0.0790016309567063,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 130,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.1267056530214425,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.017649057340731942,
+              "recall": 0.12745098039215685,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 223,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.1120603015075377,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.01522572813895239,
+              "recall": 0.21862745098039216,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 399,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.10331434489901606,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.014016956424735553,
+              "recall": 0.3911764705882353,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.44598213494662214,
+          "average_precision": 0.07036080794594594,
+          "brier": 0.07892660471129752,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 83,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.08972972972972973,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.008807278091318621,
+              "recall": 0.1089238845144357,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 152,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08238482384823849,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.0017850755929211097,
+              "recall": 0.1994750656167979,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 304,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08432732316227462,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.003668239840357874,
+              "recall": 0.3989501312335958,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5382477253988689,
+          "average_precision": 0.14707019304284616,
+          "brier": 0.11847449708941195,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 132,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.13538461538461538,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.0021920236330537045,
+              "recall": 0.12840466926070038,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 289,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.1482051282051282,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.015012536453566525,
+              "recall": 0.2811284046692607,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 532,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.14145174155809626,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.008948093698679254,
+              "recall": 0.5175097276264592,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5218650411703292,
+        "average_precision": 0.09827638069687829,
+        "brier": 0.08949919050350999,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 345,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11790840738209159,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.009703311041793599,
+            "recall": 0.12277580071174377,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 664,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11477960242005186,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.01086726180638019,
+            "recall": 0.23629893238434163,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1235,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10999287495546847,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.008996372527391478,
+            "recall": 0.4395017793594306,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "hgb15_basic": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5192343604108309,
+          "average_precision": 0.0878254702373316,
+          "brier": 0.07918072965192126,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 131,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.1276803118908382,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.018623716210127653,
+              "recall": 0.1284313725490196,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 229,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.11507537688442211,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.018240803515836814,
+              "recall": 0.22450980392156863,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 378,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09787674779906784,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.00857935932478734,
+              "recall": 0.37058823529411766,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.46370154592336504,
+          "average_precision": 0.07339038948491947,
+          "brier": 0.07959667808848316,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 80,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.08648648648648649,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.005564034848075377,
+              "recall": 0.10498687664041995,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 159,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08617886178861789,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.005579113533300513,
+              "recall": 0.20866141732283464,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 305,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08460471567267684,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.003945632350760093,
+              "recall": 0.400262467191601,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5329242908596474,
+          "average_precision": 0.14636107121048092,
+          "brier": 0.11867893624657652,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 142,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14564102564102563,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.012448433889463961,
+              "recall": 0.13813229571984437,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 286,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14666666666666667,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.013474074915104986,
+              "recall": 0.2782101167315175,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 521,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.1385269875033236,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.006023339643906586,
+              "recall": 0.5068093385214008,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5229011420485041,
+        "average_precision": 0.09883286839784952,
+        "brier": 0.08984041958511874,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 353,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.12064251537935748,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.012437419039059492,
+            "recall": 0.12562277580071174,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 674,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11650821089023336,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.012595870276561694,
+            "recall": 0.2398576512455516,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1204,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10723192019950124,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.006235417771424253,
+            "recall": 0.4284697508896797,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "hgb31_basic": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5223693825356229,
+          "average_precision": 0.08817803562994236,
+          "brier": 0.0793855265981452,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 127,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.12378167641325535,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.014725080732544808,
+              "recall": 0.12450980392156863,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 223,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.1120603015075377,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.01522572813895239,
+              "recall": 0.21862745098039216,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 367,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09502848265147591,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.005731094177195419,
+              "recall": 0.35980392156862745,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.4691466598772749,
+          "average_precision": 0.07509468188879163,
+          "brier": 0.08033504261511619,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 82,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.08864864864864865,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.007726197010237539,
+              "recall": 0.10761154855643044,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 176,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.0953929539295393,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.014793205674221923,
+              "recall": 0.23097112860892388,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 305,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08460471567267684,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.003945632350760093,
+              "recall": 0.400262467191601,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5252931306322595,
+          "average_precision": 0.14179727551701388,
+          "brier": 0.11910646564196774,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 132,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.13538461538461538,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.0021920236330537045,
+              "recall": 0.12840466926070038,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 272,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.13948717948717948,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.006294587735617807,
+              "recall": 0.26459143968871596,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 522,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.13879287423557565,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.006289226376158647,
+              "recall": 0.5077821011673151,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5214504802855209,
+        "average_precision": 0.09846935489466474,
+        "brier": 0.0902734399389151,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 341,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11654135338345864,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.008336257043160654,
+            "recall": 0.12135231316725979,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 671,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.1159896283491789,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.012077287735507243,
+            "recall": 0.23879003558718861,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1194,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10634128963306021,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.005344787204983213,
+            "recall": 0.42491103202846975,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "random_forest_basic": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5324928206947555,
+          "average_precision": 0.09225393701491288,
+          "brier": 0.078612646726605,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 133,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.12962962962962962,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.020573033948919076,
+              "recall": 0.1303921568627451,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 224,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.11256281407035176,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.015728240701766462,
+              "recall": 0.2196078431372549,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 378,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09787674779906784,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.00857935932478734,
+              "recall": 0.37058823529411766,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.4646982715340139,
+          "average_precision": 0.07271135853623953,
+          "brier": 0.07992091049772762,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 86,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.09297297297297297,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.012050521334561864,
+              "recall": 0.11286089238845144,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 178,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.09647696476964769,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.015877216514330324,
+              "recall": 0.2335958005249344,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 309,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08571428571428572,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.00505520239236897,
+              "recall": 0.40551181102362205,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5278398160068274,
+          "average_precision": 0.1474908408553343,
+          "brier": 0.11881589783901317,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 139,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14256410256410257,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.009371510812540883,
+              "recall": 0.13521400778210116,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 273,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.006807408248438319,
+              "recall": 0.26556420233463035,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 531,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.1411858548258442,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.008682206966427193,
+              "recall": 0.5165369649805448,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5227262194439015,
+        "average_precision": 0.09869950310055867,
+        "brier": 0.08974264892303929,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 358,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.12235133287764867,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.014146236537350674,
+            "recall": 0.12740213523131672,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 675,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11668107173725151,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.012768731123579844,
+            "recall": 0.2402135231316726,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1218,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.1084788029925187,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.007482300564441709,
+            "recall": 0.43345195729537367,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "logistic_recent365_basic": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5561843514973728,
+          "average_precision": 0.1081805625739593,
+          "brier": 0.07818160785597436,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 119,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.11598440545808966,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.006927809777379115,
+              "recall": 0.11666666666666667,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 202,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.10150753768844221,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.0046729643198569135,
+              "recall": 0.1980392156862745,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 356,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.092180217503884,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.002882829029603497,
+              "recall": 0.34901960784313724,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.5298060204869275,
+          "average_precision": 0.0930998451871344,
+          "brier": 0.0890825893476422,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 103,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.11135135135135135,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.03042889971294024,
+              "recall": 0.13517060367454067,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 189,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.1024390243902439,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.02183927613492653,
+              "recall": 0.24803149606299213,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 327,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.09070735090152567,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.010048267579608914,
+              "recall": 0.42913385826771655,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5206334890717891,
+          "average_precision": 0.13951816399931147,
+          "brier": 0.1189077117650131,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 153,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.15692307692307692,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.023730485171515242,
+              "recall": 0.14883268482490272,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 277,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14205128205128206,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.00885869029972037,
+              "recall": 0.2694552529182879,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 511,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.13586812018080296,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.00336447232138598,
+              "recall": 0.4970817120622568,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5347471307939219,
+        "average_precision": 0.10461311843704527,
+        "brier": 0.09248672760835788,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 375,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.1281613123718387,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.019956216031540696,
+            "recall": 0.13345195729537365,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 668,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11547104580812446,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.011558705194452791,
+            "recall": 0.23772241992882562,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1194,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10634128963306021,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.005344787204983213,
+            "recall": 0.42491103202846975,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "hgb_recent365_basic": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5175869150432699,
+          "average_precision": 0.08632878312471287,
+          "brier": 0.0790016309567063,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 130,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.1267056530214425,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.017649057340731942,
+              "recall": 0.12745098039215685,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 223,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.1120603015075377,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.01522572813895239,
+              "recall": 0.21862745098039216,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 399,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.10331434489901606,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.014016956424735553,
+              "recall": 0.3911764705882353,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.48803525136759307,
+          "average_precision": 0.07721294102084536,
+          "brier": 0.07947077186873236,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 90,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.0972972972972973,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.016374845658886188,
+              "recall": 0.11811023622047244,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 177,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.0959349593495935,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.015335211094276123,
+              "recall": 0.23228346456692914,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 316,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08765603328710125,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.006996949965184503,
+              "recall": 0.4146981627296588,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5133452909609015,
+          "average_precision": 0.13721013685417935,
+          "brier": 0.11865534867949126,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 141,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14461538461538462,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.011422792863822934,
+              "recall": 0.13715953307392997,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 275,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14102564102564102,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.007833049274079346,
+              "recall": 0.26750972762645914,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 498,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.1324115926615262,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": -9.205519789080795e-05,
+              "recall": 0.48443579766536965,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5213802322559395,
+        "average_precision": 0.09739240017737971,
+        "brier": 0.08971960515823796,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 361,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.12337662337662338,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.015171527036325383,
+            "recall": 0.1284697508896797,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 675,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11668107173725151,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.012768731123579844,
+            "recall": 0.2402135231316726,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1213,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10803348770929819,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.0070369852812211895,
+            "recall": 0.4316725978647687,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "onehot_logistic_augmented": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5529634159902146,
+          "average_precision": 0.10885366278603537,
+          "brier": 0.07802448322353969,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 126,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.12280701754385964,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.013750421863149096,
+              "recall": 0.12352941176470589,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 195,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.09798994974874371,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.0011553763801584213,
+              "recall": 0.19117647058823528,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 355,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09192128430864836,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.002623895834367868,
+              "recall": 0.3480392156862745,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.5067046020822666,
+          "average_precision": 0.08258273674404351,
+          "brier": 0.08332215241527115,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 102,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.11027027027027027,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.02934781863185916,
+              "recall": 0.13385826771653545,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 175,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.0948509485094851,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.014251200254167722,
+              "recall": 0.22965879265091863,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 327,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.09070735090152567,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.010048267579608914,
+              "recall": 0.42913385826771655,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.49180644554698916,
+          "average_precision": 0.1336454624402392,
+          "brier": 0.11977661918228218,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 120,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.12307692307692308,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.010115668674638603,
+              "recall": 0.11673151750972763,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 255,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.13076923076923078,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.002423360982330911,
+              "recall": 0.2480544747081712,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 455,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.12097846317468758,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": -0.011525184684729415,
+              "recall": 0.44260700389105057,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5184474142644264,
+        "average_precision": 0.09858668859541725,
+        "brier": 0.09082983802114751,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 348,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11893369788106631,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.01072860154076831,
+            "recall": 0.12384341637010676,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 625,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.10803802938634399,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.004125688772672325,
+            "recall": 0.22241992882562278,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1137,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10126469540434628,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.0002681929762692833,
+            "recall": 0.40462633451957297,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "spline_logistic_augmented": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5508071533591382,
+          "average_precision": 0.11016272633374385,
+          "brier": 0.07799788659633251,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 150,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.14619883040935672,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.037142234728646174,
+              "recall": 0.14705882352941177,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 224,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.11256281407035176,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.015728240701766462,
+              "recall": 0.2196078431372549,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 346,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.08959088555152771,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.0002934970772472052,
+              "recall": 0.3392156862745098,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.50382859210584,
+          "average_precision": 0.08153889985239166,
+          "brier": 0.08564333977583519,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 95,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.10270270270270271,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.021780251064291593,
+              "recall": 0.12467191601049869,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 165,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08943089430894309,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.008831146053625717,
+              "recall": 0.21653543307086615,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 316,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08765603328710125,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.006996949965184503,
+              "recall": 0.4146981627296588,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.48980262682076575,
+          "average_precision": 0.13413000227586214,
+          "brier": 0.12000666722583622,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 128,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.13128205128205128,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.0019105404695103983,
+              "recall": 0.1245136186770428,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 257,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.1317948717948718,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.0013977199566898855,
+              "recall": 0.25,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 464,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.12337144376495612,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": -0.00913220409446087,
+              "recall": 0.45136186770428016,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5158398675377043,
+        "average_precision": 0.09809905516069034,
+        "brier": 0.0916146388477804,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 373,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.12747778537252222,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.019272689032224222,
+            "recall": 0.13274021352313167,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 646,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11166810717372515,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.0077557665600534835,
+            "recall": 0.2298932384341637,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1126,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10028500178126114,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": -0.000711500646815861,
+            "recall": 0.400711743772242,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "hgb7_augmented": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5176560164078233,
+          "average_precision": 0.09147287833845599,
+          "brier": 0.07888577520037328,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 134,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.13060428849902533,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.021547692818314788,
+              "recall": 0.13137254901960785,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 223,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.1120603015075377,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.01522572813895239,
+              "recall": 0.21862745098039216,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 396,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.10253754531330916,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.013240156839028665,
+              "recall": 0.38823529411764707,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.45372923818610084,
+          "average_precision": 0.07150172915213168,
+          "brier": 0.07860496053452415,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 79,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.08540540540540541,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.004482953766994296,
+              "recall": 0.1036745406824147,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 162,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08780487804878048,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.007205129793463115,
+              "recall": 0.2125984251968504,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 315,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08737864077669903,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.006719557454782284,
+              "recall": 0.41338582677165353,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5293581936267774,
+          "average_precision": 0.14359531349296062,
+          "brier": 0.11858565097423832,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 122,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.12512820512820513,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.008064386623356552,
+              "recall": 0.11867704280155641,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 237,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.12153846153846154,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.011654130213100142,
+              "recall": 0.23054474708171208,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 536,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.14251528848710449,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.010011640627687496,
+              "recall": 0.5214007782101168,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5220565066644889,
+        "average_precision": 0.09808529072632262,
+        "brier": 0.08937871836658617,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 335,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11449077238550923,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.0062856760452112345,
+            "recall": 0.11921708185053381,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 622,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.10751944684528954,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.003607106231617874,
+            "recall": 0.22135231316725978,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1247,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.11106163163519772,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.010065129207120726,
+            "recall": 0.44377224199288257,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "hgb15_augmented": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5206508942581444,
+          "average_precision": 0.08986564426801733,
+          "brier": 0.07892394075000678,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 123,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.11988304093567251,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.010826445254961962,
+              "recall": 0.12058823529411765,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 221,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.11105527638190955,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.014220703013324251,
+              "recall": 0.21666666666666667,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 385,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09968928016571725,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.010391891691436745,
+              "recall": 0.37745098039215685,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.46863854353868445,
+          "average_precision": 0.07393163644883194,
+          "brier": 0.07953140836393575,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 84,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.09081081081081081,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.009888359172399701,
+              "recall": 0.11023622047244094,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 165,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08943089430894309,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.008831146053625717,
+              "recall": 0.21653543307086615,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 312,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08654646324549237,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.005887379923575627,
+              "recall": 0.4094488188976378,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5252613079137315,
+          "average_precision": 0.14235813122484614,
+          "brier": 0.11885730274106376,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 134,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.13743589743589743,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.004243305684335756,
+              "recall": 0.1303501945525292,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 280,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14358974358974358,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.01039715183818191,
+              "recall": 0.2723735408560311,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 516,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.13719755384206328,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.004693905982646283,
+              "recall": 0.5019455252918288,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5208891122596558,
+        "average_precision": 0.09800085342478393,
+        "brier": 0.08976022826342793,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 341,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11654135338345864,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.008336257043160654,
+            "recall": 0.12135231316725979,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 666,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11512532411408816,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.01121298350041649,
+            "recall": 0.23701067615658364,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1213,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10803348770929819,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.0070369852812211895,
+            "recall": 0.4316725978647687,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "hgb31_augmented": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5219655852258989,
+          "average_precision": 0.09082735633111674,
+          "brier": 0.0792920588339007,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 130,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.1267056530214425,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.017649057340731942,
+              "recall": 0.12745098039215685,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 218,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.10954773869346733,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.01271316532488204,
+              "recall": 0.21372549019607842,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 370,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.0958052822371828,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.006507893762902306,
+              "recall": 0.3627450980392157,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.4818921574753411,
+          "average_precision": 0.07606843111243293,
+          "brier": 0.08039781781861913,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 84,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.09081081081081081,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.009888359172399701,
+              "recall": 0.11023622047244094,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 159,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08617886178861789,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.005579113533300513,
+              "recall": 0.20866141732283464,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 308,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.0854368932038835,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.0047778098819667505,
+              "recall": 0.4041994750656168,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5232823687674482,
+          "average_precision": 0.13916774923872877,
+          "brier": 0.11925509262636944,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 121,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.12410256410256411,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": -0.009090027648997578,
+              "recall": 0.11770428015564202,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 263,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.13487179487179488,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.0016792031202331914,
+              "recall": 0.25583657587548636,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 515,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.13693166710981122,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.004428019250394223,
+              "recall": 0.5009727626459144,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.522108667891775,
+        "average_precision": 0.09829785986897327,
+        "brier": 0.09029394670296052,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 335,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11449077238550923,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.0062856760452112345,
+            "recall": 0.11921708185053381,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 640,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11063094209161625,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.006718601477944581,
+            "recall": 0.2277580071174377,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1193,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.1062522265764161,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.005255724148339109,
+            "recall": 0.42455516014234873,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "random_forest_augmented": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5461088783339423,
+          "average_precision": 0.09850243329174699,
+          "brier": 0.07834310735814103,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 148,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.1442495126705653,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.03519291698985475,
+              "recall": 0.1450980392156863,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 237,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.11909547738693467,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.022260904018349376,
+              "recall": 0.2323529411764706,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 381,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09865354738477473,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.009356158910494227,
+              "recall": 0.3735294117647059,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.4661815080470147,
+          "average_precision": 0.0728137810288299,
+          "brier": 0.0796917584161274,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 93,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.10054054054054054,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.019618088902129432,
+              "recall": 0.1220472440944882,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 165,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08943089430894309,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.008831146053625717,
+              "recall": 0.21653543307086615,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 304,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08432732316227462,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.003668239840357874,
+              "recall": 0.3989501312335958,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5261252947217682,
+          "average_precision": 0.14383193714752798,
+          "brier": 0.11887324459755168,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 138,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14153846153846153,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.008345869786899858,
+              "recall": 0.13424124513618677,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 278,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14256410256410257,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.009371510812540883,
+              "recall": 0.2704280155642023,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 518,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.1377293273065674,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.005225679447150405,
+              "recall": 0.5038910505836576,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5266308086161707,
+        "average_precision": 0.09905370630154837,
+        "brier": 0.08957302061856375,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 379,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.12952836637047163,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.02132327003017364,
+            "recall": 0.13487544483985764,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 680,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11754537597234227,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.013633035358670597,
+            "recall": 0.24199288256227758,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1203,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10714285714285714,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.006146354714780149,
+            "recall": 0.42811387900355874,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "logistic_recent365_augmented": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5529634159902146,
+          "average_precision": 0.10885366278603537,
+          "brier": 0.07802448322353969,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 126,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.12280701754385964,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.013750421863149096,
+              "recall": 0.12352941176470589,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 195,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.09798994974874371,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.0011553763801584213,
+              "recall": 0.19117647058823528,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 355,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.09192128430864836,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.002623895834367868,
+              "recall": 0.3480392156862745,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.5361680442852378,
+          "average_precision": 0.09479433416162582,
+          "brier": 0.09395975461756802,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 105,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.11351351351351352,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.032591061875102405,
+              "recall": 0.1377952755905512,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 172,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.09322493224932249,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.012625183994005121,
+              "recall": 0.22572178477690288,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 324,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.089875173370319,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.009216090048402256,
+              "recall": 0.4251968503937008,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5336335035366613,
+          "average_precision": 0.1480755622558209,
+          "brier": 0.11860870247554013,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 160,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.1641025641025641,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.030909972351002422,
+              "recall": 0.1556420233463035,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 307,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.15743589743589745,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.024243305684335754,
+              "recall": 0.29863813229571984,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 548,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.14570592927412923,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.013202281414712223,
+              "recall": 0.5330739299610895,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5387258548638059,
+        "average_precision": 0.10688007283589868,
+        "brier": 0.09388495783566159,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 391,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.13362952836637046,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.025424432026072478,
+            "recall": 0.1391459074733096,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 674,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.11650821089023336,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.012595870276561694,
+            "recall": 0.2398576512455516,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1227,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10928037050231564,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.008283868074238646,
+            "recall": 0.43665480427046266,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "hgb_recent365_augmented": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5176560164078233,
+          "average_precision": 0.09147287833845599,
+          "brier": 0.07888577520037328,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 134,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.13060428849902533,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.021547692818314788,
+              "recall": 0.13137254901960785,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 223,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.1120603015075377,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": 0.01522572813895239,
+              "recall": 0.21862745098039216,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 396,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.10253754531330916,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": 0.013240156839028665,
+              "recall": 0.38823529411764707,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.4955355241556549,
+          "average_precision": 0.0795738174808377,
+          "brier": 0.07892148118678692,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 80,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.08648648648648649,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": 0.005564034848075377,
+              "recall": 0.10498687664041995,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 162,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.08780487804878048,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": 0.007205129793463115,
+              "recall": 0.2125984251968504,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 325,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.09015256588072122,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.009493482558804476,
+              "recall": 0.42650918635170604,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5116658469905834,
+          "average_precision": 0.13766745240335324,
+          "brier": 0.11866003211970688,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 137,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14051282051282052,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.007320228761258833,
+              "recall": 0.13326848249027237,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 260,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.13333333333333333,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.00014074158177165304,
+              "recall": 0.2529182879377432,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 497,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.13214570592927413,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": -0.00035794193014286856,
+              "recall": 0.48346303501945526,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5230405885178668,
+        "average_precision": 0.09837864283141476,
+        "brier": 0.08949871182156251,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 351,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.11995898838004102,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.011753892039743018,
+            "recall": 0.12491103202846975,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 645,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.111495246326707,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": 0.007582905713035333,
+            "recall": 0.22953736654804271,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1218,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.1084788029925187,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.007482300564441709,
+            "recall": 0.43345195729537367,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "specialty_weekday_prior": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.490462334902455,
+          "average_precision": 0.080933055095725,
+          "brier": 0.07921167380057857,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 100,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.09746588693957114,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": -0.011590708741139403,
+              "recall": 0.09803921568627451,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 176,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.08844221105527639,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": -0.008392362313308916,
+              "recall": 0.17254901960784313,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 329,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.085189021232522,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": -0.004108367241758492,
+              "recall": 0.32254901960784316,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.5103424756969929,
+          "average_precision": 0.08434048173929441,
+          "brier": 0.07627088525826865,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 70,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.07567567567567568,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": -0.0052467759627354334,
+              "recall": 0.09186351706036745,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 145,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.07859078590785908,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": -0.002008962347458294,
+              "recall": 0.19028871391076116,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 297,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.08238557558945908,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": 0.0017264922675423399,
+              "recall": 0.38976377952755903,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5457690972473348,
+          "average_precision": 0.15036971315582953,
+          "brier": 0.11815043668063421,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 151,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.15487179487179487,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.021679203120233193,
+              "recall": 0.14688715953307394,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 277,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14205128205128206,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.00885869029972037,
+              "recall": 0.2694552529182879,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 530,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.14091996809359214,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.008416320234175132,
+              "recall": 0.5155642023346303,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.545663365808319,
+        "average_precision": 0.11525144750829838,
+        "brier": 0.08865995894779584,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 321,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.10970608339029392,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.0015009870499959233,
+            "recall": 0.11423487544483986,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 598,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.10337078651685393,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": -0.0005415540968177353,
+            "recall": 0.21281138790035586,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1156,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10295689348058425,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": 0.00196039105250726,
+            "recall": 0.41138790035587186,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    },
+    "specialty_weekday_time_prior": {
+      "folds": [
+        {
+          "year": 2017,
+          "rows": 12129,
+          "missed": 1020,
+          "prevalence": 0.08409596834034133,
+          "roc_auc": 0.5011136527704969,
+          "average_precision": 0.08472710370374412,
+          "brier": 0.07919234946456173,
+          "capacity": {
+            "5": {
+              "days": 213,
+              "selected": 1026,
+              "captured": 115,
+              "random_expected_captured": 111.89206716840903,
+              "precision": 0.11208576998050682,
+              "random_precision": 0.10905659568071055,
+              "precision_difference": 0.003029174299796269,
+              "recall": 0.11274509803921569,
+              "random_recall": 0.10969810506706767
+            },
+            "10": {
+              "days": 213,
+              "selected": 1990,
+              "captured": 175,
+              "random_expected_captured": 192.70080100348474,
+              "precision": 0.08793969849246232,
+              "random_precision": 0.0968345733685853,
+              "precision_difference": -0.008894874876122985,
+              "recall": 0.1715686274509804,
+              "random_recall": 0.18892235392498505
+            },
+            "20": {
+              "days": 213,
+              "selected": 3862,
+              "captured": 323,
+              "random_expected_captured": 344.8665142876713,
+              "precision": 0.08363542206110823,
+              "random_precision": 0.0892973884742805,
+              "precision_difference": -0.005661966413172266,
+              "recall": 0.31666666666666665,
+              "random_recall": 0.33810442577222677
+            }
+          }
+        },
+        {
+          "year": 2018,
+          "rows": 9205,
+          "missed": 762,
+          "prevalence": 0.08278109722976643,
+          "roc_auc": 0.48590346318045086,
+          "average_precision": 0.07793227093409304,
+          "brier": 0.07673556519478433,
+          "capacity": {
+            "5": {
+              "days": 185,
+              "selected": 925,
+              "captured": 65,
+              "random_expected_captured": 74.85326776553028,
+              "precision": 0.07027027027027027,
+              "random_precision": 0.08092245163841111,
+              "precision_difference": -0.01065218136814084,
+              "recall": 0.08530183727034121,
+              "random_recall": 0.09823263486290063
+            },
+            "10": {
+              "days": 185,
+              "selected": 1845,
+              "captured": 139,
+              "random_expected_captured": 148.70653553106055,
+              "precision": 0.07533875338753387,
+              "random_precision": 0.08059974825531738,
+              "precision_difference": -0.005260994867783498,
+              "recall": 0.18241469816272965,
+              "random_recall": 0.195152933767796
+            },
+            "20": {
+              "days": 185,
+              "selected": 3605,
+              "captured": 285,
+              "random_expected_captured": 290.77599537550986,
+              "precision": 0.07905686546463246,
+              "random_precision": 0.08065908332191675,
+              "precision_difference": -0.00160221785728429,
+              "recall": 0.37401574803149606,
+              "random_recall": 0.3815957944560497
+            }
+          }
+        },
+        {
+          "year": 2019,
+          "rows": 7753,
+          "missed": 1028,
+          "prevalence": 0.13259383464465369,
+          "roc_auc": 0.5249728783648909,
+          "average_precision": 0.14973026709528514,
+          "brier": 0.11818316187275536,
+          "capacity": {
+            "5": {
+              "days": 195,
+              "selected": 975,
+              "captured": 138,
+              "random_expected_captured": 129.86277695777264,
+              "precision": 0.14153846153846153,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.008345869786899858,
+              "recall": 0.13424124513618677,
+              "random_recall": 0.12632565851923408
+            },
+            "10": {
+              "days": 195,
+              "selected": 1950,
+              "captured": 278,
+              "random_expected_captured": 259.7255539155453,
+              "precision": 0.14256410256410257,
+              "random_precision": 0.13319259175156167,
+              "precision_difference": 0.009371510812540883,
+              "recall": 0.2704280155642023,
+              "random_recall": 0.25265131703846816
+            },
+            "20": {
+              "days": 195,
+              "selected": 3761,
+              "captured": 524,
+              "random_expected_captured": 498.34621959926733,
+              "precision": 0.13932464770007977,
+              "random_precision": 0.13250364785941698,
+              "precision_difference": 0.006820999840662768,
+              "recall": 0.5097276264591439,
+              "random_recall": 0.4847725871588204
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "rows": 29087,
+        "missed": 2810,
+        "prevalence": 0.09660673152954928,
+        "roc_auc": 0.5327775653769171,
+        "average_precision": 0.10788977319864788,
+        "brier": 0.08880767828490843,
+        "capacity": {
+          "5": {
+            "days": 593,
+            "selected": 2926,
+            "captured": 318,
+            "random_expected_captured": 316.6081118917119,
+            "precision": 0.10868079289131921,
+            "random_precision": 0.108205096340298,
+            "precision_difference": 0.0004756965510212138,
+            "recall": 0.11316725978647686,
+            "random_recall": 0.11267192594011101
+          },
+          "10": {
+            "days": 593,
+            "selected": 5785,
+            "captured": 592,
+            "random_expected_captured": 601.1328904500906,
+            "precision": 0.10233362143474503,
+            "random_precision": 0.10391234061367167,
+            "precision_difference": -0.0015787191789266377,
+            "recall": 0.2106761565836299,
+            "random_recall": 0.21392629553384007
+          },
+          "20": {
+            "days": 593,
+            "selected": 11228,
+            "captured": 1132,
+            "random_expected_captured": 1133.9887292624485,
+            "precision": 0.10081938012112576,
+            "random_precision": 0.10099650242807699,
+            "precision_difference": -0.00017712230695123682,
+            "recall": 0.402846975088968,
+            "random_recall": 0.4035547079225795
+          }
+        }
+      }
+    }
+  },
+  "paired_capacity_intervals": {
+    "5": {
+      "matched_random": {
+        "estimate": 0.0062856760452112345,
+        "lower95": -0.005838896881312145,
+        "upper95": 0.018535855084371135,
+        "replicates": 2000
+      },
+      "original_logistic": {
+        "estimate": -0.006493506493506494,
+        "lower95": -0.022472292938766916,
+        "upper95": 0.010204777681877658,
+        "replicates": 2000
+      },
+      "specialty_age_prior": {
+        "estimate": -0.0017088174982911825,
+        "lower95": -0.018009293931639934,
+        "upper95": 0.014727419510541203,
+        "replicates": 2000
+      },
+      "specialty_weekday_prior": {
+        "estimate": 0.004784688995215311,
+        "lower95": -0.011689472890351231,
+        "upper95": 0.02166456045242972,
+        "replicates": 2000
+      },
+      "specialty_weekday_time_prior": {
+        "estimate": 0.00580997949419002,
+        "lower95": -0.009566272166887132,
+        "upper95": 0.020894645250148877,
+        "replicates": 2000
+      }
+    },
+    "10": {
+      "matched_random": {
+        "estimate": 0.003607106231617874,
+        "lower95": -0.004145055392508983,
+        "upper95": 0.011701718583727514,
+        "replicates": 2000
+      },
+      "original_logistic": {
+        "estimate": -0.007951598962834918,
+        "lower95": -0.018751211113871027,
+        "upper95": 0.003474437677145731,
+        "replicates": 2000
+      },
+      "specialty_age_prior": {
+        "estimate": -0.00414866032843561,
+        "lower95": -0.013929687429781804,
+        "upper95": 0.006165915914877769,
+        "replicates": 2000
+      },
+      "specialty_weekday_prior": {
+        "estimate": 0.00414866032843561,
+        "lower95": -0.006619435504692369,
+        "upper95": 0.014833405785814963,
+        "replicates": 2000
+      },
+      "specialty_weekday_time_prior": {
+        "estimate": 0.005185825410544511,
+        "lower95": -0.005521120478452791,
+        "upper95": 0.016113596431474055,
+        "replicates": 2000
+      }
+    },
+    "20": {
+      "matched_random": {
+        "estimate": 0.010065129207120726,
+        "lower95": 0.005154718048308259,
+        "upper95": 0.014685341214570003,
+        "replicates": 2000
+      },
+      "original_logistic": {
+        "estimate": 0.0048984681154257215,
+        "lower95": -0.00197068613191325,
+        "upper95": 0.011903032780319098,
+        "replicates": 2000
+      },
+      "specialty_age_prior": {
+        "estimate": 0.0057000356252226575,
+        "lower95": -8.898025026409783e-05,
+        "upper95": 0.01143720950039512,
+        "replicates": 2000
+      },
+      "specialty_weekday_prior": {
+        "estimate": 0.008104738154613466,
+        "lower95": 0.002146126761947923,
+        "upper95": 0.014405097082605851,
+        "replicates": 2000
+      },
+      "specialty_weekday_time_prior": {
+        "estimate": 0.010242251514071963,
+        "lower95": 0.004044370632666889,
+        "upper95": 0.016768206339018932,
+        "replicates": 2000
+      }
+    }
+  },
+  "discrimination_intervals": {
+    "hgb7_augmented": {
+      "roc_auc": {
+        "estimate": 0.5220565066644889,
+        "lower95": 0.49669640159853334,
+        "upper95": 0.5478693259428797,
+        "replicates": 500
+      },
+      "average_precision": {
+        "estimate": 0.09808529072632262,
+        "lower95": 0.08704277156427088,
+        "upper95": 0.11161499925244735,
+        "replicates": 500
+      }
+    },
+    "original_logistic": {
+      "roc_auc": {
+        "estimate": 0.5402575788170838,
+        "lower95": 0.5174184102158282,
+        "upper95": 0.563428307218919,
+        "replicates": 500
+      },
+      "average_precision": {
+        "estimate": 0.11280684763362367,
+        "lower95": 0.10230284897934042,
+        "upper95": 0.12503052089532385,
+        "replicates": 500
+      }
+    },
+    "specialty_age_prior": {
+      "roc_auc": {
+        "estimate": 0.5447656618097069,
+        "lower95": 0.524510382970971,
+        "upper95": 0.5668548592140985,
+        "replicates": 500
+      },
+      "average_precision": {
+        "estimate": 0.11249523592678431,
+        "lower95": 0.10190588673651342,
+        "upper95": 0.12238717510758595,
+        "replicates": 500
+      }
+    }
+  },
+  "probability_baselines": {
+    "2017": {
+      "training_prevalence": {
+        "probability": 0.04049407869603973,
+        "brier": 0.0789249612297955,
+        "log_loss": 0.30752262650061135,
+        "average_precision": 0.08409596834034133,
+        "roc_auc": 0.5
+      },
+      "last90day_training_prevalence": {
+        "probability": 0.03601800900450225,
+        "brier": 0.07933532662314022,
+        "log_loss": 0.31311061730924067,
+        "average_precision": 0.08409596834034133,
+        "roc_auc": 0.5
+      }
+    },
+    "2018": {
+      "training_prevalence": {
+        "probability": 0.06696026423781404,
+        "brier": 0.07617868592776164,
+        "log_loss": 0.28738174222890334,
+        "average_precision": 0.08278109722976643,
+        "roc_auc": 0.5
+      },
+      "last90day_training_prevalence": {
+        "probability": 0.12780790085205268,
+        "brier": 0.07795580021564233,
+        "log_loss": 0.29572513425095903,
+        "average_precision": 0.08278109722976643,
+        "roc_auc": 0.5
+      }
+    },
+    "2019": {
+      "training_prevalence": {
+        "probability": 0.07194984068249563,
+        "brier": 0.11869040366256216,
+        "log_loss": 0.4137273874244902,
+        "average_precision": 0.13259383464465369,
+        "roc_auc": 0.5
+      },
+      "last90day_training_prevalence": {
+        "probability": 0.10318419991938735,
+        "brier": 0.1158776362735535,
+        "log_loss": 0.3956170453953634,
+        "average_precision": 0.13259383464465369,
+        "roc_auc": 0.5
+      }
+    },
+    "2020": {
+      "training_prevalence": {
+        "probability": 0.0846778559826746,
+        "brier": 0.1246859157146861,
+        "log_loss": 0.4252499042858917,
+        "average_precision": 0.1414752116082225,
+        "roc_auc": 0.5
+      },
+      "last90day_training_prevalence": {
+        "probability": 0.13019116677653264,
+        "brier": 0.12158730577639476,
+        "log_loss": 0.4081813879486332,
+        "average_precision": 0.1414752116082225,
+        "roc_auc": 0.5
+      }
+    }
+  },
+  "diagnostics": {
+    "years": [
+      {
+        "year": 2016,
+        "rows": 7853,
+        "days": 129,
+        "missed": 318,
+        "prevalence": 0.04049407869603973,
+        "age_missing_rate": 0.0022921176620399847,
+        "specialty_missing_rate": 0.04558767350057303,
+        "city_missing_rate": 0.0022921176620399847,
+        "days_with_n_le20": 3,
+        "k20_fraction_of_all_visits_selected": 0.3221698713867312
+      },
+      {
+        "year": 2017,
+        "rows": 12129,
+        "days": 213,
+        "missed": 1020,
+        "prevalence": 0.08409596834034133,
+        "age_missing_rate": 0.0030505400280319895,
+        "specialty_missing_rate": 0.0577953664770385,
+        "city_missing_rate": 0.0008244702778464837,
+        "days_with_n_le20": 29,
+        "k20_fraction_of_all_visits_selected": 0.31841042130431196
+      },
+      {
+        "year": 2018,
+        "rows": 9205,
+        "days": 185,
+        "missed": 762,
+        "prevalence": 0.08278109722976643,
+        "age_missing_rate": 0.2662683324280282,
+        "specialty_missing_rate": 0.07202607278652906,
+        "city_missing_rate": 0.00358500814774579,
+        "days_with_n_le20": 17,
+        "k20_fraction_of_all_visits_selected": 0.3916349809885932
+      },
+      {
+        "year": 2019,
+        "rows": 7753,
+        "days": 195,
+        "missed": 1028,
+        "prevalence": 0.13259383464465369,
+        "age_missing_rate": 0.3521217593189733,
+        "specialty_missing_rate": 0.20637172707339094,
+        "city_missing_rate": 0.09131948922997549,
+        "days_with_n_le20": 39,
+        "k20_fraction_of_all_visits_selected": 0.4851025409518896
+      },
+      {
+        "year": 2020,
+        "rows": 827,
+        "days": 48,
+        "missed": 117,
+        "prevalence": 0.1414752116082225,
+        "age_missing_rate": 0.25272067714631197,
+        "specialty_missing_rate": 0.16928657799274485,
+        "city_missing_rate": 0.026602176541717048,
+        "days_with_n_le20": 35,
+        "k20_fraction_of_all_visits_selected": 0.8633615477629988
+      }
+    ],
+    "specialty_shift": [
+      {
+        "year": 2016,
+        "specialty": "missing",
+        "rows": 358,
+        "missed_rate": 0.04748603351955307
+      },
+      {
+        "year": 2016,
+        "specialty": "occupational therapy",
+        "rows": 1089,
+        "missed_rate": 0.04224058769513315
+      },
+      {
+        "year": 2016,
+        "specialty": "pedagogo",
+        "rows": 608,
+        "missed_rate": 0.03618421052631579
+      },
+      {
+        "year": 2016,
+        "specialty": "physiotherapy",
+        "rows": 1590,
+        "missed_rate": 0.04654088050314465
+      },
+      {
+        "year": 2016,
+        "specialty": "psychotherapy",
+        "rows": 1922,
+        "missed_rate": 0.037460978147762745
+      },
+      {
+        "year": 2016,
+        "specialty": "speech therapy",
+        "rows": 2188,
+        "missed_rate": 0.03656307129798903
+      },
+      {
+        "year": 2017,
+        "specialty": "enf",
+        "rows": 127,
+        "missed_rate": 0.03937007874015748
+      },
+      {
+        "year": 2017,
+        "specialty": "missing",
+        "rows": 701,
+        "missed_rate": 0.08701854493580599
+      },
+      {
+        "year": 2017,
+        "specialty": "occupational therapy",
+        "rows": 1610,
+        "missed_rate": 0.07888198757763976
+      },
+      {
+        "year": 2017,
+        "specialty": "pedagogo",
+        "rows": 852,
+        "missed_rate": 0.0892018779342723
+      },
+      {
+        "year": 2017,
+        "specialty": "physiotherapy",
+        "rows": 1867,
+        "missed_rate": 0.07766470273165506
+      },
+      {
+        "year": 2017,
+        "specialty": "psychotherapy",
+        "rows": 3544,
+        "missed_rate": 0.08775395033860045
+      },
+      {
+        "year": 2017,
+        "specialty": "speech therapy",
+        "rows": 3388,
+        "missed_rate": 0.08648170011806375
+      },
+      {
+        "year": 2018,
+        "specialty": "assist",
+        "rows": 150,
+        "missed_rate": 0.07333333333333333
+      },
+      {
+        "year": 2018,
+        "specialty": "enf",
+        "rows": 384,
+        "missed_rate": 0.044270833333333336
+      },
+      {
+        "year": 2018,
+        "specialty": "missing",
+        "rows": 663,
+        "missed_rate": 0.10407239819004525
+      },
+      {
+        "year": 2018,
+        "specialty": "occupational therapy",
+        "rows": 1202,
+        "missed_rate": 0.05490848585690516
+      },
+      {
+        "year": 2018,
+        "specialty": "pedagogo",
+        "rows": 471,
+        "missed_rate": 0.09129511677282377
+      },
+      {
+        "year": 2018,
+        "specialty": "physiotherapy",
+        "rows": 1565,
+        "missed_rate": 0.06964856230031949
+      },
+      {
+        "year": 2018,
+        "specialty": "psychotherapy",
+        "rows": 2047,
+        "missed_rate": 0.09819247679531021
+      },
+      {
+        "year": 2018,
+        "specialty": "speech therapy",
+        "rows": 2666,
+        "missed_rate": 0.08739684921230308
+      },
+      {
+        "year": 2019,
+        "specialty": "missing",
+        "rows": 1600,
+        "missed_rate": 0.153125
+      },
+      {
+        "year": 2019,
+        "specialty": "occupational therapy",
+        "rows": 1096,
+        "missed_rate": 0.09762773722627738
+      },
+      {
+        "year": 2019,
+        "specialty": "physiotherapy",
+        "rows": 1856,
+        "missed_rate": 0.1384698275862069
+      },
+      {
+        "year": 2019,
+        "specialty": "psychotherapy",
+        "rows": 1863,
+        "missed_rate": 0.12399355877616747
+      },
+      {
+        "year": 2019,
+        "specialty": "speech therapy",
+        "rows": 1238,
+        "missed_rate": 0.13247172859450726
+      },
+      {
+        "year": 2020,
+        "specialty": "missing",
+        "rows": 140,
+        "missed_rate": 0.12857142857142856
+      },
+      {
+        "year": 2020,
+        "specialty": "physiotherapy",
+        "rows": 197,
+        "missed_rate": 0.13705583756345177
+      },
+      {
+        "year": 2020,
+        "specialty": "psychotherapy",
+        "rows": 178,
+        "missed_rate": 0.12359550561797752
+      },
+      {
+        "year": 2020,
+        "specialty": "speech therapy",
+        "rows": 236,
+        "missed_rate": 0.15677966101694915
+      }
+    ],
+    "source_target_mapping": "Strict yes=missed(1), no=attended(0), verified against provider description; no unexpected values."
+  },
+  "corrected_2020_qualification": {
+    "hgb7_augmented": {
+      "rows": 827,
+      "missed": 117,
+      "prevalence": 0.1414752116082225,
+      "roc_auc": 0.4821054532322138,
+      "average_precision": 0.1415226512581859,
+      "brier": 0.12532445974077303,
+      "capacity": {
+        "5": {
+          "days": 48,
+          "selected": 226,
+          "captured": 18,
+          "random_expected_captured": 30.177448132362994,
+          "precision": 0.07964601769911504,
+          "random_precision": 0.13352853155912828,
+          "precision_difference": -0.05388251386001325,
+          "recall": 0.15384615384615385,
+          "random_recall": 0.2579269071142136
+        },
+        "10": {
+          "days": 48,
+          "selected": 415,
+          "captured": 42,
+          "random_expected_captured": 56.02156293139265,
+          "precision": 0.10120481927710843,
+          "random_precision": 0.13499171790697023,
+          "precision_difference": -0.03378689862986181,
+          "recall": 0.358974358974359,
+          "random_recall": 0.4788167771913902
+        },
+        "20": {
+          "days": 48,
+          "selected": 714,
+          "captured": 96,
+          "random_expected_captured": 96.06334016860333,
+          "precision": 0.13445378151260504,
+          "random_precision": 0.134542493233338,
+          "precision_difference": -8.871172073295849e-05,
+          "recall": 0.8205128205128205,
+          "random_recall": 0.8210541894752421
+        }
+      }
+    },
+    "original_logistic": {
+      "rows": 827,
+      "missed": 117,
+      "prevalence": 0.1414752116082225,
+      "roc_auc": 0.5119116407848803,
+      "average_precision": 0.17114896190674922,
+      "brier": 0.12396421790668731,
+      "capacity": {
+        "5": {
+          "days": 48,
+          "selected": 226,
+          "captured": 28,
+          "random_expected_captured": 30.177448132362994,
+          "precision": 0.12389380530973451,
+          "random_precision": 0.13352853155912828,
+          "precision_difference": -0.009634726249393776,
+          "recall": 0.23931623931623933,
+          "random_recall": 0.2579269071142136
+        },
+        "10": {
+          "days": 48,
+          "selected": 415,
+          "captured": 59,
+          "random_expected_captured": 56.02156293139265,
+          "precision": 0.14216867469879518,
+          "random_precision": 0.13499171790697023,
+          "precision_difference": 0.007176956791824936,
+          "recall": 0.5042735042735043,
+          "random_recall": 0.4788167771913902
+        },
+        "20": {
+          "days": 48,
+          "selected": 714,
+          "captured": 105,
+          "random_expected_captured": 96.06334016860333,
+          "precision": 0.14705882352941177,
+          "random_precision": 0.134542493233338,
+          "precision_difference": 0.012516330296073764,
+          "recall": 0.8974358974358975,
+          "random_recall": 0.8210541894752421
+        }
+      }
+    },
+    "specialty_age_prior": {
+      "rows": 827,
+      "missed": 117,
+      "prevalence": 0.1414752116082225,
+      "roc_auc": 0.5106115324425183,
+      "average_precision": 0.14678686091958001,
+      "brier": 0.12429126591016135,
+      "capacity": {
+        "5": {
+          "days": 48,
+          "selected": 226,
+          "captured": 27,
+          "random_expected_captured": 30.177448132362994,
+          "precision": 0.11946902654867257,
+          "random_precision": 0.13352853155912828,
+          "precision_difference": -0.014059505010455723,
+          "recall": 0.23076923076923078,
+          "random_recall": 0.2579269071142136
+        },
+        "10": {
+          "days": 48,
+          "selected": 415,
+          "captured": 57,
+          "random_expected_captured": 56.02156293139265,
+          "precision": 0.13734939759036144,
+          "random_precision": 0.13499171790697023,
+          "precision_difference": 0.002357679683391202,
+          "recall": 0.48717948717948717,
+          "random_recall": 0.4788167771913902
+        },
+        "20": {
+          "days": 48,
+          "selected": 714,
+          "captured": 106,
+          "random_expected_captured": 96.06334016860333,
+          "precision": 0.1484593837535014,
+          "random_precision": 0.134542493233338,
+          "precision_difference": 0.0139168905201634,
+          "recall": 0.905982905982906,
+          "random_recall": 0.8210541894752421
+        }
+      }
+    },
+    "specialty_weekday_prior": {
+      "rows": 827,
+      "missed": 117,
+      "prevalence": 0.1414752116082225,
+      "roc_auc": 0.5533525941976647,
+      "average_precision": 0.16586544669924264,
+      "brier": 0.12430176775229808,
+      "capacity": {
+        "5": {
+          "days": 48,
+          "selected": 226,
+          "captured": 42,
+          "random_expected_captured": 30.177448132362994,
+          "precision": 0.18584070796460178,
+          "random_precision": 0.13352853155912828,
+          "precision_difference": 0.05231217640547348,
+          "recall": 0.358974358974359,
+          "random_recall": 0.2579269071142136
+        },
+        "10": {
+          "days": 48,
+          "selected": 415,
+          "captured": 66,
+          "random_expected_captured": 56.02156293139265,
+          "precision": 0.15903614457831325,
+          "random_precision": 0.13499171790697023,
+          "precision_difference": 0.02404442667134301,
+          "recall": 0.5641025641025641,
+          "random_recall": 0.4788167771913902
+        },
+        "20": {
+          "days": 48,
+          "selected": 714,
+          "captured": 100,
+          "random_expected_captured": 96.06334016860333,
+          "precision": 0.1400560224089636,
+          "random_precision": 0.134542493233338,
+          "precision_difference": 0.005513529175625585,
+          "recall": 0.8547008547008547,
+          "random_recall": 0.8210541894752421
+        }
+      }
+    },
+    "specialty_weekday_time_prior": {
+      "rows": 827,
+      "missed": 117,
+      "prevalence": 0.1414752116082225,
+      "roc_auc": 0.544781509570242,
+      "average_precision": 0.17799639451117363,
+      "brier": 0.1243198663982211,
+      "capacity": {
+        "5": {
+          "days": 48,
+          "selected": 226,
+          "captured": 36,
+          "random_expected_captured": 30.177448132362994,
+          "precision": 0.1592920353982301,
+          "random_precision": 0.13352853155912828,
+          "precision_difference": 0.0257635038391018,
+          "recall": 0.3076923076923077,
+          "random_recall": 0.2579269071142136
+        },
+        "10": {
+          "days": 48,
+          "selected": 415,
+          "captured": 60,
+          "random_expected_captured": 56.02156293139265,
+          "precision": 0.14457831325301204,
+          "random_precision": 0.13499171790697023,
+          "precision_difference": 0.009586595346041804,
+          "recall": 0.5128205128205128,
+          "random_recall": 0.4788167771913902
+        },
+        "20": {
+          "days": 48,
+          "selected": 714,
+          "captured": 99,
+          "random_expected_captured": 96.06334016860333,
+          "precision": 0.13865546218487396,
+          "random_precision": 0.134542493233338,
+          "precision_difference": 0.004112968951535949,
+          "recall": 0.8461538461538461,
+          "random_recall": 0.8210541894752421
+        }
+      }
+    }
+  },
+  "corrected_2020_k20_intervals": {
+    "matched_random": {
+      "estimate": -8.871172073295849e-05,
+      "lower95": -0.009534833622102189,
+      "upper95": 0.012097271003683841,
+      "replicates": 2000
+    },
+    "original_logistic": {
+      "estimate": -0.012605042016806723,
+      "lower95": -0.025,
+      "upper95": -0.002808890272152797,
+      "replicates": 2000
+    },
+    "specialty_age_prior": {
+      "estimate": -0.014005602240896359,
+      "lower95": -0.02651568054850178,
+      "upper95": -0.0028168023612844444,
+      "replicates": 2000
+    },
+    "specialty_weekday_prior": {
+      "estimate": -0.0056022408963585435,
+      "lower95": -0.012858990147783252,
+      "upper95": 0.0,
+      "replicates": 2000
+    },
+    "specialty_weekday_time_prior": {
+      "estimate": -0.004201680672268907,
+      "lower95": -0.014146677438991638,
+      "upper95": 0.005563670292111116,
+      "replicates": 2000
+    }
+  },
+  "original_trained_models_and_evaluation_unchanged": true,
+  "concurrent_manifest_metadata_change": {
+    "models/manifest.json": {
+      "before": "5775c80a8b00c46630438b2d6b63cf3a453f0ad5558247bb6bc3bfd4d05d0537",
+      "after": "6d576a5a6dbb7254006d814acc0c44f659ccbd8ddf4e6c5f9cc852a25ac69ad3"
+    }
+  }
+}

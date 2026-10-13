@@ -1,0 +1,10 @@
+{
+  "declared_before_research_results_review": true,
+  "purpose": "The supplementary comparison adds historical specialty/calendar rules and compute-cost measurements. Supplement does not change learned candidate selection.",
+  "additional_simple_baselines": ["specialty×weekday smoothed historical rate", "specialty×weekday×2-hour time-bin smoothed historical rate"],
+  "smoothing": "30 train prior-equivalent appointments; unknown combinations fall back to train overall prevalence",
+  "fit_boundary": "Same expanding prior-years folds 2017, 2018, 2019; selected learned comparator reused unchanged; 2020 research qualification once without subsequent tuning.",
+  "probability_baselines": "Per fold constant full-training prevalence and last90-training-calendar-days prevalence; historical2020 comparison only. No calibration-cohort prevalence fitted and scored on itself.",
+  "resources": "Refit each prespecified model once on all development dates<2020, measured isolated-process peak RSS and fit wall time; single synthetic appointment and 1000 synthetic appointment inference, median of20 repeats. No model serialization/publication.",
+  "reporting": "Show original development gate and stricter every-fold positive direction with no retroactive model selection. New baseline cannot be used to cherry-pick a learned model. No clinically justified effect-size threshold is available, so no clinically meaningful-benefit claim."
+}

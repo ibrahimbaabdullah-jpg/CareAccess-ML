@@ -1,0 +1,77 @@
+{
+  "method": "Fractional expected captures when appointments with exactly equal risk at the cutoff receive uniformly random tie priority. Evaluation expectation only, not outcome-aware selection. Original learned candidate choice unchanged. Daily cluster resampling on fixed expected policy contributions.",
+  "results": {
+    "2017_2019": {
+      "expected_policy_captures": {
+        "hgb7_augmented": 1246.5980158730158,
+        "hgb7_basic": 1237.8131673881674,
+        "original_logistic": 1189.2166666666667,
+        "specialty_age_prior": 1169.0151933960656
+      },
+      "selected_slots": 11228,
+      "matched_random_expected": 1133.9887292624485,
+      "paired_intervals": {
+        "matched_random": {
+          "estimate": 0.010029327272049103,
+          "lower95": 0.0051193500408162835,
+          "upper95": 0.014599987865061012,
+          "replicates": 2000
+        },
+        "hgb7_basic": {
+          "estimate": 0.0007824054582159292,
+          "lower95": -0.0029654539671167316,
+          "upper95": 0.004479273654863829,
+          "replicates": 2000
+        },
+        "original_logistic": {
+          "estimate": 0.005110558354680185,
+          "lower95": -0.0016707451021304653,
+          "upper95": 0.011961187020795214,
+          "replicates": 2000
+        },
+        "specialty_age_prior": {
+          "estimate": 0.006909763312874086,
+          "lower95": 0.0013421972377322866,
+          "upper95": 0.012378309508324723,
+          "replicates": 2000
+        }
+      }
+    },
+    "2020": {
+      "expected_policy_captures": {
+        "hgb7_augmented": 96.0,
+        "hgb7_basic": 94.0,
+        "original_logistic": 105.0,
+        "specialty_age_prior": 104.77272727272728
+      },
+      "selected_slots": 714,
+      "matched_random_expected": 96.06334016860333,
+      "paired_intervals": {
+        "matched_random": {
+          "estimate": -8.871172073295849e-05,
+          "lower95": -0.009534833622102189,
+          "upper95": 0.012097271003683841,
+          "replicates": 2000
+        },
+        "hgb7_basic": {
+          "estimate": 0.0028011204481792717,
+          "lower95": -0.006183100214079315,
+          "upper95": 0.01309422691322265,
+          "replicates": 2000
+        },
+        "original_logistic": {
+          "estimate": -0.012605042016806723,
+          "lower95": -0.025,
+          "upper95": -0.002808890272152797,
+          "replicates": 2000
+        },
+        "specialty_age_prior": {
+          "estimate": -0.01228673287496818,
+          "lower95": -0.023954142042834994,
+          "upper95": -0.0016748450413223163,
+          "replicates": 2000
+        }
+      }
+    }
+  }
+}

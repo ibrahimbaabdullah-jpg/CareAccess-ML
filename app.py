@@ -9,12 +9,13 @@ import streamlit as st
 from careaccess.inference import load_bundle, predict, model_names
 from careaccess.validation import validate_frame
 from careaccess.planner import plan_outreach, export_csv
+from careaccess.csv_input import read_appointments_csv
+from careaccess.session import clear_batch_session, reset_batch_results, revoke_batch_authorization
+from careaccess.quality import input_quality_warnings
 
 ROOT = Path(__file__).resolve().parent
 PAGES = ["Home / Dashboard", "Live Prediction", "Batch Prediction", "Outreach Planner", "Model Comparison", "Model Evaluation", "About / Documentation"]
 LABELS = {"logistic": "Logistic Regression", "logistic_regression": "Logistic Regression", "gradient_boosting": "Gradient Boosting", "hist_gradient_boosting": "Gradient Boosting", "pytorch": "PyTorch Neural Network", "neural_network": "PyTorch Neural Network", "baseline": "Constant baseline"}
-MAX_BYTES = 5 * 1024 * 1024
-MAX_ROWS = 5000
 
 st.set_page_config(page_title="CareAccess ML", page_icon="📅", layout="wide")
 st.markdown("""<style>
@@ -53,6 +54,7 @@ def validate_and_score(frame, model, bundle):
     result = clean.copy()
     result["miss_probability"] = probabilities
     result["model"] = model
+    result["input_quality_warnings"] = input_quality_warnings(clean, bundle["feature_contract"])
     return result
 
 
@@ -152,45 +154,42 @@ elif page == "Batch Prediction":
     st.write("Upload only non-identifying appointment data that you are authorized to process on this hosting service. Do not include patient names, contact details, medical record numbers or confidential information. Files are processed in session memory and are not deliberately saved to disk or used for training.")
     st.download_button("Download empty CSV template", export_csv(empty_template()), "careaccess_empty_template.csv", "text/csv")
     st.caption("The template contains column names only. Dates must use YYYY-MM-DDTHH:MM. Appointment references must not identify patients; use local row references. Age and specialty may be left blank.")
-    confirmed = st.checkbox("I am authorized to process this file here and have excluded identifying or confidential patient information.", key="batch_confirm")
+    confirmed = st.checkbox("I am authorized to process this file here and have excluded identifying or confidential patient information.", key="batch_confirm", on_change=revoke_batch_authorization, args=(st.session_state,))
     frame = None
+    uploaded = None
     if confirmed:
-        uploaded = st.file_uploader("Appointments CSV (maximum 5 MB / 5,000 rows)", type=["csv"])
+        generation = st.session_state.get("batch_upload_generation", 0)
+        uploaded = st.file_uploader("Appointments CSV (maximum 5 MB / 5,000 rows)", type=["csv"], key=f"batch_upload_{generation}")
         if uploaded is not None:
-            if uploaded.size > MAX_BYTES:
-                st.error("The file is larger than 5 MB. Please use a smaller schedule.")
+            try:
+                frame = read_appointments_csv(uploaded.getvalue())
+            except ValueError as error:
+                reset_batch_results(st.session_state)
+                st.error(str(error))
+    if frame is not None:
+        st.caption(f"{len(frame):,} appointment rows")
+        st.dataframe(frame.head(50), hide_index=True, width="stretch")
+        model = model_picker(bundle, "batch_model")
+        if st.button("Validate and score appointments", type="primary"):
+            reset_batch_results(st.session_state)
+            if not confirmed:
+                st.warning("Please confirm authorization and privacy before scoring.")
             else:
                 try:
-                    frame = pd.read_csv(uploaded, nrows=MAX_ROWS + 1, dtype={"appointment_id": str}, encoding="utf-8-sig")
-                except (ValueError, UnicodeError, pd.errors.ParserError):
-                    st.error("This file could not be read as a UTF-8 CSV. Use the downloadable empty template.")
-    if frame is not None:
-        if len(frame) > MAX_ROWS:
-            st.error("The schedule exceeds 5,000 rows. Please split it into smaller files.")
-        else:
-            st.caption(f"{len(frame):,} appointment rows")
-            st.dataframe(frame.head(50), hide_index=True, width="stretch")
-            model = model_picker(bundle, "batch_model")
-            if st.button("Validate and score appointments", type="primary"):
-                st.session_state.pop("batch_scores", None)
-                if not confirmed:
-                    st.warning("Please confirm authorization and privacy before scoring.")
-                else:
-                    try:
-                        scored = validate_and_score(frame, model, bundle)
-                        if scored is not None:
-                            st.session_state["batch_scores"] = scored
-                            st.success(f"Scored {len(scored):,} appointments. Open Outreach Planner to create a review list.")
-                    except ValueError as error:
-                        st.error(str(error))
+                    scored = validate_and_score(frame, model, bundle)
+                    if scored is not None:
+                        st.session_state["batch_scores"] = scored
+                        st.success(f"Scored {len(scored):,} appointments. Open Outreach Planner to create a review list.")
+                except ValueError as error:
+                    st.error(str(error))
     if "batch_scores" in st.session_state:
         st.subheader("Last successfully scored schedule")
         st.caption("These results are from the last scoring run. Changing the file or model above does not update them until you score again.")
         show_scores(st.session_state["batch_scores"])
         st.download_button("Download scored schedule", export_csv(st.session_state["batch_scores"]), "careaccess_predictions.csv", "text/csv")
-        if st.button("Clear schedule and results"):
-            st.session_state.pop("batch_scores", None)
-            st.rerun()
+    if uploaded is not None or "batch_scores" in st.session_state:
+        st.button("Clear schedule and results", on_click=clear_batch_session, args=(st.session_state,))
+        st.caption("Clears this session's uploaded schedule and batch results. It does not erase downloaded copies or hosting-provider records.")
 
 elif page == "Outreach Planner":
     st.header("Create a supportive outreach review list")
@@ -200,13 +199,17 @@ elif page == "Outreach Planner":
         st.write("First open Batch Prediction and score an authorized, non-identifying schedule. Your results will appear here in this session.")
     else:
         st.caption(f"Using the last successfully scored schedule: {len(scores):,} appointments.")
+        st.caption("Capacity is the total number of appointments across this entire uploaded batch, including all appointment dates. Equal scores are ordered by appointment reference.")
         capacity = st.number_input("How many appointments can your team contact?", min_value=0, max_value=len(scores), value=min(20, len(scores)), step=1)
         planned = plan_outreach(scores, int(capacity))
         st.metric("Appointments selected for review", len(planned))
         if not planned.empty:
             planned = planned.copy()
-            planned["review_status"] = "Not reviewed"
-            planned = st.data_editor(planned, hide_index=True, width="stretch", disabled=[c for c in planned.columns if c != "review_status"], column_config={"review_status": st.column_config.SelectboxColumn("Review status", options=["Not reviewed", "Ready for supportive outreach", "Needs further review", "Reviewed — no additional outreach"]), "miss_probability": st.column_config.NumberColumn("Estimated non-attendance probability", format="%.4f")})
+            statuses = st.session_state.setdefault("batch_review_statuses", {})
+            planned["review_status"] = planned.appointment_id.map(statuses).fillna("Not reviewed")
+            result_generation = st.session_state.get("batch_result_generation", 0)
+            planned = st.data_editor(planned, key=f"batch_review_editor_{result_generation}_{int(capacity)}", hide_index=True, width="stretch", disabled=[c for c in planned.columns if c != "review_status"], column_config={"review_status": st.column_config.SelectboxColumn("Review status", options=["Not reviewed", "Ready for supportive outreach", "Needs further review", "Reviewed — no additional outreach"]), "miss_probability": st.column_config.NumberColumn("Estimated non-attendance probability", format="%.4f")})
+            statuses.update(zip(planned.appointment_id, planned.review_status))
         else:
             st.info("Capacity is zero. No appointments are selected.")
         st.download_button("Download outreach review list", export_csv(planned), "careaccess_outreach_review.csv", "text/csv")
@@ -264,6 +267,7 @@ elif page == "Model Evaluation":
         st.subheader("Performance at limited outreach capacity")
         st.dataframe(pd.DataFrame(capacity_results), hide_index=True, width="stretch")
         st.caption("Precision@K: fraction of the K selected appointments subsequently missed. Recall@K: fraction of all missed appointments captured. This is retrospective targeting performance, not prevented missed visits.")
+        st.caption("These research results select up to K appointments separately on each appointment day and use seeded-random tie handling. The interactive planner instead applies a total capacity to the current uploaded batch and resolves equal scores by appointment reference. These are different selection policies; the daily research results do not directly validate the batch planner.")
     st.subheader("Data split, model selection and source")
     for field in ["source", "counts", "splits", "selection", "uncertainty", "subgroups", "feature_importance", "limitations"]:
         if field in report:
