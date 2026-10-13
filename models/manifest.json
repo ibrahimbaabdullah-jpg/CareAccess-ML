@@ -1,0 +1,101 @@
+{
+  "version": "0.1.0",
+  "created_utc": "2026-10-13T08:34:28.272703+00:00",
+  "seed": 20261013,
+  "default_model": "Logistic Regression",
+  "model_files": {
+    "Constant baseline": "baseline.skops",
+    "Logistic Regression": "logistic.skops",
+    "Gradient Boosting": "gradient.skops",
+    "PyTorch Neural Network": "neural.safetensors"
+  },
+  "calibrators": {
+    "Constant baseline": null,
+    "Logistic Regression": {
+      "coef": 0.1827341467142105,
+      "intercept": -1.337687611579895
+    },
+    "Gradient Boosting": {
+      "coef": -0.1797401265943597,
+      "intercept": -2.264108582428994
+    },
+    "PyTorch Neural Network": {
+      "coef": 0.1639503951489602,
+      "intercept": -1.3984568119069143
+    }
+  },
+  "thresholds": {
+    "Constant baseline": 0.05,
+    "Logistic Regression": 0.13,
+    "Gradient Boosting": 0.05,
+    "PyTorch Neural Network": 0.13
+  },
+  "input_dim": 14,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit_learn": "1.9.1",
+    "torch": "2.14.1+cpu"
+  },
+  "sha256": {
+    "preprocessor.skops": "a643c96391dd4ab8eaab0c96bc3f2903b3431beeb8d9be54478324fec367b03f",
+    "baseline.skops": "03be7456384a19e8a74b3d5b49c90113aa1e49fc7ae4ce764217e6a8407fd062",
+    "neural.safetensors": "c1db982877bac6eb01231a9fc328154c871ad8c9a1d948f737504cb5d39e8639",
+    "logistic.skops": "30999638603ca420ad98b6d1243f5928ef96f0c0be42a3e55e49fa9e863a41c6",
+    "gradient.skops": "706bafc54a206847189ff9e8b89e5b22dd82b95924e4a0ae1919b66b997e1b82"
+  },
+  "skops_types": {
+    "preprocessor.skops": [
+      "numpy.dtype"
+    ],
+    "baseline.skops": [],
+    "logistic.skops": [],
+    "gradient.skops": [
+      "sklearn.ensemble._hist_gradient_boosting.predictor.TreePredictor"
+    ]
+  },
+  "feature_contract": {
+    "input_columns": [
+      "appointment_id",
+      "appointment_datetime",
+      "specialty",
+      "age"
+    ],
+    "specialty_values": [
+      "speech therapy",
+      "psychotherapy",
+      "physiotherapy",
+      "occupational therapy",
+      "pedagogo",
+      "enf",
+      "assist",
+      "sem especialidade"
+    ],
+    "age_min": 0,
+    "age_max": 110,
+    "age_optional": true,
+    "specialty_optional": true,
+    "datetime_format": "YYYY-MM-DDTHH:MM",
+    "train_start": "2016-06-20T13:00",
+    "train_end": "2018-12-07T18:15",
+    "data_start": "2016-06-20T13:00",
+    "data_end": "2022-02-25T17:40",
+    "description": "Age at appointment, specialty and scheduled calendar/time features only. Blank age imputed using training median with missingness indicator; blank specialty gets a missing category."
+  },
+  "configuration_sha256": {
+    "scripts/train.py": "393537929c6f06a21e48c91f7f9dc79d8c1bad26372c3909c965de643abbbfee",
+    "careaccess/data.py": "e755553d9f2799d3d00097739a8fb58822c155bab61428226c1abcc0abe56bdc",
+    "careaccess/validation.py": "8267898deb63a1d9ec54d33609c9ef0011ba35289c1fa41badd9ca04709b7570",
+    "scripts/feature_ablation.py": "76969473d6eb20066d2d93eb65383979ed252e571ca839b37481885004f96633",
+    "careaccess/evaluation.py": "7fd0c6965c9af2b4d1c09431d11b50edfb82bc309e1f63d827385c274408b8d8"
+  },
+  "original_training_configuration_sha256": {
+    "scripts/train.py": "77c34722267770045983d6a0bcc9770e30acb053a54452d7e1cc5599d66a4fa3",
+    "careaccess/data.py": "e755553d9f2799d3d00097739a8fb58822c155bab61428226c1abcc0abe56bdc",
+    "careaccess/validation.py": "e57ef3d34494f4018402da4ca933fe35bae5ad012e8536dcf95144cfe59001e4",
+    "scripts/feature_ablation.py": "76969473d6eb20066d2d93eb65383979ed252e571ca839b37481885004f96633",
+    "careaccess/evaluation.py": "7fd0c6965c9af2b4d1c09431d11b50edfb82bc309e1f63d827385c274408b8d8"
+  },
+  "revision_note": "No retraining: public input policy and documentation revised to remove generated examples at user request; original trained weights and metrics unchanged."
+}

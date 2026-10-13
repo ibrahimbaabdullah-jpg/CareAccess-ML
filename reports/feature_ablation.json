@@ -1,0 +1,33 @@
+{
+  "scope": "Only train<2019 and validation2019; no2020 calibration or2021\u201322 finaltest rows used for fitting, evaluation or decisions",
+  "policy": "Consider additional inputs necessary only if validation AP improves by >=0.01 absolute and Brier does not worsen, with defensible preappointment availability. Threshold fixed before ablation.",
+  "results": [
+    {
+      "additional_features": [],
+      "validation_average_precision": 0.15077841918187823,
+      "validation_brier": 0.11865415305115584
+    },
+    {
+      "additional_features": [
+        "disability"
+      ],
+      "validation_average_precision": 0.14911423954974312,
+      "validation_brier": 0.1188200740845938
+    },
+    {
+      "additional_features": [
+        "city"
+      ],
+      "validation_average_precision": 0.13970072653363189,
+      "validation_brier": 0.11944634396813923
+    },
+    {
+      "additional_features": [
+        "disability",
+        "city"
+      ],
+      "validation_average_precision": 0.13758049252269539,
+      "validation_brier": 0.11978630495392827
+    }
+  ]
+}

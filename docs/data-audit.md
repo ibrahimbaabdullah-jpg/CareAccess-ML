@@ -1,0 +1,40 @@
+# CareAccess ML data audit and frozen feature contract
+
+Audited 2026-10-13 directly from the original Mendeley CSV. This is an audit, not a training result.
+
+## Provenance
+Salazar, Luiz Henrique (2023), Medical Appointments No-Show, Mendeley Data, V1, DOI 10.17632/wm6w2fvkfj.1. Official https://data.mendeley.com/datasets/wm6w2fvkfj/1. CC BY 4.0 per published record (https://creativecommons.org/licenses/by/4.0/). Public file is medical-appointments-no-show-en.csv, 6,848,627 bytes, SHA256 903f30aa008c478dd6451550b53c2bf937653f28763ea288e43f5e99c536cbdf (matches provider metadata). Contributor's dataset description situates records in a Brazilian rehabilitation center. Attribution/license does not establish permission for unrestricted handling of identifiable health information.
+
+## Measured inventory
+49,593 rows, 26 columns; target no_show: yes=4,832 and no=44,761. 2,921 excess full-row duplicates; dedup leaves 46,672. No patient or appointment identifier exists. Do not derive an identity by linking birth date, disability, city and other quasi-identifiers. Exact duplicate removal can accidentally collapse distinct identical encounters; retain this limitation and report pre/post counts. Never dedup only by model features.
+
+appointment_date uses strict DD/MM/YYYY, all 49,593 parse, 2016-06-20 through 2022-02-25. Wrong default month-first parsing incorrectly rejects many dates. appointment_time HH:MM parses as scheduled time; all values observed in 07:00–18:20 range. Month/year fields agree with date but derive calendar features anew rather than trusting redundant columns.
+
+## Important age integrity issue
+Raw age is not appointment-time age: on 39,243 parseable birth-date rows its mean excess over appointment-date-minus-birth-date is 4.0474 years; 35,598 differ by >1.1 years. This is evidence the provided age is unsafe for historical prediction; no specific computation date is established. DO NOT use raw age, under_12_years_old, over_60_years_old or patient_needs_companion. Derive age_at_appointment in memory as (appointment_date - date_of_birth).days / 365.2425. Parse birth date strictly %d/%m/%Y. 29 nonblank dates are invalid; 2 dates are after the appointment. Negative ages or ages >110 become missing, not fabricated. After dedup, 8,706 derived ages are missing/invalid. Train-only median imputation plus missingness flag is recommended. Birth dates themselves must never enter models, exports, app examples or repository.
+
+## Allowed MVP predictor contract
+- specialty: scheduled specialty string, strip whitespace, map missing to a documented missing category. Eight raw nonmissing categories, some Portuguese abbreviations; do not invent clinical expansions for enf/assist/pedagogo/sem especialidade.
+- appointment_date: scheduled calendar date used only to derive weekday (0=Monday), month (1–12), optionally year if declared before training; recommend excluding absolute year from MVP to reduce unsupported future trend extrapolation. Date drives temporal split but is not an identity feature.
+- appointment_time: scheduled HH:MM; derive hour and minute/minutes_since_midnight consistently.
+- age_at_appointment: valid nonnegative derived age up to110 or missing.
+These fields are plausible scheduled/pre-existing attributes, but the public CSV has no versioned scheduling snapshot. Cannot prove specialty never changed after booking; document assumed availability. The public app accepts age directly, never DOB, and requires authorized nonidentifying inputs.
+
+## Exclusions
+- no_show is outcome only: exact yes→1, no→0; reject unexpected labels.
+- no_show_reason is post-outcome leakage. Never a predictor.
+- ALL weather variables excluded (average_temp_day, average_rain_day, max_temp_day, max_rain_day, rainy_day_before, storm_day_before, rain_intensity, heat_intensity). No forecast provenance or decision-time weather snapshot. rainy_day_before/storm_day_before also suspiciously identical with 48,651 ones and942 zeros; exclude rather than rationalize.
+- disability and city are permissible optional candidate predictors, not categorically excluded because they are medical/personal. Clinical disability category may reflect support needs; city may proxy travel barriers. They require an explicit assumption that the values existed before scheduling, since no versioned snapshot exists. Evaluate a prespecified development-only basic-versus-augmented ablation; retain only with documented benefit and discuss proxy bias/missingness shifts. Never publish row-level values.
+- ICD is not included in the recommended MVP: 38,876/49,593 missing (78.39%), 225 nonblank values do not match a simple individual ICD syntax, and historical coverage is extremely sparse in training years (2016:63;2017:31;2018:666) versus2019:4,455. No diagnosis-recording timestamp establishes prediction-time availability. This is a reliability/ascertainment/availability rationale, not a blanket prohibition of medical predictors.
+- gender may be retained in local evaluation ONLY for aggregate fairness review (M/F; I treated unknown); not prediction or UI input. Suppress insufficient subgroup sample sizes.
+- entry_service_date excluded: 360 nonmissing unparsable dates and850 later than appointment, with mixed date/time formats. Consequently no lead-time/history feature is justified.
+- No patient linkage; cannot compute prior attendance, patient-level split/bootstrap, or claim unseen-patient generalization. Appointment/day bootstrap may be used but explicitly does not fully account for repeated persons.
+
+## Implemented frozen chronological split (before fitting)
+After full-row dedup, train <2019-01-01:29,187 rows/2,100 positives (2016-06-20…2018-12-07). Validation2019:7,753/1,028 positives. Separate calibration2020:827/117 positives. Final test date≥2021-01-01:8,905/1,433 positives (2021-01-27…2022-02-25). Test features/labels must not guide preprocessing, hyperparameters, calibration, default-model selection or thresholds. Pandemic/temporal regime shift and a sparse2020 year are real limitations. Positive prevalence rises across time; do not reshuffle to improve performance. Hold final test evaluation until candidate selection policy is fixed. Final retrospective benchmark does not demonstrate outreach effectiveness.
+
+## Security and reproducibility
+Raw file kept outside repository in sibling careaccess_data. Never commit raw or row-level cleaned data or CSV fragments. Audit aggregates + acquisition script and SHA256 can be published with attribution. Patient/sensitive raw attributes include dates of birth and childhood health records; the public release should contain only an empty input template, aggregate reports, trained model artifacts with privacy review, and pipeline code. Train temporary/local data only, no third-party uploads. Header-only CSV template should include appointment_id (temporary nonidentifying token), appointment_datetime (YYYY-MM-DDTHH:MM), specialty, age. Strict allowlist prevents accidental names, DOB, target or identifier ingestion. Date validity and sane limits are mandatory; unknown specialty policy must be explicit, never silently equivalent to known category.
+
+## Review update: separate calibration and model selection
+Builder proposes training before2019, validation2019 (7,753 rows,1,028 positive), calibration2020 (827 rows,117 positive), finaltest2021–2022 unchanged (8,905 rows,1,433 positive). This is defensible if cutoffs, tuning candidates, selection rule, calibration method and final metric definitions are frozen before finaltestevaluation. Sigmoid calibration has low parametercount appropriate to modest2020 cohort, but pandemic-driven distribution shift is a major limitation; do not choose calibration method by testperformance. Basic-versus-augmented feature ablation should use training and validation only. No test-dependent fallback to a different split/model.
