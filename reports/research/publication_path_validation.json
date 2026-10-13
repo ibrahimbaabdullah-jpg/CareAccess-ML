@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "case": "missing source/output",
+      "passed": true
+    },
+    {
+      "case": "source inside repository",
+      "passed": true
+    },
+    {
+      "case": "output inside repository",
+      "passed": true
+    },
+    {
+      "case": "output ancestor of repository",
+      "passed": true
+    },
+    {
+      "case": "output symlink resolves into repository",
+      "passed": true
+    },
+    {
+      "case": "external source and output accepted",
+      "passed": true
+    }
+  ]
+}

@@ -28,7 +28,9 @@ def validate_frame(frame: pd.DataFrame):
         if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,39}', value):
             error(i,'appointment_id','Use a temporary nonidentifying reference (letters, digits, hyphens or underscores), never a patient identifier.')
     for i in data.index[refs.duplicated(keep=False)]: error(i,'appointment_id','Duplicate appointment reference.')
-    dates=pd.to_datetime(data.appointment_datetime,format='%Y-%m-%dT%H:%M',errors='coerce')
+    date_text=data.appointment_datetime.fillna('').astype(str)
+    exact_format=date_text.str.fullmatch(r'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}')
+    dates=pd.to_datetime(date_text.where(exact_format),format='%Y-%m-%dT%H:%M',errors='coerce')
     for i in data.index[dates.isna()]: error(i,'appointment_datetime','Use YYYY-MM-DDTHH:MM, local appointment time without timezone.')
     for i in data.index[dates.notna() & ~dates.dt.year.between(2000,2100)]: error(i,'appointment_datetime','Year must be between 2000 and 2100.')
     ages=pd.to_numeric(data.age,errors='coerce')

@@ -1,0 +1,84 @@
+{
+  "date_utc": "2026-10-13",
+  "scope": "Independent final local acceptance using existing private actual-source adult fixture; not hosted browser certification.",
+  "private_suite": {
+    "passed": 145,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 18.9
+  },
+  "public_suite": {
+    "passed": 95,
+    "failed": 0,
+    "skipped": 50,
+    "seconds": 7.67
+  },
+  "fixture_provenance_verified": true,
+  "fixture_adult_source_rows": 24,
+  "csv_download_payload_parity": {
+    "passed": true,
+    "models": [
+      "Constant baseline",
+      "Logistic Regression",
+      "Gradient Boosting",
+      "PyTorch Neural Network"
+    ],
+    "single_and_batch": true,
+    "planner_capacities": [
+      0,
+      5,
+      24
+    ],
+    "edited_status_persistence_navigation_capacity_and_zero_restore": true,
+    "browser_download_delivery": "outside this local audit"
+  },
+  "session_invalidation": {
+    "clear_uploaded_schedule": true,
+    "withdraw_authorization": true,
+    "failed_rescoring_clears_previous_results_and_reviews": true
+  },
+  "release_integrity": "passed",
+  "pip_check": "No broken requirements found",
+  "frozen_artifacts_unchanged": {
+    "reports/evaluation.json": true,
+    "models/preprocessor.skops": true,
+    "models/baseline.skops": true,
+    "models/logistic.skops": true,
+    "models/gradient.skops": true,
+    "models/neural.safetensors": true,
+    "scripts/train.py": true,
+    "careaccess/data.py": true,
+    "careaccess/evaluation.py": true
+  },
+  "parity": {
+    "method": "Private adult held-out source rows; batch/single/reload parity. No row inputs or predictions exported. UI parity tested separately in pytest.",
+    "models": {
+      "Constant baseline": {
+        "actual_source_appointments_checked": 24,
+        "maximum_absolute_error": 0.0,
+        "absolute_tolerance": 1e-06,
+        "passed": true
+      },
+      "Logistic Regression": {
+        "actual_source_appointments_checked": 24,
+        "maximum_absolute_error": 2.9802322387695312e-08,
+        "absolute_tolerance": 1e-06,
+        "passed": true
+      },
+      "Gradient Boosting": {
+        "actual_source_appointments_checked": 24,
+        "maximum_absolute_error": 0.0,
+        "absolute_tolerance": 1e-06,
+        "passed": true
+      },
+      "PyTorch Neural Network": {
+        "actual_source_appointments_checked": 24,
+        "maximum_absolute_error": 5.658665924723749e-09,
+        "absolute_tolerance": 1e-06,
+        "passed": true
+      }
+    }
+  },
+  "app_sha256": "02d4e4cf399b9270e43d0ea37f6c717a3b05072e13f640e59e80392e87073672",
+  "row_level_outputs_published": false
+}

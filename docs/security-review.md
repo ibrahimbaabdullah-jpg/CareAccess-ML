@@ -1,37 +1,21 @@
 # Security and privacy review
 
-Reviewed 2026-10-13 against the local no-generated-data release candidate. This is a bounded engineering review, not a penetration test, legal opinion, de-identification certification or guarantee of security.
+Updated 2026-10-13. This is a scoped engineering assessment, not a penetration-test certification or a guarantee of security.
 
-This document preserves the scope and findings of that local review. Later integration and hosted-browser evidence are recorded in [release acceptance status](release-status.md) and [machine-readable verification](../reports/verification.json); they do not extend this review into a security certification of the public service.
+The [full baseline history and remediation review](security-history-audit.md) records the exact scope, findings, sources and local repair checks. It supersedes the earlier candidate-only review; historical dependency reports remain available and are not silently rewritten.
 
-## File and secret-pattern scan
+## Verified repairs
 
-Scanned 48 candidate files (1,324,679 bytes before this review document), excluding `.venv`, `.git`, Python caches and pytest caches. Also inspected the contents of 490 archive entries inside the bundled `.skops` artifacts. The scan found **zero matches** for the tested private-key, GitHub token, AWS access-key, Google API-key, OpenAI/Groq-key and long literal Bearer-token patterns. This pattern scan can miss other secret formats and does not audit remote Git history or hosting secrets.
+- Bounded structural CSV parsing rejects resource-amplifying headers/rows before pandas allocation.
+- Batch upload/results/reviews clear when the user clears the schedule or withdraws upload authorization; scope is active batch session state.
+- Complete artifact mapping/checksum/path/type validation fails closed before loading.
+- Negative security tests run without a private patient fixture. Additional positive inference and UI checks use private actual-source adults and explicitly skip on public CI.
+- Local dependency/tool compatibility was retested after PyArrow 24.0.0 and packaging-tool changes. No fitted-model or frozen evaluation bytes changed.
 
-Only one CSV exists in the candidate release: `examples/appointments_template.csv`, with headers and **zero data rows**. The earlier generated appointment examples are absent. No original source CSV, private positive-test fixture, birth-date table, patient identifier mapping or exported record-level prediction array was found in the candidate files. Evaluation reports contain aggregate statistics and curves rather than source appointments. The original data and actual-record test fixture remain outside the repository. Their absence from this candidate is not proof of their absence from every previous remote commit; the publication owner should verify the exact remote tree and history before changing repository visibility.
+The independent final local acceptance suite passed 145 tests; public mode passed 95 and explicitly skipped 50 source-dependent tests. These do not establish browser download delivery, deployed fixes or third-party platform controls. Exact source hashes and final staged verification are in [release verification](../reports/release-verification.json).
 
-## Model loading
+## Important remaining limits
 
-Inference loads bundled model files only. The application does not accept uploaded model artifacts. SHA256 checks cover the committed model artifacts; `.skops` loading compares untrusted types with the committed manifest and rejects types outside the permitted scikit-learn/NumPy namespaces. PyTorch weights use `safetensors`, followed by loading into the known network architecture. No arbitrary uploaded pickle execution is part of the workflow.
+The approved workflow now explicitly requests contents-read permission, disables checkout credential persistence and pins official Actions to verified full commit SHAs. Main-branch protection is configured separately; its final remote state is not certified by this local review. Exact CPU-wheel advisory/provenance coverage, full deployed dependency inventory, provider logs/retention/backups, account controls and unadvertised Git objects are not completely verified. Pattern-based secret scans can miss unknown formats, and model memorization is not excluded.
 
-Checksums protect against unintended file changes, not a malicious maintainer changing both a model and its manifest. The reviewed manifest points to the expected local artifact basenames. These controls require repository and deployment configuration integrity.
-
-## User-input controls
-
-CSV handling limits uploads to 5 MB and 5,000 rows, checks the exact column allowlist, validates numeric ranges and date formats, rejects unknown specialties and duplicate appointment references, and does not execute uploaded code. Spreadsheet formula prefixes are escaped on CSV export. Invalid schedules are not silently scored. Inputs are session-held, not deliberately persisted in a database or appended to training data.
-
-**The schema and reference regex are not an anonymization system.** A syntactically valid appointment reference could still contain a person's name or a real medical-record identifier. A combination of appointment time, specialty and age may also be identifying in context. The application therefore requires user authorization/absence-of-identifiers attestation and warns against identifiable or confidential records; those notices do not establish a healthcare-compliant hosting arrangement. No real source rows should be copied into the public deployment as examples. Hosting-platform logs and retention require separate review.
-
-## Dependency audit and remaining gaps
-
-`reports/dependency-audit.json` reports advisories affecting the inspected local **pip 25.0.1** and **setuptools 78.1.0** tooling. This is not an all-clear dependency scan. The audit also **skipped PyTorch 2.14.1+cpu** because that exact build was not found by its PyPI lookup; PyTorch advisory coverage is consequently incomplete. A separate base-version lookup in `reports/torch-base-audit.json` reports no known advisories for torch 2.14.1. This narrows the gap but is not verification of the exact `+cpu` binary artifact or a security certification. Other audited dependency entries had no advisories in that particular report, which does not guarantee absence of vulnerabilities.
-
-The release verification record separately reports successful upgrading of pip/setuptools in GitHub Actions. That CI environment is distinct from the inspected local audit environment; its success does not retroactively remove local findings. Confirming the deployed tooling/dependency versions and reviewing the skipped PyTorch build against the vendor's advisories remain separate verification gaps. Do not report that all dependencies are vulnerability-free.
-
-## Verification evidence and scope
-
-The revised release verification record reports 52 local tests using 24 private actual-source adult appointments, and GitHub Actions reports 23 passing tests with 29 source-dependent tests explicitly skipped. The private rows and individual probabilities are not distributed; aggregate parity errors and tolerances are recorded in `reports/inference-verification.json`. Those CI skips must remain visible rather than being counted as passes. Earlier independent local source-preparation, chronology, artifact loading, input-validation and CSV-export checks passed; this review adds file/archive and privacy inspection of the revised candidate.
-
-The final-test discrimination remains approximately chance. A prominent application warning correctly states that effective operational outreach targeting is not established. No clinical approval or intervention-effectiveness claim is supported.
-
-**Scope still not certified by this review:** exact published-tree/history inspection, deployed dependency versions, hosting-platform privacy/retention controls, and a complete hosted security review. Hosted functional checks, downloads, restart behavior and numerical parity are tracked individually in the current [release acceptance status](release-status.md). A passing functional check does not establish clinical fitness, anonymity, or security of the hosting environment.
+The four-column schema cannot certify anonymity. No raw source rows, private fixtures, per-record prediction arrays or identifiable health information may be published. Local download-payload parity does not establish that the browser saved matching files. See [privacy/security](privacy-security.md) and [release acceptance](release-status.md) for the current distinctions and open gates.

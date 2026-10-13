@@ -1,0 +1,33 @@
+{
+  "adaptation": "Only path/configuration portability changes; predictor preparation, candidate settings, selection, metrics, bootstrap logic and numeric outputs are unchanged. Resource timing already revised to actual-source adult rows before these copies. Original frozen protocol remains unchanged.",
+  "files": {
+    "run_research.py": {
+      "original_sha256": "e42df344a79b2759eed2d369c5cba48e279d13959d962af73ec5825677d614ad",
+      "published_sha256": "a1b199e4147d848a9db194016f98c2f3400bb38a880e6899a1d73fa01e11e82d",
+      "modification": "Replace original fixed private directory layout with fail-closed environment configuration."
+    },
+    "finish_analysis.py": {
+      "original_sha256": "7787c0d100218e28a43f44559e1d924af30934b1cb150c6908301dcb22bf9782",
+      "published_sha256": "7787c0d100218e28a43f44559e1d924af30934b1cb150c6908301dcb22bf9782",
+      "modification": "Byte-identical to revised source script."
+    },
+    "tie_sensitivity.py": {
+      "original_sha256": "65f620bcbaaae8acc209ca4686722104ec41bacd1d8d92d90112bebaf07c3182",
+      "published_sha256": "65f620bcbaaae8acc209ca4686722104ec41bacd1d8d92d90112bebaf07c3182",
+      "modification": "Byte-identical to revised source script."
+    },
+    "measure_resources.py": {
+      "original_sha256": "af844c839adfe0e9e8073b559689d156d5e52f33b99cfbbe6a1c9788a928b6e0",
+      "published_sha256": "af844c839adfe0e9e8073b559689d156d5e52f33b99cfbbe6a1c9788a928b6e0",
+      "modification": "Byte-identical to revised source script."
+    },
+    "validate_research.py": {
+      "original_sha256": "e3b68128c79188f9fc60984c2a1497c488f93ba5dc4a3ea556bef113e36d70fb",
+      "published_sha256": "e3b68128c79188f9fc60984c2a1497c488f93ba5dc4a3ea556bef113e36d70fb",
+      "modification": "Byte-identical to revised source script."
+    }
+  },
+  "new_helper": {
+    "research_paths.py": "45195bcfac873cd38fb1a2abd03b0243e21bbe743c3d1df8f063dbd1af53ab1d"
+  }
+}

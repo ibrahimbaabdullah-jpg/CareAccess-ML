@@ -1,0 +1,384 @@
+{
+  "audit_date_utc": "2026-10-13",
+  "basis": "Original user specification with explicit Arabic no-synthetic-data override. Independent local read/test acceptance, not a hosted-browser or clinical certification.",
+  "snapshot": "Independent final integrated source; source hashes are in reports/acceptance/final_candidate_hashes.json. Documentation and evidence integration is verified separately.",
+  "completion": "Local software paths passed. Comparator/resource supplements are published with no predictive benefit established; exact final CI, deployment and hosted/download gates remain separate.",
+  "test_summary": {
+    "initial_suite": {
+      "passed": 52,
+      "failed": 0,
+      "seconds": 7.84
+    },
+    "candidate1_suite": {
+      "passed": 88,
+      "failed": 0,
+      "seconds": 8.17
+    },
+    "independent_contract_suite": {
+      "passed": 26,
+      "failed": 0,
+      "seconds": 13.56
+    },
+    "extended_checks": {
+      "passed": 35,
+      "failed": 0
+    },
+    "release_checks": "passed",
+    "final_private_suite": {
+      "passed": 145,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 18.9
+    },
+    "final_public_suite": {
+      "passed": 95,
+      "failed": 0,
+      "skipped": 50,
+      "seconds": 7.67
+    }
+  },
+  "requirements": [
+    {
+      "id": "D01",
+      "original_scope": "User Arabic override; §2, §6",
+      "requirement": "Use original Mendeley data; do not create synthetic patient data",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/acceptance/fixture_provenance.json",
+        "careaccess/data.py",
+        "scripts/acquire_data.py"
+      ],
+      "notes": "Original source checksum verified; 49,593 rows, 26 fields, 46,672 after exact deduplication. Positive test inputs are exactly 24 real adult held-out source rows. No source rows or predictions in this report."
+    },
+    {
+      "id": "D02",
+      "original_scope": "§2, §6",
+      "requirement": "Document source, license, field definitions, cleaning, outcome coding and missingness",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "docs/data-audit.md",
+        "reports/source-audit.json",
+        "careaccess/data.py"
+      ],
+      "notes": "Target mapping yes=missed, no=attended. Raw-age timing inconsistency corrected by deriving historical age locally; dates of birth excluded from model inputs and release."
+    },
+    {
+      "id": "D03",
+      "original_scope": "§3, §5",
+      "requirement": "Use only predictors available before appointments; document feature availability and exclusions",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "docs/data-audit.md",
+        "careaccess/validation.py"
+      ],
+      "notes": "Allowlisted age, specialty, derived scheduled hour/weekday/month. Outcome reasons and observed weather excluded. Availability of historical scheduling snapshots remains an explicit assumption."
+    },
+    {
+      "id": "D04",
+      "original_scope": "§2, §5",
+      "requirement": "Handle repeated people / patient linkage honestly",
+      "status": "DOCUMENTED_LIMITATION",
+      "evidence": [
+        "docs/data-audit.md",
+        "docs/retraining.md"
+      ],
+      "notes": "No reusable patient identifier exists; no invented history, linkage, unseen-patient generalization, or patient-cluster confidence-interval claim."
+    },
+    {
+      "id": "M01",
+      "original_scope": "§4, §6",
+      "requirement": "Train real constant baseline, scikit-learn logistic, HistGradientBoosting, and PyTorch two-hidden-layer model",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "scripts/train.py",
+        "careaccess/network.py",
+        "models/manifest.json",
+        "reports/release-verification.json"
+      ],
+      "notes": "Saved trained finite weights and sklearn fitted-model properties verified; every model produces reproducible numerical inference."
+    },
+    {
+      "id": "M02",
+      "original_scope": "§3, §5, §6",
+      "requirement": "Save and reuse training-fitted preprocessing with trained artifacts",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "careaccess/inference.py",
+        "scripts/train.py",
+        "reports/release-verification.json"
+      ],
+      "notes": "Single, batch and reload inference within 1e-6 on all four models; artifact checksums and safe format/type restrictions pass."
+    },
+    {
+      "id": "M03",
+      "original_scope": "§5",
+      "requirement": "Chronological training, validation, separate calibration and latest final test",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "careaccess/data.py",
+        "scripts/train.py",
+        "docs/retraining.md"
+      ],
+      "notes": "2016–2018 training; 2019 validation; 2020 calibration; 2021–2022 final test. No final-test labels fit preprocessors, calibrators, thresholds or default selection in reviewed code. This audit did not retrain."
+    },
+    {
+      "id": "M04",
+      "original_scope": "§4, §5",
+      "requirement": "Select default on development evidence, without assuming neural model wins",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/evaluation.json",
+        "scripts/train.py"
+      ],
+      "notes": "Default logistic chosen by validation AP with log-loss/name tie breaks. Resource/reliability evidence should be read alongside selection; no effectiveness claim."
+    },
+    {
+      "id": "M05",
+      "original_scope": "§6",
+      "requirement": "Constrain CPU training and measure training memory / prediction speed",
+      "status": "RESEARCH_SUPPLEMENT_WITH_SCOPE_LIMIT",
+      "evidence": [
+        "reports/research/resource_measurements.json",
+        "docs/predictive-value-investigation.md"
+      ],
+      "notes": "New isolated-process training and inference timings and peak process RSS cover all 21 research configurations using actual-source inputs. These are new research measurements, not reconstruction of original neural/baseline training-memory telemetry."
+    },
+    {
+      "id": "E01",
+      "original_scope": "§5, §6",
+      "requirement": "Held-out AP/ROC/precision/recall/F1/confusion metrics and probability reliability",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/evaluation.json",
+        "app.py",
+        "careaccess/evaluation.py"
+      ],
+      "notes": "Brier score and calibration plots present; thresholds fitted on calibration period. Negative gradient-boosting calibration slope explicitly disclosed."
+    },
+    {
+      "id": "E02",
+      "original_scope": "§3, §5, §6",
+      "requirement": "Supported subgroup results, uncertainty and limitations",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/evaluation.json",
+        "careaccess/evaluation.py"
+      ],
+      "notes": "Age/gender aggregate subgroups filtered for support; 200 date-cluster replicates. Date clustering cannot control repeated persons and the documentation says so."
+    },
+    {
+      "id": "E03",
+      "original_scope": "§5",
+      "requirement": "Capacity comparisons against random selection and simple historical-attendance rule",
+      "status": "COMPARISON_COMPLETED_NO_BENEFIT_ESTABLISHED",
+      "evidence": [
+        "reports/research/completed_analysis.json",
+        "reports/validation/frozen_operational_check.json",
+        "docs/predictive-value-investigation.md"
+      ],
+      "notes": "Capacity-matched random and simple historical policies evaluated. Primary development captures 1247 boosted / 1192 refit logistic / 1183 simple rule; 2020 captures 96 / 105 / 106. Candidate failed promotion gate. No useful superiority or outreach benefit claim."
+    },
+    {
+      "id": "E04",
+      "original_scope": "§1, §3, §5, §7",
+      "requirement": "Distinguish retrospective risk from outreach benefit; disclose weak performance",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "app.py",
+        "README.md",
+        "tests/test_app.py"
+      ],
+      "notes": "Near-chance warning appears on every page. No claim that calls prevent missed visits, no clinical suitability or effective ranking claim."
+    },
+    {
+      "id": "A01",
+      "original_scope": "§3, §6",
+      "requirement": "CSV template and missing/extra columns, dates, duplicates, categories and forbidden-input checks",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "careaccess/csv_input.py",
+        "careaccess/validation.py",
+        "reports/acceptance/extended_acceptance.json"
+      ],
+      "notes": "New bounded parser rejects malformed structure before preview; strict date regex now enforces documented zero-padded format; invalid entire file never selectively scores valid rows."
+    },
+    {
+      "id": "A02",
+      "original_scope": "§3, §6",
+      "requirement": "Real single and batch predictions matching offline inference",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/release-verification.json",
+        "reports/acceptance/extended_acceptance.json"
+      ],
+      "notes": "All four models tested with actual-source inputs; visible DataFrame values and export bytes match inference."
+    },
+    {
+      "id": "A03",
+      "original_scope": "§3, §6",
+      "requirement": "Capacity-limited ranked review list with references, details and probability",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "careaccess/planner.py",
+        "reports/release-verification.json"
+      ],
+      "notes": "Capacities 0, 5 and 24 verified; stable tie ordering, no invalid capacity/probabilities; no automatic messages or appointment actions."
+    },
+    {
+      "id": "A04",
+      "original_scope": "§3",
+      "requirement": "Include relevant input-quality warnings in scores and review list",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "careaccess/quality.py",
+        "tests/test_acceptance_contract.py"
+      ],
+      "notes": "New warnings cover genuine missing specialty/age and dates outside the training interval. Actual fixture contains 20 missing specialties; warnings survive export and planning."
+    },
+    {
+      "id": "A05",
+      "original_scope": "§3",
+      "requirement": "Record staff review status and export it reliably",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/release-verification.json",
+        "reports/acceptance/extended_acceptance.json"
+      ],
+      "notes": "Original snapshot lost edits on navigation/capacity changes. Candidate preserves review status by appointment reference across both, and zero capacity then restore; edited status exports correctly."
+    },
+    {
+      "id": "A06",
+      "original_scope": "§6",
+      "requirement": "Exported CSV results match the screen",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/acceptance/extended_acceptance.json",
+        "reports/release-verification.json"
+      ],
+      "notes": "Exact UTF-8-BOM bytes passed to Streamlit download buttons compared with displayed table/state for all four single/batch models and planner capacities. Browser delivery of these bytes is a distinct pending check."
+    },
+    {
+      "id": "A07",
+      "original_scope": "§3, §6",
+      "requirement": "Comparison and evaluation views show actual saved evidence",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "app.py",
+        "tests/test_app.py"
+      ],
+      "notes": "All seven page routes render locally with saved bundle; curves, capacity results, subgroup/uncertainty expanders and machine-readable evaluation export present."
+    },
+    {
+      "id": "A08",
+      "original_scope": "§6 verification; privacy/state regression",
+      "requirement": "Clear and withdrawn authorization invalidate uploaded schedule/results/reviews",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "careaccess/session.py",
+        "reports/release-verification.json"
+      ],
+      "notes": "Original Clear left uploaded schedule visible and authorization withdrawal retained scores. Candidate clears upload/results/reviews, resets confirmation, and rotates uploader key. New scoring clears prior reviews before validation."
+    },
+    {
+      "id": "V01",
+      "original_scope": "§6",
+      "requirement": "Automated tests including invalid files, missing columns, unknown categories and empty inputs",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/release-verification.json"
+      ],
+      "notes": "Original52/52 rerun passed. Final integrated private-fixture suite145/145 passed in18.90s. Public/no-fixture suite95passed/50explicit source-dependent skips in7.67s. Header-only input produces zero records without crashing or fabrication."
+    },
+    {
+      "id": "V02",
+      "original_scope": "§6",
+      "requirement": "Model-loading failures fail clearly without fabricated scores",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/acceptance/extended_acceptance.json",
+        "tests/test_acceptance_contract.py"
+      ],
+      "notes": "Injected loader failure gives explicit unavailable-model message, no unhandled exception or scores. Corrupted copied artifact rejected by checksum; restored after isolated test."
+    },
+    {
+      "id": "V03",
+      "original_scope": "§6",
+      "requirement": "Verify CSV formula protection and consistent numerical fields",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/acceptance/extended_acceptance.json",
+        "tests/test_planner.py"
+      ],
+      "notes": "All tested spreadsheet formula prefixes, including leading whitespace, escaped. Numeric probabilities unchanged. Formula-like appointment references are rejected at validation."
+    },
+    {
+      "id": "V04",
+      "original_scope": "§6",
+      "requirement": "Actual browser checks on the final deployed build",
+      "status": "PENDING_FINAL_HOSTED_CHECK",
+      "evidence": [
+        "docs/release-status.md"
+      ],
+      "notes": "This local audit did not repeat hosted browser work. Historical hosted logistic, pages and reboot evidence is documented; final-build parity, fixes and browser download delivery require hosted browser verification."
+    },
+    {
+      "id": "V05",
+      "original_scope": "§6",
+      "requirement": "Reproducible deployment instructions and model cards",
+      "status": "PASS_LOCAL_DOCUMENTATION",
+      "evidence": [
+        "docs/deployment.md",
+        "docs/retraining.md",
+        "docs/model-card-logistic.md"
+      ],
+      "notes": "Concrete install, Streamlit deployment/redeployment, verification and rollback guidance present; hosted behavior must still be checked for final deployed code."
+    },
+    {
+      "id": "V06",
+      "original_scope": "Privacy/release constraint",
+      "requirement": "No row-level source, generated patients or private predictions in release",
+      "status": "PASS_LOCAL_WITH_SCOPE_LIMIT",
+      "evidence": [
+        "reports/release-verification.json",
+        "reports/acceptance/fixture_provenance.json",
+        "reports/security/history-audit.json",
+        "docs/security-history-audit.md"
+      ],
+      "notes": "Local release scanner and fixture provenance passed; full remote Git history and hosting retention review have separate scoped evidence and are not certified by this local test. Reachable baseline history also scanned: 5 commits, 60 unique blobs, only header-only CSV, no tested credential-pattern findings. Unadvertised history/provider backups remain outside scope."
+    },
+    {
+      "id": "V07",
+      "original_scope": "§6",
+      "requirement": "Pinned reproducible dependencies and final artifact integrity",
+      "status": "PASS_LOCAL_WITH_SCOPE_LIMIT",
+      "evidence": [
+        "reports/release-verification.json",
+        "reports/acceptance/final_preservation.json"
+      ],
+      "notes": "Local dependency consistency and checksums pass. Deployed dependency versions and complete vulnerability coverage require separate security verification."
+    },
+    {
+      "id": "V08",
+      "original_scope": "§5 untouched final test",
+      "requirement": "Acceptance fixes preserve frozen ML artifacts and final-test results",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "reports/acceptance/final_preservation.json"
+      ],
+      "notes": "All model/preprocessor bytes, evaluation.json, and training/data/evaluation code unchanged between initial and final snapshots. Validation-only input-policy hash updated under approval; no final-test retuning."
+    },
+    {
+      "id": "A09",
+      "original_scope": "§3, §5; capacity policy clarity",
+      "requirement": "Clearly distinguish total batch outreach capacity from daily research top-K",
+      "status": "PASS_LOCAL",
+      "evidence": [
+        "README.md",
+        "app.py",
+        "tests/test_acceptance_contract.py"
+      ],
+      "notes": "UI labels total capacity across every uploaded date and deterministic reference ties. Research daily top-K uses seeded random ties and is explicitly not direct validation of the interactive selection policy. Actual-source multi-day constant-baseline test passes."
+    }
+  ],
+  "publication_reconciliation": "2026-10-13. Paths adapted to published source and aggregate evidence; supplemental research and deployment documents reconciled. Earlier candidate counts remain historical evidence. Final staged-tree verification is separate."
+}

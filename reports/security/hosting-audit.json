@@ -1,0 +1,62 @@
+{
+  "observed_at_utc": "2026-10-13T14:17:00Z",
+  "url": "https://careaccess-ml.streamlit.app/",
+  "scope": "Read-only live cloud-browser inspection of the deployed app, Streamlit owner settings, and visible deployment logs. Baseline observed before repair release; not provider infrastructure penetration testing.",
+  "checks": {
+    "reachable_https_app": {
+      "status": "pass",
+      "evidence": "App loaded through HTTPS without a browser TLS warning. Certificate properties, protocol/cipher configuration, and provider endpoints were not independently scanned."
+    },
+    "public_visibility": {
+      "status": "observed",
+      "evidence": "Owner Sharing setting explicitly states: This app is public and searchable."
+    },
+    "management_authorization": {
+      "status": "observed",
+      "evidence": "Sharing setting states that anyone with push access to the app repository can manage the app. Repository collaborator/branch controls require separate audit."
+    },
+    "secrets_store": {
+      "status": "pass_limited",
+      "evidence": "Secrets settings editor inspected read-only; its current value length is 0. No values copied or credentials changed. This does not prove absence of provider-managed credentials or all historic secrets."
+    },
+    "privacy_notice": {
+      "status": "pass",
+      "evidence": "Live app warns against names, contact details, medical record numbers, confidential patient information and unauthorized processing; requires batch authorization acknowledgement before upload control appears."
+    },
+    "upload_limit_display": {
+      "status": "pass_limited",
+      "evidence": "Live uploader labels maximum 5 MB and 5,000 rows; permitted extension CSV. The browser displays 5 MB per file. Enforcement and parser paths are covered by separate code tests, not a load/DoS test."
+    },
+    "session_lifecycle": {
+      "status": "pass_limited",
+      "evidence": "New app session initially had no uploaded batch or planner state. Earlier 2026-10-13 restart check verified old session state cleared. Server memory/retention guarantees require code/provider evidence."
+    },
+    "model_safety_disclosure": {
+      "status": "pass",
+      "evidence": "Home and batch routes show default ROC-AUC 0.505 near chance and state that effective outreach targeting is not established; warn against real-patient decision use."
+    },
+    "visible_logs": {
+      "status": "pass_limited",
+      "evidence": "Reviewed owner build/startup/update logs. No patient rows or apparent credential values observed. Logs expose normal package names, runtime versions and repository paths to the owner. Runtime histories and provider retention were not independently available."
+    },
+    "runtime_versions": {
+      "status": "observed",
+      "evidence": "Owner General setting selects Python 3.12. Deployment logs show Python 3.12.15 and Streamlit 1.65.0."
+    },
+    "dependency_reproducibility": {
+      "status": "finding",
+      "evidence": "Deployment logs show uv resolution failing due to package-index selection, followed by successful pip installation at reboot. Provider then replaces pyarrow 25.0.1 with 24.0.0 for a known segfault. Both requirements.txt and pyproject.toml are detected. Exact deployed transitive versions must not be inferred solely from repository lock files."
+    },
+    "download_export": {
+      "status": "pass",
+      "evidence": "At14:13\u201314:17UTC, documented waitForEvent(download) followed by path() successfully completed scored-schedule downloads for all3 candidate models and5-row planner. Actual batch CSVs each matched saved-model inference within8.33e-17. Planner capacity5, rank order, and probabilities matched expected. No browser security control changed or bypassed. Temporary permission-request dismissal resolved after original user authorization was supplied; prior Chrome Failed-Blocked cause remains unknown."
+    }
+  },
+  "boundaries": [
+    "No host settings, sharing permissions, secrets, credentials, grants or app publication changed.",
+    "Provider-managed VM/container isolation, network policies, host patching, backup encryption, provider IAM, log retention, incident response and compliance controls are inaccessible from this app owner UI.",
+    "Cannot certify that hosting is completely secure or suitable for identifiable/confidential patient data from these observations.",
+    "Only the previously approved minimal 24-adult historical fixture was uploaded for private session QA; no synthetic patients or patient-level public deliverables were created.",
+    "Repair release acceptance remains separate and must be tested after deployment."
+  ]
+}

@@ -86,7 +86,7 @@
   "configuration_sha256": {
     "scripts/train.py": "393537929c6f06a21e48c91f7f9dc79d8c1bad26372c3909c965de643abbbfee",
     "careaccess/data.py": "e755553d9f2799d3d00097739a8fb58822c155bab61428226c1abcc0abe56bdc",
-    "careaccess/validation.py": "8267898deb63a1d9ec54d33609c9ef0011ba35289c1fa41badd9ca04709b7570",
+    "careaccess/validation.py": "316e41ecca560214d64a95b24a2489afb71ee1143f0a62233c828d5ffe4cd8fe",
     "scripts/feature_ablation.py": "76969473d6eb20066d2d93eb65383979ed252e571ca839b37481885004f96633",
     "careaccess/evaluation.py": "7fd0c6965c9af2b4d1c09431d11b50edfb82bc309e1f63d827385c274408b8d8"
   },
@@ -97,5 +97,5 @@
     "scripts/feature_ablation.py": "76969473d6eb20066d2d93eb65383979ed252e571ca839b37481885004f96633",
     "careaccess/evaluation.py": "7fd0c6965c9af2b4d1c09431d11b50edfb82bc309e1f63d827385c274408b8d8"
   },
-  "revision_note": "No retraining: public input policy and documentation revised to remove generated examples at user request; original trained weights and metrics unchanged."
+  "revision_note": "No retraining: public input policy and documentation removed generated examples at user request; release hardening now enforces the exact timestamp format. Only the current validation configuration hash changed. Original training hashes, trained weights, calibrators, model selection and evaluation remain unchanged."
 }
