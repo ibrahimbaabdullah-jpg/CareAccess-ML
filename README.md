@@ -1,4 +1,8 @@
 # CareAccess ML
+
+- **[Main application](https://careaccess-ml.streamlit.app/)**: Streamlit app with the original Mendeley models and outreach planner.
+- **[Browser-only research demo](https://ibrahimbaabdullah-jpg.github.io/CareAccess-ML/)**: Manual exploration using a frozen model trained on the separate Vitória research cohort.
+
 ## Missed-Appointment Prediction and Outreach Planner
 
 A functional Python/Streamlit application using **real saved scikit-learn and PyTorch models**, trained on the original Mendeley appointment dataset. The website presents those models and aggregate results from publicly released appointment research datasets, including a separate Vitória benchmark. Underlying patient records and generated patient examples are not distributed. Input warnings concern data submitted to the public host; they do not classify all displayed research aggregates or model outputs as sensitive. Only permitted nonsensitive, non-identifying inputs may be submitted.
