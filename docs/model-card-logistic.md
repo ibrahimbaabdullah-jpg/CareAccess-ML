@@ -16,3 +16,6 @@ Bundled sklearn objects loaded with skops type checks; neural weights use safete
 
 ## Limitations
 No reliable patient identifier, possible repeated-person overlap, temporal/pandemic shift, modest/sparse calibration sample, single rehabilitation service, no causal outreach evaluation. Missing age imputed from training only. Unknown specialties rejected; blanks explicitly missing.
+
+## Separate research evidence
+The [Vitória benchmark](vitoria-benchmark.md) uses a different source, feature contract and independently trained research artifacts. Its `lr_c1` comparator is not this deployed logistic model. Its results do not change this model's original near-chance evaluation or establish external validation of these weights. This model's artifacts, preprocessing and inference remain unchanged.

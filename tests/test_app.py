@@ -33,7 +33,7 @@ def test_all_pages_render_with_real_models():
     at = app()
     assert not at.exception
     assert not at.error
-    for page in ["Live Prediction", "Batch Prediction", "Outreach Planner", "Model Comparison", "Model Evaluation", "About / Documentation"]:
+    for page in ["Live Prediction", "Batch Prediction", "Outreach Planner", "Model Comparison", "Model Evaluation", "Research / Vitória", "About / Documentation"]:
         select_page(at, page)
         assert not at.error
 
@@ -104,7 +104,7 @@ def test_batch_has_no_generated_schedule_and_gates_upload():
 
 def test_weak_performance_is_disclosed_on_every_page():
     at = app()
-    for page in ["Home / Dashboard", "Live Prediction", "Batch Prediction", "Outreach Planner", "Model Comparison", "Model Evaluation", "About / Documentation"]:
+    for page in ["Home / Dashboard", "Live Prediction", "Batch Prediction", "Outreach Planner", "Model Comparison", "Model Evaluation", "Research / Vitória", "About / Documentation"]:
         select_page(at, page)
         assert any("close to chance" in item.value for item in at.warning)
 

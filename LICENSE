@@ -18,5 +18,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-This code license does not replace the dataset's CC BY4.0 attribution terms
-or third-party dependency licenses. See docs/data-audit.md.
+This code license does not replace the original Mendeley dataset's CC BY 4.0
+attribution terms, the separate Vitória source-data CC BY-NC-SA 4.0 terms,
+or third-party dependency licenses. See docs/data-audit.md and
+docs/vitoria-benchmark.md. No Vitória source records or research weights
+are distributed with this software.
