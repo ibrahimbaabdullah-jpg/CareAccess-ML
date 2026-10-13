@@ -1,0 +1,22 @@
+name: Verified model and application tests
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade "pip>=26.2.1" "setuptools>=83.0.0"
+      - run: pip install -r requirements-dev.txt
+      - run: pip check
+      - run: python -m pytest -q
+        env:
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+      - run: python scripts/verify_release.py
