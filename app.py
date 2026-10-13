@@ -13,9 +13,14 @@ from careaccess.csv_input import read_appointments_csv
 from careaccess.session import (clear_batch_session, reset_batch_results, revoke_batch_authorization,
                                 prepare_batch_authorization, prepare_planner_capacity, remember_planner_capacity)
 from careaccess.quality import input_quality_warnings
+from careaccess.research import render_research
 
 ROOT = Path(__file__).resolve().parent
-PAGES = ["Home / Dashboard", "Live Prediction", "Batch Prediction", "Outreach Planner", "Model Comparison", "Model Evaluation", "About / Documentation"]
+PAGES = ["Home / Dashboard", "Live Prediction", "Batch Prediction", "Outreach Planner", "Model Comparison", "Model Evaluation", "Research / Vitória", "About / Documentation"]
+HOST_INPUT_NOTICE = ("This public Streamlit demo must not receive or process sensitive personal information, including patient-level health information. "
+                     "Do not upload patient records or enter patient health details. Public availability, removing names, or checking a consent box "
+                     "does not establish that data is suitable for this host. Source-data evaluation is performed offline. "
+                     "Real-patient use requires a separately governed deployment and review.")
 LABELS = {"logistic": "Logistic Regression", "logistic_regression": "Logistic Regression", "gradient_boosting": "Gradient Boosting", "hist_gradient_boosting": "Gradient Boosting", "pytorch": "PyTorch Neural Network", "neural_network": "PyTorch Neural Network", "baseline": "Constant baseline"}
 
 st.set_page_config(page_title="CareAccess ML", page_icon="📅", layout="wide")
@@ -74,7 +79,7 @@ def metric_rows(report):
 st.sidebar.title("CareAccess ML")
 st.sidebar.caption("Appointment outreach planning")
 page = st.sidebar.radio("Explore", PAGES)
-st.sidebar.info("Use only non-identifying data you are authorized to process. Do not enter names, contact details, medical record numbers or confidential patient data.")
+st.sidebar.info("Public demo: permitted nonsensitive inputs only. Do not upload patient records or enter patient health details. Public availability or removing names is not hosting clearance.")
 st.sidebar.caption("Supportive reminders only. Never cancel appointments, restrict care, or penalize patients using a score.")
 st.title("CareAccess ML")
 st.caption("Missed-Appointment Prediction & Outreach Planner")
@@ -91,7 +96,7 @@ default_test_result = next((row for row in report.get("metrics", []) if row.get(
 if page in {"Batch Prediction", "Outreach Planner"}:
     prepare_batch_authorization(st.session_state)
 if default_test_result.get("roc_auc", 1.0) < 0.60:
-    st.warning(f"Important result: the default model's final-test ROC-AUC is {default_test_result['roc_auc']:.3f}, close to chance (0.500). This release demonstrates working trained-model inference, but does not establish effective outreach targeting. Do not use its rankings for real patient decisions.")
+    st.warning(f"Important result: the original deployed default model's final-test ROC-AUC is {default_test_result['roc_auc']:.3f}, close to chance (0.500). This release demonstrates working trained-model inference, but does not establish effective outreach targeting. Do not use its rankings for real patient decisions.")
 
 if page == "Home / Dashboard":
     st.header("Plan supportive outreach, one appointment at a time")
@@ -108,7 +113,7 @@ if page == "Home / Dashboard":
     counts_cols[1].metric("Records after documented cleaning", f"{counts['clean_rows']:,}" if "clean_rows" in counts else "Not available")
     counts_cols[2].metric("Default trained model", label(bundle["default_model"]))
     st.caption("These are appointment records, not a count of unique patients.")
-    st.subheader("Measured model performance")
+    st.subheader("Original deployed-model performance")
     rows = metric_rows(report)
     if not rows.empty:
         st.dataframe(rows, hide_index=True, width="stretch")
@@ -117,10 +122,14 @@ if page == "Home / Dashboard":
     st.write(f"Default model: **{label(bundle['default_model'])}**")
     st.caption("See Model Comparison and Model Evaluation for test design, thresholds, probability reliability and limitations.")
     st.download_button("Download empty CSV template", export_csv(empty_template()), "careaccess_empty_template.csv", "text/csv")
+    st.subheader("Separate research: Vitória historical benchmark")
+    st.write("A frozen, eight-date benchmark found a ranking signal against a simple rule, but did not establish extra value over a fixed logistic comparator. It does not replace or validate the original models above.")
+    st.caption("Open Research / Vitória in the sidebar for aggregate findings, uncertainty, probability overprediction and allocation limits.")
 
 elif page == "Live Prediction":
     st.header("Enter an appointment")
-    st.write("Enter only non-identifying information you are authorized to process. The app runs the selected saved model on your inputs; no appointment is prefilled.")
+    st.warning(HOST_INPUT_NOTICE)
+    st.write("Use only permitted nonsensitive, non-identifying inputs. The app runs the selected saved model on your inputs; no appointment is prefilled.")
     model = model_picker(bundle, "live_model")
     with st.form("single_appointment"):
         left, right = st.columns(2)
@@ -129,7 +138,7 @@ elif page == "Live Prediction":
         age = left.number_input("Age at appointment", min_value=0.0, max_value=110.0, value=None, step=1.0)
         specialties = contract.get("specialty_values", [])
         specialty = right.selectbox("Specialty (optional)", specialties, index=None, placeholder="Choose specialty, or leave blank") if specialties else right.text_input("Specialty (optional)", value="")
-        confirmed = st.checkbox("I am authorized to process these inputs and have excluded identifying or confidential patient information.", key="live_confirm")
+        confirmed = st.checkbox("I confirm these inputs are permitted on this host, contain no sensitive or patient-level health information, and do not identify anyone.", key="live_confirm")
         submitted = st.form_submit_button("Estimate non-attendance probability", type="primary")
     if submitted:
         if not confirmed:
@@ -154,10 +163,11 @@ elif page == "Live Prediction":
 
 elif page == "Batch Prediction":
     st.header("Validate and score a schedule")
-    st.write("Upload only non-identifying appointment data that you are authorized to process on this hosting service. Do not include patient names, contact details, medical record numbers or confidential information. Files are processed in session memory and are not deliberately saved to disk or used for training.")
+    st.warning(HOST_INPUT_NOTICE)
+    st.write("Only permitted nonsensitive, non-identifying inputs may be processed here. Files are processed in session memory and are not deliberately saved to disk or used for training.")
     st.download_button("Download empty CSV template", export_csv(empty_template()), "careaccess_empty_template.csv", "text/csv")
     st.caption("The template contains column names only. Dates must use YYYY-MM-DDTHH:MM. Appointment references must not identify patients; use local row references. Age and specialty may be left blank.")
-    confirmed = st.checkbox("I am authorized to process this file here and have excluded identifying or confidential patient information.", key="batch_confirm", on_change=revoke_batch_authorization, args=(st.session_state,))
+    confirmed = st.checkbox("I confirm this file is permitted on this host, contains no sensitive or patient-level health information, and does not identify anyone.", key="batch_confirm", on_change=revoke_batch_authorization, args=(st.session_state,))
     frame = None
     uploaded = None
     if confirmed:
@@ -284,6 +294,9 @@ elif page == "Model Evaluation":
     st.write("Retrospective prediction does not show that outreach prevents missed appointments. Performance may change across clinics, specialties, time periods or patient groups. Local validation and an appropriately governed prospective evaluation are needed before operational use.")
     st.write("Group comparisons are descriptive and may be unstable in small samples. Unavailable patient linkage can limit control of repeated appointments. Review the source documentation and model cards before drawing conclusions.")
 
+elif page == "Research / Vitória":
+    render_research()
+
 else:
     st.header("About CareAccess ML")
     st.write("An appointment prediction and outreach-planning workbench using Python, scikit-learn, PyTorch and Streamlit. Saved trained models run directly in the application; no generative-AI API supplies the probabilities.")
@@ -297,7 +310,9 @@ else:
     st.subheader("Input contract")
     st.json(contract, expanded=False)
     st.subheader("Privacy and safe use")
-    st.write("Only enter non-identifying information that you are authorized to process on this hosting service. Do not submit names, contact details, medical record numbers or confidential patient data. Input is held in the active session for prediction and download; it is not added to model training or deliberately written to a database. Hosting providers may retain ordinary technical access logs. Removing names alone does not establish anonymization or institutional approval.")
+    st.warning(HOST_INPUT_NOTICE)
+    st.link_button("Streamlit hosting restrictions · Community Cloud Addendum 4", "https://streamlit.io/terms-of-use")
+    st.write("Input is held in the active session for prediction and download; it is not added to model training or deliberately written to a database. Hosting providers may retain ordinary technical access logs. A separate local or institutional deployment still requires privacy, security, legal and clinical review; local execution alone does not establish compliance. The confirmation checkbox is an acknowledgement, not permission to bypass these restrictions.")
     st.write("This is not a clinically approved tool. It must not be used to deny care, cancel appointments, punish patients, or make autonomous clinical decisions. A score does not establish that a person will miss a visit.")
     st.write("Training data source, license, cleaning decisions, model cards, environment versions and reproducibility instructions are documented in the repository. Third-party data remains subject to its source license.")
 
