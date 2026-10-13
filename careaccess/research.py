@@ -43,6 +43,8 @@ def render_research():
     st.header("Vitória research benchmark")
     st.caption("SOURCE-SPECIFIC · HISTORICAL · AGGREGATE EVIDENCE")
     st.info("This separate benchmark does not power Live Prediction, Batch Prediction or Outreach Planner. Those pages still use the original Mendeley-trained models and their original input contract. The two cohorts and their results are not pooled or directly comparable.")
+    st.link_button("Open separate browser-only research demo", "https://ibrahimbaabdullah-jpg.github.io/CareAccess-ML/")
+    st.caption("A separate manual interface for the frozen Vitória XGBoost, evaluated in your browser. Its distinct cohort does not replace or validate the original Mendeley models. This link does not load its model assets into Streamlit.")
     try:
         summary = load_research_summary()
     except (OSError, ValueError):
