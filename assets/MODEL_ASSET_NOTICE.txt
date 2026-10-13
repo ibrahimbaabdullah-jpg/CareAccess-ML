@@ -1,0 +1,37 @@
+CareAccess Vitória frozen research model and fitted preprocessing assets
+
+Applies to frozen_xgb_d3.inference.json and its model/preprocessing values.
+The independently authored JavaScript/Python implementation is separate code;
+any repository-wide MIT notice must explicitly exclude these model assets.
+
+Source: Medical Appointment No Shows, version 5, shared by Joni Hoppen
+(joniarroba), with credit to Aquarela Analytics.
+Source URL: https://www.kaggle.com/datasets/joniarroba/noshowappointments
+Source license: Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+International (CC BY-NC-SA 4.0).
+License URL: https://creativecommons.org/licenses/by-nc-sa/4.0/
+Legal code: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+Changes: CareAccess filtered a retrospective adult cohort, derived calendar
+and lead-time features, fitted the frozen xgb_d3 research model and its
+preprocessing on development records, and exported only inference-relevant
+parameters to data-only JSON. No source records, individual prediction
+examples or patient/appointment keys are included in this asset.
+
+The model and fitted preprocessing assets are offered under CC BY-NC-SA 4.0,
+to the extent of applicable rights. Preserve attribution, identify changes,
+and comply with the noncommercial and ShareAlike requirements. No source
+contributor endorses this project. This notice does not assert that every
+numerical weight is independently copyrightable or override other rights.
+
+This demonstration is intended for noncommercial historical research and
+education. This statement describes purpose and validation limits, not an
+additional license restriction. Raw scores are not validated individual
+probabilities or clinical recommendations. Gate C passed and Gate D failed in
+the frozen short historical benchmark. No clinical, operational, privacy,
+fairness or regulatory certification is represented.
+
+Source release authority, participant consent and anonymization documentation
+were not verified. The source license does not replace privacy rights. Static
+model inspection cannot prove absence of memorization or membership leakage.
+Browser delivery makes model assets downloadable by every visitor.

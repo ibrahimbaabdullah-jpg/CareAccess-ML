@@ -1,9 +1,0 @@
-{
-  "purpose": "Replace resource timing probes to satisfy the user's no-synthetic-input requirement, including performance probes.",
-  "frozen_prediction_experiments_changed": false,
-  "original_timing_probe_scope": "Previously invented feature values were used only for inference timing, never training, model selection, validation, calibration, or predictive-performance metrics. Those timing values are superseded.",
-  "replacement_inputs": "The first1000 actual-source adult (age>=18 and<=110) appointments in the chronological pre2020 development frame; single-record timing uses its first row. Rows remain private in memory and are never exported.",
-  "training_scope": "Resource-only repeats of the same21 frozen configurations. No predictive metrics or hyperparameter choices are changed. Recent-window training boundary is fixed to2020-01-01 independently of timing inputs.",
-  "outputs": "Only aggregate fit time, process peak RSS and inference latency. Timing-row reuse/overlap with training has no claim of predictive validation.",
-  "supplement_protocol_amendment": "The earlier supplement_protocol resource clause referring to synthetic timing inputs is superseded by this explicit amendment. All original research model-selection/validation clauses stay unchanged."
-}

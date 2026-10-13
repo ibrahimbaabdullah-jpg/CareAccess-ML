@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'">
+  <meta name="description" content="A browser-only research demonstration of the frozen Vitória XGBoost model, with its historical evidence and limitations. Not for clinical use.">
+  <title>Vitória research demo · CareAccess ML</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script type="module" src="assets/app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#research" aria-label="CareAccess ML research tool"><span class="brand-icon" aria-hidden="true">C<span>+</span></span><span>CareAccess <strong>ML</strong><small>RESEARCH SERIES / 01</small></span></a>
+      <nav aria-label="Main navigation">
+        <a href="#research" data-view="research" aria-current="page">Research tool</a>
+        <a href="#evidence" data-view="evidence">Evidence</a>
+        <a href="#privacy" data-view="privacy">Privacy &amp; methods</a>
+      </nav>
+      <span class="research-tag"><span aria-hidden="true"></span> Research only</span>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section id="research" data-panel="research" aria-labelledby="research-title">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">VITÓRIA, BRAZIL · HISTORICAL 2016 COHORT</p>
+          <h1 id="research-title">Explore the model.<br><em>Understand its limits.</em></h1>
+          <p class="hero-copy">An open, browser-only demonstration of one frozen XGBoost model. Inspect its output alongside the evidence that supports it, and the evidence that does not.</p>
+        </div>
+        <div class="hero-note">
+          <span class="note-mark" aria-hidden="true">↗</span>
+          <p>Separate source.<br>Separate research model.</p>
+          <span>This demonstration does not replace or validate the original CareAccess models.</span>
+          <a href="https://careaccess-ml.streamlit.app/" target="_blank" rel="noopener noreferrer">Visit the original project <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+        </div>
+      </div>
+      <div class="safety-notice" role="note"><strong>Research only. Not clinically ready.</strong> Do not use this tool to assess actual patients, automate outreach, prioritize care, cancel appointments, or make access decisions. It has not established clinical benefit, equitable allocation, or reliable individual probabilities.</div>
+      <div class="tool-grid">
+        <section class="input-card" aria-labelledby="input-title">
+          <div class="card-heading"><div><p class="eyebrow">01 / ENTER RESEARCH INPUTS</p><h2 id="input-title">A blank starting point</h2></div><span class="small-label">No example records</span></div>
+          <p class="muted intro">Four source fields become seven model features. Do not enter names, identifiers, contact details, or free-text clinical information.</p>
+          <form id="research-form" autocomplete="off" novalidate>
+            <div class="field"><label for="age">Recorded age <span>Whole years, 18–110</span></label><input id="age" type="text" inputmode="numeric" maxlength="3" pattern="[0-9]{2,3}" autocomplete="off" required aria-describedby="age-help"><p id="age-help" class="field-help">The frozen research cohort included adults only.</p></div>
+            <div class="date-grid">
+              <div class="field"><label for="booking-date">Booking date</label><input id="booking-date" type="date" min="0001-01-01" max="9999-12-31" autocomplete="off" required aria-describedby="date-help"></div>
+              <div class="field"><label for="appointment-date">Appointment date</label><input id="appointment-date" type="date" min="0001-01-01" max="9999-12-31" autocomplete="off" required aria-describedby="date-help"></div>
+            </div>
+            <p id="date-help" class="field-help date-help">Use the source’s calendar dates. Booking must be at least three calendar days before the appointment. No time-zone conversion is applied.</p>
+            <div class="field"><label for="neighbourhood">Hospital / clinic neighborhood</label><input id="neighbourhood" type="text" list="neighbourhood-options" maxlength="80" autocomplete="off" spellcheck="false" required aria-describedby="neighbourhood-help"><datalist id="neighbourhood-options"></datalist><p id="neighbourhood-help" class="field-help">The source field “Neighbourhood” describes the appointment location, not the person’s home. Category matching is case- and accent-sensitive.</p><label class="check-label" for="missing-location"><input id="missing-location" type="checkbox"> This source field was not recorded</label></div>
+            <div class="form-error" id="form-error" role="alert" hidden></div>
+            <div class="form-actions"><button class="primary-button" id="calculate" type="submit" disabled>Load model to begin</button><button class="secondary-button" id="clear" type="button">Clear all</button></div>
+          </form>
+          <div class="local-note"><span aria-hidden="true">◉</span><p>Inputs are processed in this browser’s memory. This app does not send them to a server or save them. <a href="#privacy">Read the privacy limits</a>.</p></div>
+        </section>
+        <section class="result-card" aria-labelledby="result-title">
+          <div class="card-heading"><div><p class="eyebrow">02 / INSPECT THE OUTPUT</p><h2 id="result-title">Research output</h2></div><span id="model-status" class="status-pill" role="status">Loading model…</span></div>
+          <div id="empty-result" class="empty-result"><div class="empty-art" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><h3>Your inputs, your browser.</h3><p>No record is preloaded. Complete the fields to inspect the frozen model’s raw output.</p><p class="empty-small">No risk label. No recommendation.<br>No automated action.</p></div>
+          <div id="result" hidden>
+            <p class="output-label">Raw model output <span>(rounded for display)</span></p>
+            <p id="score-display" class="score-display"></p>
+            <p class="score-caution">This is an uncalibrated model score. It is not a validated estimate of an individual’s chance of missing an appointment.</p>
+            <dl class="result-facts"><div><dt>Booking lead time</dt><dd id="lead-value"></dd></div><div><dt>Model</dt><dd>Frozen XGBoost · xgb_d3</dd></div><div><dt>Full-precision score</dt><dd id="exact-score" class="monospace"></dd></div></dl>
+            <div class="result-warning"><strong>Read before interpreting</strong><ul id="warnings"></ul></div>
+            <details class="feature-details"><summary>Inspect the derived features</summary><dl id="features" class="feature-list"></dl><p>Model math uses float32 features and margins. The full-precision score above is the browser’s numeric output; no score threshold is applied.</p></details>
+          </div>
+          <div class="result-foot"><span class="micro-dot" aria-hidden="true"></span><p>Historical scores overpredicted recorded no-shows. <a href="#evidence">See the full context</a>.</p></div>
+        </section>
+      </div>
+      <div class="quiet-strip"><p><strong>Designed to forget.</strong> Editing a field removes the previous result. Clear all, leaving this view, and page navigation clear input and result state.</p><span>No accounts · No tracking scripts · No uploads</span></div>
+    </section>
+
+    <section id="evidence" data-panel="evidence" aria-labelledby="evidence-title">
+      <div class="page-intro"><p class="eyebrow">THE EVIDENCE / A BOUNDED HISTORICAL RESULT</p><h1 id="evidence-title">One pilot.<br><em>Two different conclusions.</em></h1><p class="hero-copy">The model passed its screen against a locked simple rule. It did not establish added value over the fixed logistic comparator. Both findings belong in the story.</p></div>
+      <div class="cohort-strip" aria-label="Final historical cohort"><div><strong>15,016</strong><span>appointments</span></div><div><strong>8</strong><span>observed dates</span></div><div><strong>2</strong><span>ISO weeks</span></div><div><strong>2016</strong><span>30 May – 8 June</span></div></div>
+      <div class="evidence-layout">
+        <section class="paper-card"><p class="eyebrow">FROZEN DAILY 10% RESEARCH POLICY</p><h2>Recorded no-shows identified</h2><p class="muted">Each policy selected the same 1,498 slots, using floor(10% of eligible appointments) separately on each date. Counts are retrospective selections, not prevented no-shows.</p>
+          <div class="comparison-list"><div class="comparison-row primary-row"><div><strong>Frozen primary XGBoost</strong><span>Selected on development folds</span></div><div><strong>544</strong><span>36.32% of selected slots</span></div></div><div class="comparison-row"><div><strong>Locked location + lead-time rule</strong><span>Prespecified practical comparator</span></div><div><strong>460</strong><span>30.71% of selected slots</span></div></div><div class="comparison-row"><div><strong>Fixed new-source logistic regression</strong><span>Prespecified learned comparator</span></div><div><strong>567</strong><span>37.85% of selected slots</span></div></div></div>
+          <p class="fine-print">There were 3,906 recorded no-shows in this cohort. No calls were made and no outreach effectiveness was measured. The new-source logistic comparator is a different artifact from the original deployed logistic model.</p>
+        </section>
+        <div class="gate-stack"><section class="gate-card"><p class="gate-label">GATE C · PASS</p><h3>Historical ranking screen</h3><p>Against random and the locked simple rule, the prespecified screen passed on this short historical cohort.</p><p class="gate-number">+84 <span>recorded no-shows vs. the rule</span></p></section><section class="gate-card gate-caution"><p class="gate-label">GATE D · FAIL</p><h3>Complexity not justified</h3><p>Added value over fixed logistic regression was not established. This does not prove that logistic regression is superior.</p><p class="gate-number">−23 <span>recorded no-shows vs. logistic</span></p></section></div>
+      </div>
+      <section class="paper-card evidence-details"><h2>What the result can and cannot support</h2><div class="detail-grid"><div><h3>Frozen before final evaluation</h3><p>Three expanding, purged temporal development folds selected xgb_d3. Development included 30,888 appointments and ended on 25 May 2016. There was no final-test model reselection or recalibration.</p><h3>Uncertainty is substantial</h3><p>Against the rule, the precision difference was +5.61 percentage points (paired-date 95% interval +2.68 to +8.27). Against logistic it was −1.54 points (−3.41 to +0.43). Eight dates and two weeks cannot establish long-term stability; cluster-based intervals can be unstable.</p></div><div><h3>Raw probabilities overpredicted</h3><p>The primary model’s summed output was 4,453.7 expected no-shows versus 3,906 recorded. The observed/expected ratio was 0.877. ROC-AUC was 0.5996. No final-test calibration correction was applied.</p><h3>Unresolved transfer and allocation limits</h3><p>Appointment month was unseen for 71.21% of final appointments. Selection concentrated heavily in younger adults, with little allocation to older adults. These observations do not establish fairness, harm, or transportability to current clinics.</p></div></div><p class="fine-print">This demonstration shows individual model computation only. It does not reproduce a roster allocation or offer a worklist. The historical 10% policy used descending full-precision scores, then SHA-256 of a fixed prefix and supplied appointment key, then the key itself to resolve ties. Patient or appointment keys are neither requested nor bundled here.</p></section>
+    </section>
+
+    <section id="privacy" data-panel="privacy" aria-labelledby="privacy-title">
+      <div class="page-intro"><p class="eyebrow">PRIVACY, PROVENANCE &amp; METHODS</p><h1 id="privacy-title">Know what runs.<br><em>Know what remains unknown.</em></h1><p class="hero-copy">A small, self-contained research tool with explicit boundaries. Local computation reduces transmission exposure. It does not make health-data processing automatically lawful or anonymous.</p></div>
+      <div class="privacy-grid"><section class="paper-card"><p class="eyebrow">IN THIS BROWSER</p><h2>A deliberately small footprint</h2><ul class="check-list"><li>The page downloads static code and one frozen model asset from the same host.</li><li>Model inputs and results stay in browser memory. They are not placed in request URLs, sent to a server, or written to browser storage by this app.</li><li>No analytics, third-party fonts, external scripts, embedded services, service workers, cookies, accounts, or background uploads are used by this app.</li><li>Editing removes stale results. Clear all and leaving the research view remove form values and result content. Reload and restored-page navigation reset the form.</li><li>No source rows, patient keys, example profiles, outcome labels, or private row-level predictions are bundled. No batch upload or export is offered.</li></ul><div class="privacy-caution"><strong>Important limits</strong><p>Clear all is not secure deletion from your device. Browser extensions, screen recording, operating-system memory, screenshots, accessibility services, or a shared device may expose what you enter. The app cannot control those systems.</p><p>If this static page is hosted on GitHub Pages, GitHub logs visitors’ IP addresses for security. Visiting links also contacts their destination. This is not a claim of total anonymity or zero host data collection.</p></div></section>
+      <section class="paper-card"><p class="eyebrow">FROZEN RESEARCH CONTRACT</p><h2>Four inputs. Seven features.</h2><p>Required inputs are recorded integer age 18–110, valid source-calendar booking and appointment dates with at least three days’ lead, and the hospital/clinic neighborhood category (or an explicit missing value).</p><p>The adapter derives lead days, log(1 + lead days), appointment and booking weekdays, and appointment month. It retains recorded age and the exact location category. Missing and unknown category encodings are distinct.</p><p>The model contains 300 trees and uses 108 transformed float32 features. No outcome history, sex/gender, SMS timing, health-condition fields, or identifiers are inputs to this primary model.</p><p>Printed source dates are a conservative research timing proxy. Historical snapshots, true time-zone semantics, outcome-finalization timing, cancellation/rescheduling rules, and identity linkage were not verified.</p><details><summary>Numerical equivalence and limits</summary><p>Offline checks used all 15,016 actual, target-free frozen source input rows. The browser adapter, feature transform and raw margins matched the frozen native implementation. In Node.js verification, four scores differed by at most 2.98 × 10⁻⁸ (two float32 units in the last place); historical daily 5%, 10% and 20% selections were unchanged.</p><p>JavaScript math can differ at the last bit across engines. This is not a claim of universal bitwise probability equality or accuracy on all possible inputs. No new fitting, final-outcome evaluation, or synthetic input examples were used.</p></details><p class="asset-links"><a href="assets/frozen_xgb_d3.inference.json" download>Frozen inference asset (JSON)</a><a href="assets/MODEL_ASSET_NOTICE.txt">Model asset license &amp; notice</a><a href="LICENSE-CODE.txt">Independent code license</a></p></section></div>
+      <section class="paper-card source-card"><div><p class="eyebrow">SOURCE CREDIT &amp; RIGHTS</p><h2>Credit where it belongs</h2></div><div><p>Retrospective research using <a href="https://www.kaggle.com/datasets/joniarroba/noshowappointments" target="_blank" rel="noopener noreferrer">Medical Appointment No Shows, version 5<span class="sr-only"> (opens in a new tab)</span></a>, shared by <strong>Joni Hoppen (joniarroba)</strong>, with credit to <strong>Aquarela Analytics</strong>. Source data is offered under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0<span class="sr-only"> (opens in a new tab)</span></a>.</p><p>CareAccess applied cohort filtering, feature engineering, model training, statistical evaluation, and conversion of the already-frozen model to a minimal browser inference representation. The model and fitted preprocessing asset carry a separate CC BY-NC-SA 4.0 notice, to the extent of applicable rights. Independently written application code is MIT licensed; MIT does not relicense the data-derived assets.</p><p>This is a noncommercial educational research demonstration. No endorsement by the source contributors is implied. Source material and the model are provided without warranties. Institutional release authority, participant consent, and anonymization documentation were not verified. Static artifact inspection does not establish absence of memorization or membership leakage; the source license does not replace privacy rights.</p><p class="fine-print">Client-side inference makes the model asset downloadable. No claim of clinical, regulatory, privacy, or anonymization certification is made.</p></div></section>
+    </section>
+  </main>
+  <footer><div><strong>CareAccess ML</strong><span>Vitória research demonstration · Frozen xgb_d3</span></div><p>Research interpretation only. Ordinary reminders and access to care must remain available to everyone.</p><a href="https://careaccess-ml.streamlit.app/" target="_blank" rel="noopener noreferrer">Original project <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
+  <div id="app-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <noscript><div class="noscript">JavaScript is required for local model computation. The evidence and privacy text remain readable. No form values will be submitted.</div></noscript>
+</body>
+</html>
