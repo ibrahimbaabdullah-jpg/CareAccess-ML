@@ -19,6 +19,8 @@ This is aggregate research evidence, not a before/after improvement of the origi
 
 The aggregate research integration passes **176 local tests** using the existing private offline source fixture. Public mode passes **120 tests and explicitly skips 56 source-dependent checks**. Its release-integrity check and dependency consistency check pass. These are local results; exact-commit CI and hosted visual checks must be recorded separately after publication. No new patient records were sent to the public host for this update.
 
+The [separate browser-only manual research demo](https://ibrahimbaabdullah-jpg.github.io/CareAccess-ML/) runs the frozen Vitória XGBoost for manual exploration in your browser. Its distinct cohort and research model do not replace or validate the original Mendeley models. The linked release carries its own asset-specific notices and licenses. This is a link only: no browser-demo model assets are imported into the main-branch Streamlit application, and its original inference remains unchanged.
+
 ## Features
 - Home dashboard with actual benchmark evidence and clear limitations
 - Single appointment prediction through saved models

@@ -126,6 +126,8 @@ if page == "Home / Dashboard":
     st.subheader("Separate research: Vitória historical benchmark")
     st.write("A frozen, eight-date benchmark found a ranking signal against a simple rule, but did not establish extra value over a fixed logistic comparator. It does not replace or validate the original models above.")
     st.caption("Open Research / Vitória in the sidebar for aggregate findings, uncertainty, probability overprediction and allocation limits.")
+    st.link_button("Open separate browser-only research demo", "https://ibrahimbaabdullah-jpg.github.io/CareAccess-ML/")
+    st.caption("Manually explore the frozen Vitória XGBoost in your browser. It uses a different cohort and does not replace or validate the original Mendeley models above.")
 
 elif page == "Live Prediction":
     st.header("Enter an appointment")
