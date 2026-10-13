@@ -3,9 +3,24 @@
 - **[Main application](https://careaccess-ml.streamlit.app/)**: Streamlit app with the original Mendeley models and outreach planner.
 - **[Browser-only research demo](https://ibrahimbaabdullah-jpg.github.io/CareAccess-ML/)**: Manual exploration using a frozen model trained on the separate Vitória research cohort.
 
-## Missed-Appointment Prediction and Outreach Planner
+## Project overview / نبذة عن المشروع
 
-A functional Python/Streamlit application using **real saved scikit-learn and PyTorch models**, trained on the original Mendeley appointment dataset. The website presents those models and aggregate results from publicly released appointment research datasets, including a separate Vitória benchmark. Underlying patient records and generated patient examples are not distributed. Input warnings concern data submitted to the public host; they do not classify all displayed research aggregates or model outputs as sensitive. Only permitted nonsensitive, non-identifying inputs may be submitted.
+CareAccess ML is a research project that uses machine learning to estimate appointment no-show risk and evaluate prioritization for reminder outreach under limited capacity. It compares trained models, reports their performance and limitations, and provides an interactive prediction demo.
+
+CareAccess ML مشروع بحثي يستخدم تعلم الآلة لتقدير احتمال عدم حضور المواعيد، ودراسة إمكانية تحسين اختيار المواعيد ذات أولوية للمتابعة التذكيرية عند محدودية الموارد. يقارن نماذج مدرّبة فعلًا، ويعرض أداءها وحدودها، مع تجربة تفاعلية للتنبؤ.
+
+**Research limits / حدود البحث:** Clinical effectiveness and reductions in missed appointments have not been demonstrated. لم تُثبت الفعالية السريرية أو القدرة على خفض المواعيد الفائتة.
+
+## Technologies and architecture / التقنيات والبنية
+
+- **Main application:** Python and Streamlit, hosted on Streamlit Community Cloud. The server runs the original saved scikit-learn and PyTorch models trained on the Mendeley appointment dataset.
+- **Browser research demo:** HTML, CSS and JavaScript, hosted on GitHub Pages from the separate [`research-browser-demo` branch](https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/tree/research-browser-demo). It uses a real frozen XGBoost model trained offline in Python on the separate Vitória cohort, with its fitted preprocessing and inference parameters exported to JSON. JavaScript computes predictions in the browser; model training and a Python runtime are not part of the browser application.
+- **Data and modeling:** Python, pandas, scikit-learn and PyTorch for the original application and research workflow; XGBoost for the separate Vitória research model. The browser model does not replace or validate the original Mendeley models.
+- **Verification:** pytest for the Python application and GitHub Actions for automated checks. The browser branch has its own static integrity and JavaScript checks.
+
+## Research scope and limitations
+
+The website presents the trained models and aggregate results from publicly released appointment research datasets, including a separate Vitória benchmark. Underlying patient records and generated patient examples are not distributed. Input warnings concern data submitted to the public host; they do not classify all displayed research aggregates or model outputs as sensitive. Only permitted nonsensitive, non-identifying inputs may be submitted.
 
 **Important result:** the frozen final-test models discriminate at approximately chance. The selected logistic model has ROC-AUC 0.505 and average precision 0.169 versus 0.161 test prevalence. Working software is not evidence of useful operational targeting. This release is a transparent, reproducible evaluation workbench; it is not validated for real-patient deployment or effective outreach prioritization.
 
@@ -87,5 +102,5 @@ This public Streamlit demo must not receive or process sensitive personal inform
 ## Privacy and safety
 Uploads processed in session memory, not deliberately stored or logged. Streamlit itself processes uploaded bytes; do not treat a public hosting service as an approved clinical environment. Model artifacts are fixed, checksummed and loaded with skops/safetensors; arbitrary model uploads are not accepted. CSV formula injection escaped. No automatic calls/SMS, cancellations, penalties or eligibility decisions. Population differences and dataset shift can invalidate probabilities.
 
-## Arabic summary
-CareAccess ML تطبيق لتجربة توقع عدم حضور المواعيد باستخدام نماذج مدربة فعليًا، مع تنظيم قائمة تواصل داعمة. نتائج التمييز الحالية قريبة من الصدفة؛ لذلك لا يصح تسويقه كأداة أثبتت فعاليتها في ترتيب المرضى. الموقع يعرض نماذج حقيقية ونتائج مجمعة من مجموعات بيانات بحثية منشورة، ولا ينشر سجلات المرضى الأصلية. تحذير الإدخال يخص البيانات المرسلة إلى الاستضافة، ولا يصنّف كل النتائج المجمعة أو مخرجات النماذج بأنها حساسة. يُسمح فقط بمدخلات غير حساسة وغير مُعرِّفة ومصرّح بمعالجتها على هذه الاستضافة. لا يلغي التطبيق المواعيد ولا يتخذ قرارات علاجية.
+## Arabic research and safety notes
+نتائج التمييز الحالية قريبة من الصدفة؛ لذلك لا يصح تسويقه كأداة أثبتت فعاليتها في ترتيب المرضى. الموقع يعرض نماذج حقيقية ونتائج مجمعة من مجموعات بيانات بحثية منشورة، ولا ينشر سجلات المرضى الأصلية. تحذير الإدخال يخص البيانات المرسلة إلى الاستضافة، ولا يصنّف كل النتائج المجمعة أو مخرجات النماذج بأنها حساسة. يُسمح فقط بمدخلات غير حساسة وغير مُعرِّفة ومصرّح بمعالجتها على هذه الاستضافة. لا يلغي التطبيق المواعيد ولا يتخذ قرارات علاجية.
