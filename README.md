@@ -6,7 +6,7 @@ A functional Python/Streamlit application using **real saved scikit-learn and Py
 **Important result:** the frozen final-test models discriminate at approximately chance. The selected logistic model has ROC-AUC 0.505 and average precision 0.169 versus 0.161 test prevalence. Working software is not evidence of useful operational targeting. This release is a transparent, reproducible evaluation workbench; it is not validated for real-patient deployment or effective outreach prioritization.
 
 ## Status
-Local models, evaluation and application implemented. Hosted deployment, browser verification and CI status are tracked in `docs/release-status.md`; do not infer completion from this README. Deployment target: Streamlit Community Cloud, $0/month. No paid APIs or generative AI services required.
+Local models, evaluation and application implemented: 52 local tests passed with private actual-source appointments. GitHub Actions passed 23 fixture-independent tests and explicitly skipped 29 source-dependent tests. Hosted deployment and browser verification remain pending; see `docs/release-status.md` for exact evidence and limitations. Deployment target: Streamlit Community Cloud, $0/month. No paid APIs or generative AI services required.
 
 ## Features
 - Home dashboard with actual benchmark evidence and clear limitations

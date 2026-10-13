@@ -12,3 +12,5 @@ Security scan results and hosting verification are tracked separately. No warran
 
 ## Dependency audit (2026-10-13)
 Installed-environment pip-audit completed: 16 advisory entries across pip25.0.1 and setuptools78.1.0, including duplicated registry entries. These are packaging/build tools; no advisories were reported for installed runtime ML/web dependencies in that scan. This is not a guarantee of security. Advisory identifiers and available fixes are in reports/dependency-audit.json. Official-package upgrade attempted but proxy403 and cancelled approval prevented completion; local tooling remains affected. CI requests upgraded packaging tools before installing runtime requirements.
+
+The installed-environment advisory scanner could not resolve the exact `torch==2.14.1+cpu` wheel. A separate lookup for base `torch==2.14.1` reported no known advisories (reports/torch-base-audit.json). This is partial advisory coverage, not an audit or security certification of the CPU binary. Input reference syntax also cannot prove anonymity: users remain responsible for authorization and de-identification.
