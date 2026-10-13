@@ -21,5 +21,8 @@ SOFTWARE.
 This code license does not replace the original Mendeley dataset's CC BY 4.0
 attribution terms, the separate Vitória source-data CC BY-NC-SA 4.0 terms,
 or third-party dependency licenses. See docs/data-audit.md and
-docs/vitoria-benchmark.md. No Vitória source records or research weights
-are distributed with this software.
+docs/vitoria-benchmark.md. The Streamlit application on the main branch
+distributes no Vitória source records or research weights. This statement
+is scoped to that release; separate branches or browser-demo releases
+must be read with their own asset-specific notices and licenses. This
+MIT notice does not relicense separately distributed dataset-derived assets.
