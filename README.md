@@ -6,12 +6,12 @@ A functional Python/Streamlit application using **real saved scikit-learn and Py
 **Important result:** the frozen final-test models discriminate at approximately chance. The selected logistic model has ROC-AUC 0.505 and average precision 0.169 versus 0.161 test prevalence. Working software is not evidence of useful operational targeting. This release is a transparent, reproducible evaluation workbench; it is not validated for real-patient deployment or effective outreach prioritization.
 
 ## Status
-Local models, evaluation and application implemented: 52 local tests passed with private actual-source appointments. GitHub Actions passed 23 fixture-independent tests and explicitly skipped 29 source-dependent tests. Hosted deployment and browser verification remain pending; see `docs/release-status.md` for exact evidence and limitations. Deployment target: Streamlit Community Cloud, $0/month. No paid APIs or generative AI services required.
+[Open the public application](https://careaccess-ml.streamlit.app/), deployed on Streamlit Community Cloud. Hosted logistic batch predictions matched offline inference for all 24 checked appointments, and planner capacity/ranking checks passed. All seven pages rendered, and an actual service reboot recovered successfully. Browser verification is partial: downloaded CSV bytes could not be checked because Chromium blocked the downloads. Historical local tests passed 52/52; main-branch GitHub Actions passed 23 fixture-independent tests and explicitly skipped 29 source-dependent tests. See [release acceptance status](docs/release-status.md) for exact coverage and remaining limits. No paid APIs or generative AI services are required.
 
 ## Features
 - Home dashboard with actual benchmark evidence and clear limitations
 - Single appointment prediction through saved models
-- CSV schema checks, explicit errors and optional valid-row scoring
+- CSV schema checks and explicit errors; the entire file must pass validation before scoring
 - Capacity-limited supportive outreach review list and CSV export
 - Comparison of constant baseline, logistic regression, gradient boosting and PyTorch neural network
 - ROC/PR/calibration curves, confusion matrices, date-cluster intervals, subgroup and daily top-K evaluation
@@ -40,7 +40,7 @@ The raw age field was inconsistent with historical appointment dates. Age was re
 ## CSV format
 Use the header-only `examples/appointments_template.csv`. No patient rows are provided. Exact columns:
 `appointment_id,appointment_datetime,specialty,age`.
-References must be temporary nonidentifying tokens containing letters, digits, hyphens or underscores (up to40characters). Date/time uses local `YYYY-MM-DDTHH:MM`; age 0–110 or blank; specialty is a supported source category or blank. No names, birth dates, outcome labels, health identifiers or additional columns. Use only information you are authorized to process on the hosting service, without identifiers or identifiable health information. Do not upload sensitive childhood records.
+References must be temporary nonidentifying tokens containing letters, digits, hyphens or underscores (up to 40 characters). Date/time uses local `YYYY-MM-DDTHH:MM`; age 0–110 or blank; specialty is a supported source category or blank. No names, birth dates, outcome labels, health identifiers or additional columns. Use only information you are authorized to process on the hosting service, without identifiers or identifiable health information. Do not upload sensitive childhood records.
 
 ## Privacy and safety
 Uploads processed in session memory, not deliberately stored or logged. Streamlit itself processes uploaded bytes; do not treat a public hosting service as an approved clinical environment. Model artifacts are fixed, checksummed and loaded with skops/safetensors; arbitrary model uploads are not accepted. CSV formula injection escaped. No automatic calls/SMS, cancellations, penalties or eligibility decisions. Population differences and dataset shift can invalidate probabilities.

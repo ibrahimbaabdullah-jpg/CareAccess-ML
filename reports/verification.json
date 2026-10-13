@@ -1,24 +1,83 @@
 {
   "date_utc": "2026-10-13",
-  "tested_commit": "95afe10b7b00aea86910936f7c9177706d5bd6f2",
   "local": {
     "passed": 52,
     "skipped": 0,
     "seconds": 7.77,
     "fixture": "24 private actual-source adult held-out appointments, never distributed",
-    "command": "CAREACCESS_TEST_DATA=<private fixture> python -m pytest -q"
+    "command": "CAREACCESS_TEST_DATA=<private fixture> python -m pytest -q",
+    "tested_commit": "95afe10b7b00aea86910936f7c9177706d5bd6f2",
+    "evidence_status": "Historical private-fixture verification; not rerun for the documentation update."
   },
   "github_actions": {
-    "url": "https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/actions/runs/38374976468",
+    "url": "https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/actions/runs/38376426128",
     "conclusion": "success",
     "passed": 23,
     "skipped": 29,
-    "seconds": 7.53,
-    "limitations": "Source-dependent inference/UI parity tests explicitly skipped because original patient rows are not distributed to runner. Model load/hash/architecture, basicUI and nonpatient tests executed.",
+    "seconds": 4.41,
+    "limitations": "Source-dependent inference/UI parity tests explicitly skipped because original patient rows are not distributed to the runner. Model load/hash/architecture, basic UI and nonpatient tests executed.",
     "pip_check": "No broken requirements found",
-    "tooling_upgrade": "pip>=26.2.1 and setuptools>=83 succeeded"
+    "tooling_upgrade": "pip and setuptools upgrades succeeded in this GitHub Actions environment.",
+    "tested_commit": "ad3490293495d6756397524081032171608d4be7",
+    "completed_at_utc": "2026-10-13T09:28:30Z",
+    "tooling_versions": {
+      "pip": "26.2.1",
+      "setuptools": "84.0.0"
+    }
   },
-  "hosted_browser": "NOT VERIFIED: Streamlit login/deployment and authorized real input pending",
+  "hosted_browser": {
+    "tested_at_utc": "2026-10-13T13:15:24Z",
+    "url": "https://careaccess-ml.streamlit.app/",
+    "model": "Logistic Regression",
+    "rows": 24,
+    "observation_method": "Full-precision table values visibly read from the hosted Streamlit UI after choosing Format > Plain. Not a downloaded-byte check.",
+    "tolerance": 1e-06,
+    "maximum_absolute_error": 2.7755575615628914e-17,
+    "parity_passed": true,
+    "hosted_batch_inference_passed": true,
+    "planner_capacity_counts_passed": [
+      20,
+      0,
+      5
+    ],
+    "planner_top_five_order_matches_offline": true,
+    "review_status_edit_visible": true,
+    "batch_download": "Chromium Download history: Failed - Blocked",
+    "planner_download": "Chromium Download history: Failed - Blocked",
+    "service_restart": {
+      "passed": true,
+      "method": "Streamlit Manage app > Reboot app, including confirmation",
+      "restart_requested_at_utc": "2026-10-13T13:06:14Z",
+      "new_server_startup_at_utc": "2026-10-13T13:07:49.462Z",
+      "home_recovered": true,
+      "prior_batch_and_planner_session_cleared": true
+    },
+    "post_restart_single_prediction": {
+      "passed": true,
+      "model": "Logistic Regression",
+      "rows": 1,
+      "input_source": "Same authorized actual adult appointment from the private 24-row fixture",
+      "comparison_method": "Visible full-precision cell detail against local saved-model inference",
+      "absolute_error": 0.0,
+      "tolerance": 1e-06,
+      "download_retested": false
+    },
+    "hosted_page_routes_rendered": [
+      "Home / Dashboard",
+      "Live Prediction",
+      "Batch Prediction",
+      "Outreach Planner",
+      "Model Comparison",
+      "Model Evaluation",
+      "About / Documentation"
+    ],
+    "scope_limitations": [
+      "Hosted numeric parity covers Logistic Regression only; the four-model parity result is local evidence.",
+      "Batch and planner downloads were attempted, but Chromium Download history reported Failed - Blocked. Downloaded-byte/CSV parity is unverified.",
+      "No raw fixture rows, row-level predictions, or screenshots containing them are included in this aggregate report."
+    ],
+    "input_scope": "24 authorized, private, actual-source adult appointments. Neither the inputs nor their individual predictions are published."
+  },
   "numeric_tolerance": 1e-06,
   "no_completion_claim": true,
   "local_resource_measurement": {
@@ -30,5 +89,21 @@
     "exact_cpu_torch_scan": "Skipped by installed-environment scanner",
     "base_torch_2_14_1": "No known advisories reported",
     "local_tooling": "pip/setuptools findings remain disclosed; CI successfully upgraded packaging tools"
-  }
+  },
+  "implementation_commit": "ad3490293495d6756397524081032171608d4be7",
+  "historical_github_actions": {
+    "tested_commit": "95afe10b7b00aea86910936f7c9177706d5bd6f2",
+    "url": "https://github.com/ibrahimbaabdullah-jpg/CareAccess-ML/actions/runs/38374976468",
+    "conclusion": "success",
+    "passed": 23,
+    "skipped": 29,
+    "seconds": 7.53
+  },
+  "full_release_acceptance": false,
+  "remaining_verification": [
+    "Downloaded batch and planner CSV bytes: browser download history reported Failed - Blocked.",
+    "Hosted neural and gradient-boosting numerical parity not established by the logistic batch check.",
+    "Exact published Git history and hosting-platform privacy/retention controls not certified by the local security review.",
+    "Deployed dependency versions and the exact PyTorch CPU binary remain outside the completed advisory coverage."
+  ]
 }

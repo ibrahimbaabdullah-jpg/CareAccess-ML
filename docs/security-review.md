@@ -2,6 +2,8 @@
 
 Reviewed 2026-10-13 against the local no-generated-data release candidate. This is a bounded engineering review, not a penetration test, legal opinion, de-identification certification or guarantee of security.
 
+This document preserves the scope and findings of that local review. Later integration and hosted-browser evidence are recorded in [release acceptance status](release-status.md) and [machine-readable verification](../reports/verification.json); they do not extend this review into a security certification of the public service.
+
 ## File and secret-pattern scan
 
 Scanned 48 candidate files (1,324,679 bytes before this review document), excluding `.venv`, `.git`, Python caches and pytest caches. Also inspected the contents of 490 archive entries inside the bundled `.skops` artifacts. The scan found **zero matches** for the tested private-key, GitHub token, AWS access-key, Google API-key, OpenAI/Groq-key and long literal Bearer-token patterns. This pattern scan can miss other secret formats and does not audit remote Git history or hosting secrets.
@@ -24,7 +26,7 @@ CSV handling limits uploads to 5 MB and 5,000 rows, checks the exact column allo
 
 `reports/dependency-audit.json` reports advisories affecting the inspected local **pip 25.0.1** and **setuptools 78.1.0** tooling. This is not an all-clear dependency scan. The audit also **skipped PyTorch 2.14.1+cpu** because that exact build was not found by its PyPI lookup; PyTorch advisory coverage is consequently incomplete. A separate base-version lookup in `reports/torch-base-audit.json` reports no known advisories for torch 2.14.1. This narrows the gap but is not verification of the exact `+cpu` binary artifact or a security certification. Other audited dependency entries had no advisories in that particular report, which does not guarantee absence of vulnerabilities.
 
-The release verification record separately reports successful upgrading of pip/setuptools in GitHub Actions. That CI environment is distinct from the inspected local audit environment; its success does not retroactively remove local findings. Before a public deployment, confirm the deployed tooling/dependency versions and review the skipped PyTorch build against the vendor's advisories. Do not report that all dependencies are vulnerability-free.
+The release verification record separately reports successful upgrading of pip/setuptools in GitHub Actions. That CI environment is distinct from the inspected local audit environment; its success does not retroactively remove local findings. Confirming the deployed tooling/dependency versions and reviewing the skipped PyTorch build against the vendor's advisories remain separate verification gaps. Do not report that all dependencies are vulnerability-free.
 
 ## Verification evidence and scope
 
@@ -32,4 +34,4 @@ The revised release verification record reports 52 local tests using 24 private 
 
 The final-test discrimination remains approximately chance. A prominent application warning correctly states that effective operational outreach targeting is not established. No clinical approval or intervention-effectiveness claim is supported.
 
-**Remaining release gates:** exact published-tree/history review, deployment privacy and dependency review, hosted browser testing with an appropriately authorized input route, uploads/downloads, restart behavior and hosted numerical parity. This document does not certify those unfinished checks.
+**Scope still not certified by this review:** exact published-tree/history inspection, deployed dependency versions, hosting-platform privacy/retention controls, and a complete hosted security review. Hosted functional checks, downloads, restart behavior and numerical parity are tracked individually in the current [release acceptance status](release-status.md). A passing functional check does not establish clinical fitness, anonymity, or security of the hosting environment.
