@@ -56,7 +56,7 @@ Dependencies are pinned and use the PyTorch CPU wheel index; no GPU is needed. `
 
 Salazar, Luiz Henrique (2023), *Medical Appointments No-Show*, Mendeley Data, V1, [DOI 10.17632/wm6w2fvkfj.1](https://data.mendeley.com/datasets/wm6w2fvkfj/1), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 49,593 records; 2,921 exact duplicates removed, leaving 46,672 appointments (not unique patients). Age is recomputed from the date of birth and only numeric age is used; birth dates are never published. Original and row-level transformed records are not in this repository. Splits are chronological: train ≤2018, validation 2019, calibration 2020, test 2021–2022.
 
-The Vitória source is credited to Joni Hoppen and Aquarela Analytics under CC BY-NC-SA 4.0. This repository's MIT license covers the original software only; it does not relicense source data or dataset-derived assets.
+The Vitória benchmark uses *Medical Appointment No Shows*, version 5, shared on [Kaggle by Joni Hoppen (joniarroba)](https://www.kaggle.com/datasets/joniarroba/noshowappointments) with credit to Aquarela Analytics, under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). This repository's MIT license covers the original software only; it does not relicense source data or dataset-derived assets.
 
 Details: [data audit](docs/data-audit.md), [evaluation report](reports/evaluation-report.md), [model-improvement investigation](docs/predictive-value-investigation.md), [Vitória benchmark](docs/vitoria-benchmark.md), [validation protocol](docs/validation-protocol.md) and the model cards in `docs/`.
 
