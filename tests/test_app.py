@@ -4,13 +4,15 @@ Set CAREACCESS_TEST_DATA to a locally reviewed, non-published input CSV.
 No fabricated patient cohort is generated or bundled. Source-dependent parity
 checks skip explicitly if this private fixture is unavailable.
 """
-from pathlib import Path
 import os
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import pytest
 from streamlit.testing.v1 import AppTest
-from careaccess.inference import load_bundle, predict, model_names
+
+from careaccess.inference import load_bundle, model_names, predict, scoring_model_names
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -55,10 +57,10 @@ def test_missing_appointment_time_rejected():
     assert not at.exception
     assert any("date and time" in item.value for item in at.error)
 
-@pytest.mark.parametrize("model", ["Logistic Regression", "Gradient Boosting", "PyTorch Neural Network"])
+@pytest.mark.parametrize("model", ["Logistic Regression", "PyTorch Neural Network"])
 def test_live_inference_matches_offline_inference(model, real_inputs):
     bundle = load_bundle()
-    assert model in model_names(bundle)
+    assert model in scoring_model_names(bundle)
     row = real_inputs.dropna().iloc[0]
     moment = pd.Timestamp(row.appointment_datetime)
     at = select_page(app(), "Live Prediction")
@@ -112,3 +114,12 @@ def test_negative_calibration_slope_is_disclosed():
     at = select_page(app(), "Model Evaluation")
     at.selectbox(key="evaluation_model").set_value("Gradient Boosting").run()
     assert any("negative" in item.value and "reverses" in item.value for item in at.warning)
+
+def test_reversed_calibration_model_is_evaluation_only():
+    bundle = load_bundle()
+    assert "Gradient Boosting" in model_names(bundle)
+    assert "Gradient Boosting" not in scoring_model_names(bundle)
+    at = select_page(app(), "Live Prediction")
+    assert "Gradient Boosting" not in at.selectbox(key="live_model").options
+    at = select_page(at, "Model Evaluation")
+    assert "Gradient Boosting" in at.selectbox(key="evaluation_model").options

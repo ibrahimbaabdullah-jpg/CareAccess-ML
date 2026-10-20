@@ -1,5 +1,6 @@
 """Strict input schema. References must be nonidentifying temporary appointment tokens."""
 import re
+
 import numpy as np
 import pandas as pd
 

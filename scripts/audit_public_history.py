@@ -2,8 +2,16 @@
 Never writes matching secret values; findings contain only type/blob/path/line.
 No serialized models are executed by this scanner.
 """
-import subprocess,json,re,io,zipfile,collections,hashlib,csv,argparse
+import argparse
+import csv
+import hashlib
+import io
+import json
+import re
+import subprocess
+import zipfile
 from pathlib import Path
+
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--git-dir',type=Path,required=True)
 parser.add_argument('--output',type=Path,required=True)

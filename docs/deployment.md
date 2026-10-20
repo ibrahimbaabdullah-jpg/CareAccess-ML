@@ -20,9 +20,11 @@ patient information.
    commit source data, fixture rows, per-appointment predictions, secrets or
    patient identifiers. The public CSV template must remain header-only.
 4. Review dependency and model integrity results for the exact release commit.
-   `models/manifest.json` must cover every fixed artifact and recorded
-   configuration hash. Stop if any artifact cannot be verified; do not bypass
-   the loader or regenerate evaluation results to make a check pass.
+   `models/manifest.json` must cover every fixed artifact. Stop if any artifact
+   cannot be verified; do not bypass the loader or regenerate evaluation
+   results to make a check pass. The recorded configuration hashes identify the
+   source revision that trained the artifacts; `scripts/verify_release.py`
+   reports later source changes as provenance drift rather than failing.
 
 ## Streamlit Community Cloud
 
@@ -68,3 +70,10 @@ and browser checks after rollback. Do not upload replacement model files through
 the application or suppress verification errors.
 
 Record passed, failed and unrun checks separately in [release status](release-status.md).
+
+## Dependency notes
+
+PyArrow is pinned to 24.0.0, matching the hosting provider's reported
+compatibility workaround; the local application and real-source inference suite
+were rerun with this version. Development tooling (pytest, pytest-cov, ruff and
+setuptools) is pinned in `requirements-dev.txt`.

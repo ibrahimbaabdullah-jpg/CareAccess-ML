@@ -1,7 +1,7 @@
 """Restricted raw data preparation. Never ship original records or birth dates."""
-from pathlib import Path
 import hashlib
-import numpy as np
+from pathlib import Path
+
 import pandas as pd
 
 SOURCE_SHA256='903f30aa008c478dd6451550b53c2bf937653f28763ea288e43f5e99c536cbdf'
@@ -32,4 +32,4 @@ def temporal_split(frame):
     dates=pd.to_datetime(frame.appointment_datetime).dt.normalize()
     bins=[dates < '2019-01-01', (dates >= '2019-01-01') & (dates < '2020-01-01'),
           (dates >= '2020-01-01') & (dates < '2021-01-01'), dates >= '2021-01-01']
-    return {name:frame.loc[mask].reset_index(drop=True) for name,mask in zip(['train','validation','calibration','test'],bins)}
+    return {name:frame.loc[mask].reset_index(drop=True) for name,mask in zip(['train','validation','calibration','test'],bins, strict=True)}

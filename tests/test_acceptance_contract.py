@@ -16,12 +16,13 @@ import pytest
 import streamlit as st
 from streamlit.testing.v1 import AppTest
 
-from careaccess.inference import load_bundle, predict
+from careaccess.inference import predict
 from careaccess.planner import plan_outreach
 from careaccess.validation import INPUT_COLUMNS
 
 ROOT = Path(os.environ.get('CAREACCESS_APP_ROOT', Path(__file__).resolve().parents[1]))
-MODELS = ['Constant baseline', 'Logistic Regression', 'Gradient Boosting', 'PyTorch Neural Network']
+# Gradient Boosting is evaluation-only: its negative calibration slope reverses rankings.
+MODELS = ['Constant baseline', 'Logistic Regression', 'PyTorch Neural Network']
 
 @pytest.fixture
 def actual_inputs():

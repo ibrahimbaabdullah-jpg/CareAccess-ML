@@ -1,8 +1,11 @@
-from pathlib import Path
 import json
+from pathlib import Path
+
 import matplotlib
+
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
 r=json.loads(Path('reports/evaluation.json').read_text())
 fig,axs=plt.subplots(1,3,figsize=(15,4))
 for m,c in r['curves'].items():

@@ -1,19 +1,24 @@
 """CareAccess ML: a privacy-aware public interface to saved trained models."""
-from pathlib import Path
 import json
+from pathlib import Path
 
-import numpy as np
 import pandas as pd
 import streamlit as st
 
-from careaccess.inference import load_bundle, predict, model_names
-from careaccess.validation import validate_frame
-from careaccess.planner import plan_outreach, export_csv
 from careaccess.csv_input import read_appointments_csv
-from careaccess.session import (clear_batch_session, reset_batch_results, revoke_batch_authorization,
-                                prepare_batch_authorization, prepare_planner_capacity, remember_planner_capacity)
+from careaccess.inference import load_bundle, model_names, predict, scoring_model_names
+from careaccess.planner import export_csv, plan_outreach
 from careaccess.quality import input_quality_warnings
 from careaccess.research import render_research
+from careaccess.session import (
+    clear_batch_session,
+    prepare_batch_authorization,
+    prepare_planner_capacity,
+    remember_planner_capacity,
+    reset_batch_results,
+    revoke_batch_authorization,
+)
+from careaccess.validation import validate_frame
 
 ROOT = Path(__file__).resolve().parent
 PAGES = ["Home / Dashboard", "Live Prediction", "Batch Prediction", "Outreach Planner", "Model Comparison", "Model Evaluation", "Research / Vitória", "About / Documentation"]
@@ -40,8 +45,8 @@ def label(name):
     return LABELS.get(name, str(name) if " " in str(name) else str(name).replace("_", " ").title())
 
 
-def model_picker(bundle, key):
-    names = list(model_names(bundle))
+def model_picker(bundle, key, scoring=True):
+    names = scoring_model_names(bundle) if scoring else list(model_names(bundle))
     default = bundle["default_model"]
     return st.selectbox("Trained model", names, index=names.index(default) if default in names else 0, format_func=label, key=key)
 
@@ -105,7 +110,7 @@ if page == "Home / Dashboard":
     st.caption("Input warnings concern data submitted to this host. They do not classify all displayed research aggregates or model outputs as sensitive.")
     st.subheader("Three simple steps")
     cols = st.columns(3)
-    for col, title, body in zip(cols, ["1 · Enter an appointment", "2 · Validate a schedule", "3 · Choose your outreach capacity"], ["Open Live Prediction to run a saved trained model on permitted inputs.", "Use Batch Prediction to check a permitted nonsensitive, non-identifying CSV.", "Open Outreach Planner to create and download a ranked review list."]):
+    for col, title, body in zip(cols, ["1 · Enter an appointment", "2 · Validate a schedule", "3 · Choose your outreach capacity"], ["Open Live Prediction to run a saved trained model on permitted inputs.", "Use Batch Prediction to check a permitted nonsensitive, non-identifying CSV.", "Open Outreach Planner to create and download a ranked review list."], strict=True):
         col.markdown(f"**{title}**")
         col.write(body)
     counts = report.get("counts", {})
@@ -226,7 +231,7 @@ elif page == "Outreach Planner":
             planned["review_status"] = planned.appointment_id.map(statuses).fillna("Not reviewed")
             result_generation = st.session_state.get("batch_result_generation", 0)
             planned = st.data_editor(planned, key=f"batch_review_editor_{result_generation}_{int(capacity)}", hide_index=True, width="stretch", disabled=[c for c in planned.columns if c != "review_status"], column_config={"review_status": st.column_config.SelectboxColumn("Review status", options=["Not reviewed", "Ready for supportive outreach", "Needs further review", "Reviewed — no additional outreach"]), "miss_probability": st.column_config.NumberColumn("Estimated non-attendance probability", format="%.4f")})
-            statuses.update(zip(planned.appointment_id, planned.review_status))
+            statuses.update(zip(planned.appointment_id, planned.review_status, strict=True))
         else:
             st.info("Capacity is zero. No appointments are selected.")
         st.download_button("Download outreach review list", export_csv(planned), "careaccess_outreach_review.csv", "text/csv")
@@ -249,7 +254,7 @@ elif page == "Model Comparison":
 elif page == "Model Evaluation":
     st.header("Inspect the evidence and limitations")
     st.write("These measured results come from held-out historical Mendeley appointments. Interactive inputs and uploaded files do not change these evaluation results.")
-    selected = model_picker(bundle, "evaluation_model")
+    selected = model_picker(bundle, "evaluation_model", scoring=False)
     metrics = metric_rows(report)
     if "model" in metrics:
         st.dataframe(metrics[metrics["model"] == selected], hide_index=True, width="stretch")
@@ -273,7 +278,7 @@ elif page == "Model Evaluation":
     st.caption("Well-calibrated predictions lie near equal predicted and observed rates. A smooth-looking curve alone does not demonstrate reliability.")
     calibrator = manifest.get("calibrators", {}).get(selected)
     if calibrator and calibrator.get("coef", 0) < 0:
-        st.warning("This model's sigmoid calibration slope is negative, so calibration reverses its raw score ordering. Calibration was fitted before the final test on the separate calibration period; the inversion and weak final-test performance are disclosed, not corrected by refitting to the test set.")
+        st.warning("This model's sigmoid calibration slope is negative, so calibration reverses its raw score ordering. Calibration was fitted before the final test on the separate calibration period; the inversion and weak final-test performance are disclosed, not corrected by refitting to the test set. Because its calibrated scores rank appointments in reverse, it is not offered for Live or Batch Prediction.")
     if "model" in metrics and "confusion_matrix" in metrics:
         match = metrics.loc[metrics["model"] == selected]
         if not match.empty:

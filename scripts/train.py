@@ -1,25 +1,35 @@
 """Reproduce frozen chronological benchmark. Run from repository root."""
-import argparse,copy,hashlib,json,platform,sys,time
-from datetime import datetime,timezone
+import argparse
+import copy
+import hashlib
+import json
+import platform
+import sys
+import time
+from datetime import UTC, datetime
 from pathlib import Path
+
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import numpy as np
 import pandas as pd
-import sklearn,torch,skops.io as sio
+import sklearn
+import skops.io as sio
+import torch
 from safetensors.torch import save_file
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder,StandardScaler
-from sklearn.impute import SimpleImputer
-from sklearn.pipeline import Pipeline
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.dummy import DummyClassifier
-from sklearn.metrics import average_precision_score,log_loss,f1_score
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.impute import SimpleImputer
 from sklearn.inspection import permutation_importance
-from careaccess.data import prepare_source,temporal_split,SOURCE_SHA256
-from careaccess.validation import make_features,INPUT_COLUMNS,SPECIALTIES
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import average_precision_score, f1_score, log_loss
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+from careaccess.data import SOURCE_SHA256, prepare_source, temporal_split
+from careaccess.evaluation import bootstrap_intervals, capacity_metrics, curves, evaluate
 from careaccess.network import TabularMLP
-from careaccess.evaluation import evaluate,curves,capacity_metrics,bootstrap_intervals
+from careaccess.validation import INPUT_COLUMNS, SPECIALTIES, make_features
 
 SEED=20261013
 ROOT=Path(__file__).resolve().parents[1]
@@ -104,10 +114,10 @@ def main(raw):
     # Feature perturbation is validation-only, descriptive association rather than causal explanation.
     if default in candidates:
         pi=permutation_importance(candidates[default],z['validation'],y['validation'],scoring='average_precision',n_repeats=5,random_state=SEED)
-        report['feature_importance']=[{'feature':str(n),'mean_ap_decrease':float(m),'std':float(s)} for n,m,s in zip(pre.get_feature_names_out(),pi.importances_mean,pi.importances_std)]
+        report['feature_importance']=[{'feature':str(n),'mean_ap_decrease':float(m),'std':float(s)} for n,m,s in zip(pre.get_feature_names_out(),pi.importances_mean,pi.importances_std, strict=True)]
     else:report['feature_importance']=[]
     versions={'python':platform.python_version(),'numpy':np.__version__,'pandas':pd.__version__,'scikit_learn':sklearn.__version__,'torch':torch.__version__}
-    manifest={'version':'0.1.0','created_utc':datetime.now(timezone.utc).isoformat(),'seed':SEED,'default_model':default,'model_files':files,'calibrators':calibrators,'thresholds':thresholds,'input_dim':int(z['train'].shape[1]),'versions':versions,'sha256':{},'skops_types':{}}
+    manifest={'version':'0.1.0','created_utc':datetime.now(UTC).isoformat(),'seed':SEED,'default_model':default,'model_files':files,'calibrators':calibrators,'thresholds':thresholds,'input_dim':int(z['train'].shape[1]),'versions':versions,'sha256':{},'skops_types':{}}
     for path in models.iterdir():
         if path.suffix in ['.skops','.safetensors']:
             manifest['sha256'][path.name]=hashlib.sha256(path.read_bytes()).hexdigest()

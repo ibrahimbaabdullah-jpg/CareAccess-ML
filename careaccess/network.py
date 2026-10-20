@@ -1,5 +1,5 @@
-import torch
 from torch import nn
+
 
 class TabularMLP(nn.Module):
     def __init__(self, input_dim):
