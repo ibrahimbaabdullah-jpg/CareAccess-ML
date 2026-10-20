@@ -289,7 +289,7 @@ def feature_importance(model, preprocessor, z, y):
     ]
 
 
-def build_manifest(root, models_dir, default, files, calibrators, thresholds, input_dim, versions, frame, train):
+def build_manifest(models_dir, default, files, calibrators, thresholds, input_dim, versions, frame, train):
     manifest = {
         "version": "0.1.0",
         "created_utc": datetime.now(UTC).isoformat(),
@@ -323,7 +323,9 @@ def build_manifest(root, models_dir, default, files, calibrators, thresholds, in
         "description": FEATURE_CONTRACT_DESCRIPTION,
     }
     manifest["configuration_sha256"] = {
-        f: hashlib.sha256((root / f).read_bytes()).hexdigest() for f in CONFIGURATION_FILES
+        # Hash the code that ran, which lives in this checkout even when outputs go elsewhere.
+        f: hashlib.sha256((ROOT / f).read_bytes()).hexdigest()
+        for f in CONFIGURATION_FILES
     }
     return manifest
 
@@ -388,7 +390,6 @@ def train(raw, root=ROOT):
         "torch": torch.__version__,
     }
     manifest = build_manifest(
-        root,
         models_dir,
         default,
         files,
@@ -410,5 +411,6 @@ def train(raw, root=ROOT):
     if ablation.exists():
         report["feature_ablation"] = json.loads(ablation.read_text())
     save_json(models_dir / "manifest.json", manifest)
+    (root / "reports").mkdir(exist_ok=True)
     save_json(root / "reports/evaluation.json", report)
     return default, report
