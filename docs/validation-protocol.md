@@ -129,7 +129,7 @@ A published randomized reminder trial shows that intervention effects can be mea
 A bounded read-only search did not identify a verified, immediately compatible independent public cohort for this exact model. This is not a claim that none exists.
 
 - The [Mendeley source](https://data.mendeley.com/datasets/wm6w2fvkfj/1) is the same 2016–2022 rehabilitation-center cohort already used.
-- The original [Kaggle Medical Appointment No Shows metadata](https://www.kaggle.com/joniarroba/noshowappointments/activity) describes a different feature schema, including scheduling date, appointment date, neighborhood and health flags. Its listed schema does not establish the required specialty and appointment-time equivalence. It would need a documented compatibility audit and potentially a separately developed model; substituting it is not automatic external validation of this model.
+- The original [Kaggle Medical Appointment No Shows metadata](https://www.kaggle.com/datasets/joniarroba/noshowappointments) describes a different feature schema, including scheduling date, appointment date, neighborhood and health flags. Its listed schema does not establish the required specialty and appointment-time equivalence. It would need a documented compatibility audit and potentially a separately developed model; substituting it is not automatic external validation of this model.
 - [rdv_maroc](https://data.mendeley.com/datasets/724jjmcyzc/1) supplies too little public description to verify real-world provenance, decision-time availability, or compatible features. It is not yet suitable validation evidence.
 - Synthetic appointment datasets can test software and load, but cannot establish real patient-outcome prediction or causal outreach benefit.
 
