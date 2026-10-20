@@ -14,7 +14,7 @@ requires-python = ">=3.12"
 dependencies = []
 
 [tool.setuptools]
-packages = ["careaccess"]
+packages = ["careaccess", "careaccess.ui"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
