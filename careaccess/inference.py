@@ -9,6 +9,7 @@ import skops.io as sio
 import torch
 from safetensors.torch import load_file
 
+from careaccess.calibration import apply_calibration
 from careaccess.network import TabularMLP
 from careaccess.validation import make_features, validate_frame
 
@@ -93,8 +94,6 @@ def predict(frame,model_name=None,bundle=None):
     if isinstance(model,TabularMLP):
         with torch.no_grad():p=torch.sigmoid(model(torch.tensor(x))).numpy().astype(float)
     else:p=model.predict_proba(x)[:,1]
-    cal=bundle['manifest']['calibrators'][name]
-    if cal:
-        p=np.clip(p,1e-6,1-1e-6);p=1/(1+np.exp(-(cal['coef']*np.log(p/(1-p))+cal['intercept'])))
+    p=apply_calibration(p,bundle['manifest']['calibrators'][name])
     if not np.isfinite(p).all():raise ValueError('Non-finite model result.')
     return np.asarray(p,dtype=float)
