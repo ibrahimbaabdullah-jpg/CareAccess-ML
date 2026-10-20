@@ -3,7 +3,7 @@
 import pandas as pd
 
 
-def input_quality_warnings(frame, contract):
+def input_quality_warnings(frame: pd.DataFrame, contract: dict) -> pd.Series:
     warnings = pd.Series("", index=frame.index, dtype=str)
 
     def add(mask, message):

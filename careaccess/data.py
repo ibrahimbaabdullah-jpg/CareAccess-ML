@@ -8,7 +8,7 @@ import pandas as pd
 SOURCE_SHA256 = "903f30aa008c478dd6451550b53c2bf937653f28763ea288e43f5e99c536cbdf"
 
 
-def prepare_source(path):
+def prepare_source(path: str | Path) -> tuple[pd.DataFrame, dict]:
     path = Path(path)
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
     if digest != SOURCE_SHA256:
@@ -48,7 +48,7 @@ def prepare_source(path):
     return frame, counts
 
 
-def temporal_split(frame):
+def temporal_split(frame: pd.DataFrame) -> dict[str, pd.DataFrame]:
     dates = pd.to_datetime(frame.appointment_datetime).dt.normalize()
     bins = [
         dates < "2019-01-01",

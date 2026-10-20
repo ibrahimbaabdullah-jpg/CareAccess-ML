@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 import skops.io as sio
 import torch
 from safetensors.torch import load_file
@@ -30,7 +31,7 @@ SKOPS_TYPES = {
 }
 
 
-def verify_artifacts(folder, manifest):
+def verify_artifacts(folder: Path, manifest: dict) -> None:
     """Reject incomplete or redirected manifests before deserializing anything."""
     if manifest.get("model_files") != MODEL_FILES:
         raise ValueError("Unexpected bundled model files.")
@@ -50,12 +51,12 @@ def verify_artifacts(folder, manifest):
             raise ValueError("Model checksum mismatch; deployment must be repaired.")
 
 
-def model_names(bundle=None):
+def model_names(bundle: dict | None = None) -> list[str]:
     bundle = load_bundle() if bundle is None else bundle
     return list(bundle["manifest"]["model_files"])
 
 
-def scoring_model_names(bundle=None):
+def scoring_model_names(bundle: dict | None = None) -> list[str]:
     """Models offered for interactive scoring.
 
     A negative calibration slope reverses the raw score ordering, so that model
@@ -66,7 +67,7 @@ def scoring_model_names(bundle=None):
     return [name for name in model_names(bundle) if not (calibrators.get(name) or {}).get("coef", 0) < 0]
 
 
-def load_bundle():
+def load_bundle() -> dict:
     folder = ROOT / "models"
     manifest = json.loads((folder / "manifest.json").read_text())
     models = {}
@@ -98,7 +99,7 @@ def load_bundle():
     }
 
 
-def predict(frame, model_name=None, bundle=None):
+def predict(frame: pd.DataFrame, model_name: str | None = None, bundle: dict | None = None) -> np.ndarray:
     bundle = load_bundle() if bundle is None else bundle
     clean, errors = validate_frame(frame)
     if len(errors):

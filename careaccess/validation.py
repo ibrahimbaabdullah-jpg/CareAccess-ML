@@ -19,7 +19,7 @@ SPECIALTIES = [
 MAX_ROWS = 5000
 
 
-def validate_frame(frame: pd.DataFrame):
+def validate_frame(frame: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     errors = []
     if not isinstance(frame, pd.DataFrame):
         raise ValueError("A CSV table is required.")
@@ -71,7 +71,7 @@ def validate_frame(frame: pd.DataFrame):
     )
 
 
-def make_features(frame):
+def make_features(frame: pd.DataFrame) -> pd.DataFrame:
     """Allowlist prevents target, reasons, observed weather and demographics entering ML."""
     date = pd.to_datetime(frame.appointment_datetime, format="%Y-%m-%dT%H:%M", errors="raise")
     return pd.DataFrame(

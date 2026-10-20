@@ -16,7 +16,7 @@ from sklearn.metrics import (
 )
 
 
-def evaluate(y, p, threshold):
+def evaluate(y: np.ndarray, p: np.ndarray, threshold: float) -> dict:
     pred = p >= threshold
     return {
         "roc_auc": float(roc_auc_score(y, p)),
@@ -30,7 +30,7 @@ def evaluate(y, p, threshold):
     }
 
 
-def curves(y, p):
+def curves(y: np.ndarray, p: np.ndarray) -> dict:
     fpr, tpr, _ = roc_curve(y, p)
     precision, recall, _ = precision_recall_curve(y, p)
     obs, est = calibration_curve(y, p, n_bins=10, strategy="quantile")
@@ -48,7 +48,7 @@ def curves(y, p):
     }
 
 
-def capacity_metrics(y, p, dates):
+def capacity_metrics(y: np.ndarray, p: np.ndarray, dates: pd.Series) -> list[dict]:
     data = pd.DataFrame({"y": np.asarray(y), "p": p, "date": pd.to_datetime(dates).dt.date.to_numpy()})
     data["tie"] = np.random.default_rng(20261013).random(len(data))
     rows = []
@@ -75,7 +75,9 @@ def capacity_metrics(y, p, dates):
     return rows
 
 
-def bootstrap_intervals(y, p, dates, seed=20261013, n_boot=200):
+def bootstrap_intervals(
+    y: np.ndarray, p: np.ndarray, dates: pd.Series, seed: int = 20261013, n_boot: int = 200
+) -> dict:
     """Date-cluster bootstrap; patient clusters unavailable. Fixed frozen predictions."""
     y = np.asarray(y)
     p = np.asarray(p)
