@@ -24,13 +24,13 @@ Working software is not evidence of useful targeting. Clinical effectiveness and
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dev.txt
-ruff check .
+ruff check . && ruff format --check .
 python -m pytest -q
 python scripts/verify_release.py
 streamlit run app.py
 ```
 
-Dependencies are pinned and use the PyTorch CPU wheel index; no GPU is needed. `requirements.txt` is used for deployment and `requirements-lock.txt` records the full environment. Source-dependent tests skip unless `CAREACCESS_TEST_DATA` points at the private fixture. See the [deployment guide](docs/deployment.md) and [retraining guide](docs/retraining.md).
+Dependencies are pinned and use the PyTorch CPU wheel index; no GPU is needed. `requirements.txt` is used for deployment and `requirements-lock.txt` records the full environment. Software tests on rows generated in memory run everywhere (including a full training run and the app's prediction flows); they test the code, not model performance. Actual-source tests skip unless `CAREACCESS_TEST_DATA` points at the private fixture. See the [deployment guide](docs/deployment.md) and [retraining guide](docs/retraining.md).
 
 ## Project layout
 

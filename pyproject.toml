@@ -9,13 +9,12 @@ description = "Appointment no-show risk research workbench and capacity-limited 
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.12"
-dynamic = ["dependencies"]
+# Pinned runtime dependencies (including the PyTorch CPU index) live in
+# requirements.txt; install with `pip install -r requirements-dev.txt`.
+dependencies = []
 
 [tool.setuptools]
-packages = ["careaccess"]
-
-[tool.setuptools.dynamic]
-dependencies = { file = ["requirements.txt"] }
+packages = ["careaccess", "careaccess.ui"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
@@ -32,12 +31,6 @@ extend-exclude = [".venv", "scripts/research"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
-# The compact multi-statement style is being unpacked in a separate refactor.
-ignore = ["E701", "E702", "E731"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["careaccess"]
-
-[tool.ruff.lint.per-file-ignores]
-# Scripts add the repository root to sys.path before importing the package.
-"scripts/**" = ["E402"]

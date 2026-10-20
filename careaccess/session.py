@@ -18,7 +18,10 @@ def clear_batch_session(state):
     generation = state.get("batch_upload_generation", 0)
     for key in list(state):
         if key.startswith(("batch_upload_", "batch_review_")) or key in {
-            "batch_scores", "batch_result_generation", "batch_capacity", "batch_capacity_input"
+            "batch_scores",
+            "batch_result_generation",
+            "batch_capacity",
+            "batch_capacity_input",
         }:
             state.pop(key, None)
     state["batch_upload_generation"] = generation + 1
