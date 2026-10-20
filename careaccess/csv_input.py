@@ -4,6 +4,7 @@ The four supported fields cannot contain line breaks. Checking each short
 physical record before csv.reader also prevents a small, extremely wide file
 from allocating millions of columns in a general-purpose table parser.
 """
+
 import csv
 import io
 
@@ -44,7 +45,9 @@ def read_appointments_csv(payload: bytes) -> pd.DataFrame:
         try:
             values = next(csv.reader([line], strict=True))
         except csv.Error as error:
-            raise ValueError("Malformed CSV. Use one appointment per line, without line breaks inside fields.") from error
+            raise ValueError(
+                "Malformed CSV. Use one appointment per line, without line breaks inside fields."
+            ) from error
         if len(values) > len(INPUT_COLUMNS):
             raise ValueError("The CSV contains too many columns. Use only the four template columns.")
         if any(len(value) > MAX_CELL_CHARS for value in values):

@@ -24,7 +24,7 @@ Working software is not evidence of useful targeting. Clinical effectiveness and
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dev.txt
-ruff check .
+ruff check . && ruff format --check .
 python -m pytest -q
 python scripts/verify_release.py
 streamlit run app.py

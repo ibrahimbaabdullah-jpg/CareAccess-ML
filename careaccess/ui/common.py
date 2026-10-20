@@ -8,11 +8,22 @@ from careaccess.quality import input_quality_warnings
 from careaccess.validation import validate_frame
 
 RESEARCH_DEMO_URL = "https://ibrahimbaabdullah-jpg.github.io/CareAccess-ML/"
-HOST_INPUT_NOTICE = ("For inputs submitted to this public host: exclude identifiers and sensitive personal information, including patient-level health information. "
-                     "Do not upload patient records. Public availability, removing names, or checking a consent box "
-                     "does not establish hosting suitability. Source-data evaluation stays offline. "
-                     "Real-patient use requires a separately governed deployment and review.")
-LABELS = {"logistic": "Logistic Regression", "logistic_regression": "Logistic Regression", "gradient_boosting": "Gradient Boosting", "hist_gradient_boosting": "Gradient Boosting", "pytorch": "PyTorch Neural Network", "neural_network": "PyTorch Neural Network", "baseline": "Constant baseline"}
+HOST_INPUT_NOTICE = (
+    "For inputs submitted to this public host: exclude identifiers and sensitive personal information, including patient-level health information. "
+    "Do not upload patient records. Public availability, removing names, or checking a consent box "
+    "does not establish hosting suitability. Source-data evaluation stays offline. "
+    "Real-patient use requires a separately governed deployment and review."
+)
+LABELS = {
+    "logistic": "Logistic Regression",
+    "logistic_regression": "Logistic Regression",
+    "gradient_boosting": "Gradient Boosting",
+    "hist_gradient_boosting": "Gradient Boosting",
+    "pytorch": "PyTorch Neural Network",
+    "neural_network": "PyTorch Neural Network",
+    "baseline": "Constant baseline",
+}
+
 
 def label(name):
     return LABELS.get(name, str(name) if " " in str(name) else str(name).replace("_", " ").title())
@@ -21,7 +32,9 @@ def label(name):
 def model_picker(bundle, key, scoring=True):
     names = scoring_model_names(bundle) if scoring else list(model_names(bundle))
     default = bundle["default_model"]
-    return st.selectbox("Trained model", names, index=names.index(default) if default in names else 0, format_func=label, key=key)
+    return st.selectbox(
+        "Trained model", names, index=names.index(default) if default in names else 0, format_func=label, key=key
+    )
 
 
 def empty_template():
@@ -43,8 +56,17 @@ def validate_and_score(frame, model, bundle):
 
 
 def show_scores(frame):
-    st.dataframe(frame, hide_index=True, width="stretch", column_config={"miss_probability": st.column_config.NumberColumn("Estimated non-attendance probability", format="%.4f")})
-    st.caption("Probabilities are between 0 and 1: 0.30 means an estimated 30%. These are uncertain estimates from historical data, not a statement about a person's intentions.")
+    st.dataframe(
+        frame,
+        hide_index=True,
+        width="stretch",
+        column_config={
+            "miss_probability": st.column_config.NumberColumn("Estimated non-attendance probability", format="%.4f")
+        },
+    )
+    st.caption(
+        "Probabilities are between 0 and 1: 0.30 means an estimated 30%. These are uncertain estimates from historical data, not a statement about a person's intentions."
+    )
 
 
 def metric_rows(report):
@@ -52,4 +74,3 @@ def metric_rows(report):
     if isinstance(metrics, list):
         return pd.DataFrame(metrics)
     return pd.DataFrame([{"model": name, **values} for name, values in metrics.items()])
-

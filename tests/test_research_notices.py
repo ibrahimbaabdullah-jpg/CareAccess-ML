@@ -1,4 +1,5 @@
 """Research-display and host-input wording checks; no source records required."""
+
 from hashlib import sha256
 from pathlib import Path
 
@@ -11,11 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def visible_text(at):
-    return "\n".join(
-        str(item.value)
-        for kind in ["markdown", "caption", "warning", "info"]
-        for item in at.get(kind)
-    )
+    return "\n".join(str(item.value) for kind in ["markdown", "caption", "warning", "info"] for item in at.get(kind))
 
 
 def test_home_distinguishes_research_display_from_submitted_inputs():
@@ -72,5 +69,8 @@ def test_separate_browser_demo_links_preserve_original_models_and_summary():
     assert at.date_input[0].value is None and at.time_input[0].value is None
     assert not at.checkbox(key="live_confirm").value
     assert "last_single_prediction" not in at.session_state
-    assert sha256(SUMMARY_PATH.read_bytes()).hexdigest() == "316d10de679e08019458befb07464b91c18139155db7120fa36e382f99f041dc"
+    assert (
+        sha256(SUMMARY_PATH.read_bytes()).hexdigest()
+        == "316d10de679e08019458befb07464b91c18139155db7120fa36e382f99f041dc"
+    )
     assert url in (ROOT / "README.md").read_text()

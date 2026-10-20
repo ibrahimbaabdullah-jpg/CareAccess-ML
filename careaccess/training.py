@@ -134,7 +134,9 @@ def candidate_models():
 def transform_splits(preprocessor, features):
     """Fit imputation, scaling and encoding on training rows only."""
     matrices = {"train": preprocessor.fit_transform(features["train"]).astype("float32")}
-    matrices.update({k: preprocessor.transform(features[k]).astype("float32") for k in ["validation", "calibration", "test"]})
+    matrices.update(
+        {k: preprocessor.transform(features[k]).astype("float32") for k in ["validation", "calibration", "test"]}
+    )
     return matrices
 
 
@@ -245,21 +247,27 @@ def subgroup_rows(name, test, y, p, threshold):
             gy = y[mask]
             if mask.sum() < 100 or gy.sum() < 20 or (len(gy) - gy.sum()) < 20:
                 continue
-            rows.append({
-                "model": name,
-                "dimension": dimension,
-                "group": str(group),
-                "rows": int(mask.sum()),
-                "missed": int(gy.sum()),
-                **evaluate(gy, p[mask], threshold),
-            })
+            rows.append(
+                {
+                    "model": name,
+                    "dimension": dimension,
+                    "group": str(group),
+                    "rows": int(mask.sum()),
+                    "missed": int(gy.sum()),
+                    **evaluate(gy, p[mask], threshold),
+                }
+            )
     return rows
 
 
 def evaluate_final_test(report, candidates, net, z, y, test, calibrators, thresholds):
     """Score the held-out test period once, after every selection decision is fixed."""
     for name in calibrators:
-        p = network_scores(net, z["test"]).astype(float) if name == NETWORK else candidates[name].predict_proba(z["test"])[:, 1]
+        p = (
+            network_scores(net, z["test"]).astype(float)
+            if name == NETWORK
+            else candidates[name].predict_proba(z["test"])[:, 1]
+        )
         p = apply_calibration(p, calibrators[name])
         report["metrics"].append({"model": name, **evaluate(y["test"], p, thresholds[name])})
         report["curves"][name] = curves(y["test"], p)
@@ -275,7 +283,9 @@ def feature_importance(model, preprocessor, z, y):
     )
     return [
         {"feature": str(n), "mean_ap_decrease": float(m), "std": float(s)}
-        for n, m, s in zip(preprocessor.get_feature_names_out(), result.importances_mean, result.importances_std, strict=True)
+        for n, m, s in zip(
+            preprocessor.get_feature_names_out(), result.importances_mean, result.importances_std, strict=True
+        )
     ]
 
 
@@ -378,7 +388,16 @@ def train(raw, root=ROOT):
         "torch": torch.__version__,
     }
     manifest = build_manifest(
-        root, models_dir, default, files, calibrators, thresholds, int(z["train"].shape[1]), versions, frame, parts["train"]
+        root,
+        models_dir,
+        default,
+        files,
+        calibrators,
+        thresholds,
+        int(z["train"].shape[1]),
+        versions,
+        frame,
+        parts["train"],
     )
     report.update(
         training_seconds=time.monotonic() - started,
