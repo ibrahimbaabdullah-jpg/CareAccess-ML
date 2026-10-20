@@ -1,7 +1,10 @@
 """Download verified original source outside the repository; never commit it."""
-import argparse,hashlib
+import argparse
+import hashlib
 from pathlib import Path
+
 import requests
+
 URL='https://data.mendeley.com/public-files/datasets/wm6w2fvkfj/files/19bc39c8-479d-4dfb-9bca-787022ca3a8b/file_downloaded'
 SHA='903f30aa008c478dd6451550b53c2bf937653f28763ea288e43f5e99c536cbdf'
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);args=p.parse_args();out=Path(args.output).resolve();root=Path(__file__).resolve().parents[1]

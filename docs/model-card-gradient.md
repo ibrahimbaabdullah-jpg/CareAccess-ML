@@ -11,6 +11,8 @@ Reproducible retrospective evaluation and authorized nonidentifying input infere
 ## Evaluation
 ROC-AUC 0.4870; AP 0.1526; Brier 0.1357. Near-chance discrimination; no proven beneficial prioritization. Full metrics/confidence intervals/subgroups and limitations in evaluation.json.
 
+The sigmoid calibration fitted on 2020 has a negative slope (−0.18), so calibrated scores reverse the raw ranking. The model is therefore shown only on the Model Comparison and Model Evaluation pages and is not offered for Live or Batch Prediction.
+
 ## Safe artifacts
 Bundled sklearn objects loaded with skops type checks; neural weights use safetensors. SHA256 checksums in manifest. No user-uploaded models. Models may encode historical associations and are not guaranteed privacy-preserving.
 

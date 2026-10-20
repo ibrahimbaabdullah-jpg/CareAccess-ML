@@ -1,15 +1,19 @@
 """Development-only necessity audit. Never reads final-test outcomes for selection."""
-import sys,json
+import json
+import sys
 from pathlib import Path
+
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-import pandas as pd,numpy as np
+import pandas as pd
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder,StandardScaler
-from sklearn.impute import SimpleImputer
-from sklearn.pipeline import Pipeline
 from sklearn.ensemble import HistGradientBoostingClassifier
-from sklearn.metrics import average_precision_score,brier_score_loss
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import average_precision_score, brier_score_loss
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
 from careaccess.validation import make_features
+
 raw=pd.read_csv(sys.argv[1]).drop_duplicates();date=pd.to_datetime(raw.appointment_date,format='%d/%m/%Y');raw=raw[date<'2020-01-01'].copy();date=date[date<'2020-01-01']
 birth=pd.to_datetime(raw.date_of_birth,format='%d/%m/%Y',errors='coerce');age=(date-birth).dt.days/365.2425;age=age.where(age.between(0,110))
 f=pd.DataFrame({'appointment_datetime':pd.to_datetime(raw.appointment_date+' '+raw.appointment_time,format='%d/%m/%Y %H:%M').dt.strftime('%Y-%m-%dT%H:%M'),'age':age,'specialty':raw.specialty});x=make_features(f)

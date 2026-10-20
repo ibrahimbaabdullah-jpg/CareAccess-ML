@@ -1,11 +1,13 @@
-from pathlib import Path
-import json,os
+import os
+
 import numpy as np
 import pandas as pd
 import pytest
-from careaccess.validation import validate_frame,make_features,INPUT_COLUMNS
-from careaccess.inference import load_bundle,predict,model_names
+
 from careaccess.data import temporal_split
+from careaccess.inference import load_bundle, model_names, predict
+from careaccess.validation import INPUT_COLUMNS, make_features, validate_frame
+
 
 @pytest.fixture(scope='module')
 def bundle(): return load_bundle()

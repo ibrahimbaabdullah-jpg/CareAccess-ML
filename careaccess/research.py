@@ -2,8 +2,8 @@
 
 No research weights, source rows or inference path are loaded by this module.
 """
-from hashlib import sha256
 import json
+from hashlib import sha256
 from pathlib import Path
 
 import pandas as pd

@@ -7,3 +7,5 @@ __pycache__/
 data/
 private/
 *.log
+.coverage
+.ruff_cache/

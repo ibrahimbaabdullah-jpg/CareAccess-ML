@@ -1,5 +1,11 @@
-from careaccess.session import (clear_batch_session, reset_batch_results, revoke_batch_authorization,
-                                prepare_batch_authorization, prepare_planner_capacity, remember_planner_capacity)
+from careaccess.session import (
+    clear_batch_session,
+    prepare_batch_authorization,
+    prepare_planner_capacity,
+    remember_planner_capacity,
+    reset_batch_results,
+    revoke_batch_authorization,
+)
 
 
 def test_clear_drops_upload_and_all_batch_results_and_resets_confirmation():

@@ -1,9 +1,10 @@
 """Research-display and host-input wording checks; no source records required."""
-from pathlib import Path
 from hashlib import sha256
+from pathlib import Path
 
 from streamlit.testing.v1 import AppTest
-from careaccess.inference import load_bundle, model_names
+
+from careaccess.inference import load_bundle, scoring_model_names
 from careaccess.research import SUMMARY_PATH
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,7 +54,7 @@ def test_docs_keep_input_boundary_without_blanket_source_classification():
 
 def test_separate_browser_demo_links_preserve_original_models_and_summary():
     url = "https://ibrahimbaabdullah-jpg.github.io/CareAccess-ML/"
-    expected_models = set(model_names(load_bundle()))
+    expected_models = set(scoring_model_names(load_bundle()))
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
     for page in ["Home / Dashboard", "Research / Vitória"]:
         at.sidebar.radio[0].set_value(page).run()

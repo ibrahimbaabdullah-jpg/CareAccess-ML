@@ -1,12 +1,17 @@
 """Real CPU inference from checked, bundled trained artifacts only."""
-import hashlib,json,re
+import hashlib
+import json
+import re
 from pathlib import Path
+
 import numpy as np
-import torch
 import skops.io as sio
+import torch
 from safetensors.torch import load_file
+
 from careaccess.network import TabularMLP
-from careaccess.validation import validate_frame,make_features
+from careaccess.validation import make_features, validate_frame
+
 ROOT=Path(__file__).resolve().parents[1]
 MODEL_FILES = {
     'Constant baseline': 'baseline.skops',
@@ -46,6 +51,17 @@ def verify_artifacts(folder, manifest):
 def model_names(bundle=None):
     bundle=load_bundle() if bundle is None else bundle
     return list(bundle['manifest']['model_files'])
+
+
+def scoring_model_names(bundle=None):
+    """Models offered for interactive scoring.
+
+    A negative calibration slope reverses the raw score ordering, so that model
+    stays visible in evaluation pages but is not offered for ranking inputs.
+    """
+    bundle=load_bundle() if bundle is None else bundle
+    calibrators=bundle['manifest']['calibrators']
+    return [name for name in model_names(bundle) if not (calibrators.get(name) or {}).get('coef',0)<0]
 
 
 def load_bundle():

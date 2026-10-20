@@ -1,13 +1,16 @@
 """Read-only research evidence and cohort-separation contracts; no invented patients."""
-from hashlib import sha256
 import json
+from hashlib import sha256
 from pathlib import Path
 from unittest.mock import patch
+
 import pytest
 import streamlit as st
 from streamlit.testing.v1 import AppTest
-from careaccess.inference import load_bundle, model_names
+
+from careaccess.inference import load_bundle, scoring_model_names
 from careaccess.research import SUMMARY_PATH, SUMMARY_SHA256, load_research_summary, policy_table
+
 ROOT = Path(__file__).resolve().parents[1]
 
 def research_page():
@@ -118,7 +121,7 @@ def test_repeated_research_navigation_keeps_original_model_choices_and_blank_inp
     at=research_page()
     for _ in range(2):
         at.sidebar.radio[0].set_value('Live Prediction').run()
-        assert set(at.selectbox(key='live_model').options) == set(model_names(load_bundle()))
+        assert set(at.selectbox(key='live_model').options) == set(scoring_model_names(load_bundle()))
         assert not any('XGBoost' in value or 'Vitória' in value for value in at.selectbox(key='live_model').options)
         assert at.date_input[0].value is None and at.time_input[0].value is None
         at.sidebar.radio[0].set_value('Research / Vitória').run()
@@ -145,7 +148,9 @@ def test_hosted_input_boundary_is_explicit(destination):
 
 def test_private_offline_scores_capacity_and_reviews_survive_research_navigation():
     import os
+
     import pandas as pd
+
     from careaccess.inference import predict
     path=os.environ.get('CAREACCESS_TEST_DATA')
     if not path or not Path(path).is_file():

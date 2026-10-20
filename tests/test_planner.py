@@ -1,6 +1,7 @@
 import pandas as pd
 import pytest
-from careaccess.planner import plan_outreach, export_csv
+
+from careaccess.planner import export_csv, plan_outreach
 
 
 def frame():
