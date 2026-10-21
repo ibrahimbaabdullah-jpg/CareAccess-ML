@@ -47,7 +47,7 @@ header-only. Build it outside the checkout instead.
 2. Build the fixture:
 
 ```
-python scripts/make_test_fixture.py --source ~/mendeley-source.csv --out ~/careaccess-fixture.csv
+python scripts/make_test_fixture.py --source ~/mendeley-source.csv --out ~/careaccess-private/fixture.csv
 ```
 
 The script refuses to write inside the repository. It selects 24 adult appointments dated
@@ -59,17 +59,29 @@ fixture that would fail the suite is rejected at build time rather than during t
 3. Run the full suite:
 
 ```
-export CAREACCESS_TEST_DATA=~/careaccess-fixture.csv
+export CAREACCESS_TEST_DATA=~/careaccess-private/fixture.csv
 python -m pytest -q
 python scripts/verify_release.py
 ```
 
 Export the variable rather than prefixing one command, so the release check sees the fixture too.
 
-Under Docker, mount the fixture read-only and point the variable at the container path:
+On a machine with no local install, such as an Intel Mac, both steps run in the container: the
+fixture builder loads the models, so it needs the same dependencies the suite does. Keep the
+source and the fixture in a directory of their own, mounted outside `/app`, so neither can land
+in the repository.
 
 ```
-docker run --rm -v "$PWD:/app" -v ~/careaccess-fixture.csv:/data/fixture.csv:ro \
+mkdir -p ~/careaccess-private
+docker run --rm -v "$PWD:/app" -v ~/careaccess-private:/out \
+  -v ~/Downloads/mendeley-source.csv:/src/source.csv:ro careaccess-test \
+  python scripts/make_test_fixture.py --source /src/source.csv --out /out/fixture.csv
+```
+
+Then run the suite against it:
+
+```
+docker run --rm -v "$PWD:/app" -v ~/careaccess-private/fixture.csv:/data/fixture.csv:ro \
   -e CAREACCESS_TEST_DATA=/data/fixture.csv careaccess-test
 ```
 
