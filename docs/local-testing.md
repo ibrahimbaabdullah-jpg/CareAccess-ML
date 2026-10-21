@@ -59,9 +59,12 @@ fixture that would fail the suite is rejected at build time rather than during t
 3. Run the full suite:
 
 ```
-CAREACCESS_TEST_DATA=~/careaccess-fixture.csv python -m pytest -q
+export CAREACCESS_TEST_DATA=~/careaccess-fixture.csv
+python -m pytest -q
 python scripts/verify_release.py
 ```
+
+Export the variable rather than prefixing one command, so the release check sees the fixture too.
 
 Under Docker, mount the fixture read-only and point the variable at the container path:
 
