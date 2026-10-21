@@ -16,7 +16,9 @@ patient information.
    skips as real-input verification.
 3. For authorized local real-input acceptance, set `CAREACCESS_TEST_DATA` to
    the reviewed adult-source fixture **outside the checkout**, then rerun the
-   tests and release verification. Publish aggregate evidence only. Never
+   tests and release verification. `scripts/make_test_fixture.py` builds such a
+   fixture from the published source; see the
+   [local testing guide](local-testing.md). Publish aggregate evidence only. Never
    commit source data, fixture rows, per-appointment predictions, secrets or
    patient identifiers. The public CSV template must remain header-only.
 4. Review dependency and model integrity results for the exact release commit.
